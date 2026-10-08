@@ -1,0 +1,601 @@
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -1,6 +1,8 @@
+ # 项目协作规范
+ 
+ 本文件是本仓库所有 AI 工具共享的工作规范。先读本文件、PROJECT.md 和与当前任务相关的规格；用户最新明确指令优先。CLAUDE.md 只作为本文件的入口，不维护另一套相互冲突的规则。
++
++维护流程见 [docs/WORKFLOW.md](docs/WORKFLOW.md)，新任务从 [任务规格模板](docs/templates/task-spec.md) 开始，交付填 [变更记录模板](docs/templates/change-record.md)。`.cursor/rules/project.mdc` 与 CLAUDE.md 都只做同一规范的入口；技术栈、产品与安全约束只在本文件维护，具体任务契约在 docs/specs/ 维护。
+ 
+ ## 规格先行与任务边界
+ 
+@@ -43,7 +45,9 @@
+ 
+ - 先看实际 diff，再按规格检查测试与输出证据，最后才提交。AI 的总结不是审查依据。
+ - 一次提交一个已验收功能或文档任务；不夹带其他用户改动、实验素材、模型权重、凭据或无关重构。记录提交号和回退方式。
++- 显式暂存本任务文件，核对 staged diff 与未提交基线后再提交；推送后核对远端提交号。已共享提交用 git revert 回退，不强推覆盖历史；运行服务的回退另行同步和验证。
+ - 先核对 Git 状态。没有有效 Git 元数据时，不自行 git init、不伪造提交号；保存修改前快照和统一 diff，标注提交待真实仓库可用后进行。
++- 独立嵌套仓库不覆盖父目录；根忽略规则不保护独立子仓库，也不自动移除已跟踪文件。发布前核对真实仓库根、远端、归属和可见性；根仓库恢复/新建、迁移子仓库或公开/私有选择由用户决定。
+ - 部署与工作区修改分开记录；没有同步、重启和服务验证，不写“网页已生效”。
+ 
+ ## 工具分工与经验回写
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -5,3 +5,5 @@
+ 账号重大防范矛盾任务的契约是 [account-warning-conflicts.md](docs/specs/account-warning-conflicts.md)。审查时核对双方原文、各自时间、来源和具体控制缺口是否真的出现在输出中，不能只看 conflict=true 或 AI 的口头汇报。
+ 
+ 进行独立审查时记录实际 diff、规格不符项、测试证据和剩余风险。没有运行 Claude Code 就不记录“Claude 已审查”。本轮仅建立入口文件，不表示已调用此工具。
++
++日常交付按 [维护流程](docs/WORKFLOW.md)，需求与交付记录分别使用 [任务规格模板](docs/templates/task-spec.md) 和 [变更记录模板](docs/templates/change-record.md)。优先阅读实际 diff 与原始验证输出，再报告发现及复核；入口存在不等于本机安装或调用过 Claude Code。
+--- a/PROJECT.md
++++ b/PROJECT.md
+@@ -20,13 +20,35 @@
+ 
+ 所有 AI 工具先读 [AGENTS.md](AGENTS.md)；[CLAUDE.md](CLAUDE.md) 是同一规范的入口。实现前冻结需求、约束和验收条件，按可独立审查任务推进；实际 diff、测试输出、模型实测与部署状态分别留证据。
+ 
++Cursor 入口为 [.cursor/rules/project.mdc](.cursor/rules/project.mdc)，维护步骤见 [docs/WORKFLOW.md](docs/WORKFLOW.md)，新任务使用 [规格模板](docs/templates/task-spec.md) 与 [变更模板](docs/templates/change-record.md)。技术栈、目录和产品/安全规则以 AGENTS 为唯一规范源；Node 要求见前端 package.json（当前 >=22.13.0）。
++
+ 账号警示遵循 [重大矛盾证据与时间规格](docs/specs/account-warning-conflicts.md)：默认接受用户事实；重大防范不一致必须列出两条原文、各自时间、来源、具体控制缺口及对应动作。不能用“不代表”替代证据；不能把技术熟悉程度推成容易被骗。不同时间的变化需区分，缺时间明确标注，不补造。
+ 
+ **当前缺口**：现有 Qwen 矛盾检查只有布尔结论；source_facts 目前只传 id/text，尚未保留时间，也未输出防范影响。旧 Ray 实测不能视为新规格通过。规格中的 T1至T4 待实施，本轮只更新记录与上下文文件，没有改动运行代码或重启服务。
+ 
+ 本轮实际变化、审查和回退材料见 [工作记录](docs/change-records/2026-10-08-spec-first/记录.md)。当前目录缺少有效 Git 元数据，保存前后快照与统一 diff；未初始化仓库、未生成提交号。
+ 
+-## 当前进度
++## 工程治理与完整项目发布（2026-10-08）
++
++本轮契约见 [工程治理规格](docs/specs/engineering-governance.md) 和 [完整发布规格](docs/specs/github-project-publication.md)，实际文件、检查、提交与回退见 [治理变更记录](docs/change-records/2026-10-08-engineering-governance/记录.md)。新增根忽略规则、工具入口、维护流程、模板和 PR 检查表；业务实现、模型、提示词和部署未改动。
++
++| 阶段 | 本轮状态 |
++|---|---|
++| 需求与验收 | 已记录：本地治理与完整源码发布分别验收 |
++| 文档/配置修改 | 已完成；检查输出见本轮记录 |
++| 业务代码修改、模型实测 | 未进行；本轮不适用 |
++| 程序测试 | 导入基线检查仅记录实际结果，不能当新功能验收 |
++| 同步部署、运行服务验证 | 未进行 |
++| 独立 Claude Code 审查 | 未进行；未发现已安装 CLI，不把自查冒充独立审查 |
++| GitHub目标 | 用户指定 yxriam/talking-head-lab，现有public仓库，连接身份yxriam具有push权限 |
++| 根工作区 Git | .git为空，不初始化；原facebook-scam嵌套仓库不改动 |
++| 实际提交/推送 | 以本轮变更记录中的真实提交号、远端核对结果为准 |
++
++发布checkout为D:/project/facebook/talking-head-lab，从用户目标真实clone获得Git元数据。源码复制不带原嵌套.git、不迁移既有facebook-scam历史；根忽略规则不会改变原独立子仓库的行为。后续维护和回退在真实发布checkout执行，源目录仍保留全部历史材料。
++
++## 既有功能状态（历史记录，本轮未复验）
++
++以下为本轮之前的实现与验证记录；保留既有事实，本轮未重新验证服务可达、模型输出或部署版本，不能作为新规格验收结果。
+ 
+ 网页已连接 Ubuntu 本地 API，支持真实上传、资源 ID 交接和任务轮询。Chatterbox、SadTalker、UCF、RECCE、F3-Net 已完成真实 GPU 推理验证。人像视频页也已接入 TokenHub `YT-Video-HumanActor`，待配置用户自己的 TokenHub API Key 和 COS 存储桶后执行首次真实调用。完整本地流程和独立上传视频检测均已通过 API 验证；检测证据不足时返回“不确定”，不生成假分数。
+ 
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,150 @@
++# Environments, dependencies, caches and build output (all depths).
++.venv/
++venv/
++node_modules/
++__pycache__/
++*.py[cod]
++.pytest_cache/
++.mypy_cache/
++.ruff_cache/
++.cache/
++.pnpm-store/
++.npm-cache/
++.next/
++.vinext/
++.wrangler/
++dist/
++build/
++coverage/
++*.tsbuildinfo
++*.log
++wget-log*
++*.pid
++*.tmp
++*.sync-part
++Thumbs.db
++.DS_Store
++
++# Secrets and browser sessions. Only sanitized examples are eligible.
++.env
++.env.*
++*.env
++*.env.*
++!.env.example
++!.env.*.example
++!*.env.example
++*.cookies
++*.token
++*.pem
++*.key
++*.p12
++*.pfx
++id_rsa*
++id_ed25519*
++.aws/
++.ssh/
++credentials.json
++credentials.*.json
++*service-account*.json
++facebook-browser/
++
++# Model weights; source files and requirements remain eligible.
++*.gguf
++*.safetensors
++*.ckpt
++*.pth
++*.pt
++*.onnx
++*.tflite
++pytorch_model*.bin
++models/
++checkpoints/
++weights/
++
++# Local media/data/QA areas. Preserve text evidence elsewhere.
++/output/
++/acceptance/
++/benchmark-results/
++/calibration-preview/
++/facebook_capture/output/
++facebook_state.json
++/facebook_intel_pipeline/runs/
++/ray_hunt_facebook_package/
++/verify_facebook_scam_clone/
++/gfpgan/
++/tools/TinyTeX/
++/tools/tectonic_pkg/
++/tools/tinytex_pkg/
++/local-media/data/
++/local-media/crawl-data/
++/local-media/calibration-*/
++/local-media/detector-runtime/
++/local-media/inspection/
++/facebook-scam/data/
++/facebook-scam/work/
++/facebook-scam/analysis_output/
++/facebook-scam/media/
++/facebook-scam/raw/
++/facebook-scam/video-forensics-web/outputs/
++/facebook-scam/video-forensics-web/work/
++/facebook-scam/video-forensics-web/out/
++
++# Generated and personal media; don't exclude frontend public assets globally.
++/*.wav
++/*.mp3
++/*.mp4
++/*.mov
++/*.webm
++/*.mkv
++/*.avi
++/*.m4v
++/*.jpg
++/*.jpeg
++/*.png
++/*.zip
++/local-media/*.wav
++/local-media/*.mp3
++/local-media/*.mp4
++/local-media/*.mov
++/local-media/*.webm
++/local-media/*.mkv
++/local-media/*.avi
++/local-media/*.m4v
++/local-media/*.jpg
++/local-media/*.jpeg
++/local-media/*.png
++/local-media/legacy-code*.zip
++/local-media/ray-prompt-eval/*.jpg
++/local-media/ray-prompt-eval/*.png
++/local-media/warning-eval/*.jpg
++/local-media/warning-eval/*.png
++
++# Local agent metadata; shared AGENTS/CLAUDE/Cursor rules remain eligible.
++/.codex/
++/.agents/
++
++# Historical personal evidence/configuration stays local; public summaries remain.
++/local-media/ray-prompt-eval/
++/local-media/warning-eval/
++/local-media/calibration-*.json
++/local-media/*-report.json
++/local-media/*-gpu.csv
++/local-media/*-job-id.txt
++/local-media/linux-status.txt
++/local-media/wsl-status.txt
++/local-media/ubuntu-install.txt
++/handoff/*.zip
++/facebook-scam/crawler/targets.json
++/facebook-scam/crawler/targets_lisa_videos.json
++/docs/change-records/2026-10-08-spec-first/before/Ray-*.md
++/docs/change-records/2026-10-08-spec-first/变更.patch
++//
++
++# Installation transcripts and runtime text outputs are not source.
++/local-media/*.txt
++!/local-media/requirements*.txt
++
++# Local review artifacts duplicate Git history and need not be published.
++/docs/change-records/2026-10-08-engineering-governance/source-import.patch
++/docs/change-records/2026-10-08-engineering-governance/source-pathspec.txt
++/docs/change-records/2026-10-08-engineering-governance/source-whitespace-check.txt
+--- /dev/null
++++ b/.cursor/rules/project.mdc
+@@ -0,0 +1,10 @@
++---
++description: 读取项目唯一协作规范与当前任务契约
++alwaysApply: true
++---
++
++开始任务先使用文件工具完整读取根 AGENTS.md、PROJECT.md 和与当前任务相关的 docs/specs/ 文件；本规则中的引用不会自动展开文件内容。
++
++- @AGENTS.md 是技术栈、目录、产品决策、测试、安全与提交回退的唯一规范源；用户最新明确指令优先。
++- @PROJECT.md 是现状索引；@docs/WORKFLOW.md 提供交付步骤与模板入口。
++- 本入口不维护另一份业务规范。新增架构、安全边界或范围取舍交用户决定；按 AGENTS 和当前规格执行、审实际 diff、留验证与回退证据。
+--- /dev/null
++++ b/docs/WORKFLOW.md
+@@ -0,0 +1,85 @@
++# 项目维护与发布流程
++
++遵循 [AGENTS.md](../AGENTS.md)。[PROJECT.md](../PROJECT.md) 是现状索引；任务规格是验收契约，变更记录是真实证据。Claude/Cursor 入口仅引导读取同一规范。本流程不替代用户对架构、安全和范围的决定。
++
++## 开始一个可验收任务
++
++1. 完整读取共享规范、项目索引和相关规格。从 [任务规格模板](templates/task-spec.md) 建立 `docs/specs/<任务>.md`，冻结需求来源、约束、输入/输出、失败用例和停止条件。一次会话完成一项可单独审 diff 的交付。
++2. 核对真实仓库根、分支、远端、HEAD、暂存与未提交状态，保存任务开始基线。独立子仓库另查；目录链接路径与真实目录可能不同。不要打印 `.env` 或凭据来排查身份。
++3. 按 [变更记录模板](templates/change-record.md) 记录用户决定和 AI 的实现责任。新增架构、安全边界、公开范围或范围取舍先交人决定；常规实现自行推进。
++
++```powershell
++Set-Location D:\project\cv
++git rev-parse --show-toplevel
++git status --short
++git branch --show-current
++git remote -v
++git log -1 --format="%H %s"
++git diff --cached --name-only
++```
++
++Git 任一关键状态不可用时走下面的快照流程，不执行 git init。当前根 `.git` 为空；`facebook-scam/` 的有效仓库只是该子目录，不是整个项目的提交位置。
++
++## 实现、审查与验证
++
++沿用现有代码风格，只改规格范围。修改前保留旧文件；模型实验先保存冻结输入、参数、提示词版本和最大尝试次数，单次只改一个有理由的变量。
++
++实现后先看 `git diff -- <本任务文件>`（无 Git 时看统一 patch），再逐项对照验收用例和实际输出。记录未通过项、修复及剩余缺口。Codex 完成实现与自查；Claude Code 只有实际独立只读审查后才记录工具、调用范围、具体发现和复核结果。不可用写“未进行”及原因，不安装新工具或把自查冒充独立审查。
++
++| 改动 | 必要验证 | 通过后的准确表述 |
++|---|---|---|
++| 文档、规则与忽略配置 | 本地引用、规则一致性、实际 diff、Git 原生忽略正反例 | 文档/配置验收通过 |
++| 账号链 | AGENTS 指定 account_llm；按范围加 account_risk/account_story | 对应程序测试通过 |
++| server.py 或 API | test_server.py；输入边界与兼容性 | API程序测试通过 |
++| 前端行为 | 在 facebook-scam/video-forensics-web 执行 npm run build；Node >=22.13.0 以 package.json 为准 | 构建通过，行为验收另记 |
++| 提示词/模型输出 | 冻结用例矩阵的真实模型实跑，留原输出、耗时与失败项 | 仅已跑矩阵模型实测通过 |
++| 部署 | 同步清单与 SHA256、重启结果、运行服务版本及受影响功能验证 | 同步、重启、运行验证分别记录 |
++
++文档任务不重跑 GPU 或整站测试。程序通过不等于模型通过；模型通过不等于已部署。PROJECT 中历史状态保留其适用范围，不作为新规格通过证据。
++
++## 发布前检查与小步提交
++
++根 `.gitignore` 防止环境、权重、凭据与生成素材进入未来根仓库，保留源码、规格、文本证据、公共网页资源及脱敏示例。独立子仓库使用自己的忽略文件；已跟踪的敏感文件即使新忽略也仍在历史中，须另开经用户确认的处理任务。忽略匹配不是凭据审计，首次发布还需检查实际待提交内容。
++
++有效仓库且归属/可见性已确认后，使用具体文件列表（以下占位需替换）：
++
++```powershell
++git diff --check
++git add -- <本任务文件1> <本任务文件2>
++git diff --cached --name-status
++git diff --cached --check
++git diff --cached -- <本任务文件1> <本任务文件2>
++git commit -m "docs: describe the accepted governance change"
++git log -1 --format="%H %s"
++git status --short
++git push <已确认远端名> <当前任务分支>
++git ls-remote <已确认远端名> refs/heads/<当前任务分支>
++```
++
++远端分支的提交号必须等于实际本地交付提交；推送失败保留本地提交与错误，不能写“已上传”。不要 `git add .` 夹带既有改动，不强推，不自动创建 PR。仓库要求 PR 时使用 [PR 检查表](../.github/pull_request_template.md)，实际创建后记录 URL。提交号可在记录中用任务后一次独立文档提交补齐，避免预填不存在的自引用提交号。
++
++## 部署与回退
++
++部署是另一阶段：只有任务要求更新服务时才使用现有 `local-media/sync-runtime.sh`，核对实际同步文件和服务重启、运行版本；不把修改工作区称为网页生效。前端部署按任务规格约定，不能用后端同步脚本冒充前端发布。
++
++已共享的单个任务提交回退：先确认干净的任务范围和待保留用户改动，在对应仓库执行 `git revert <实际提交号>`，核对反向 diff，跑直接相关检查，再向原远端推送回退提交；多个任务按依赖逆序。不要对共享历史执行 reset --hard 或 force push。源码回退后，已部署服务需同步回退版本、重启并复验，否则只算工作区/仓库回退。
++
++无有效 Git 时：
++
++1. 在本轮变更目录保存 `before-manifest.json`（路径、原存在性、SHA256）及 `before/` 的旧文件快照；只保存本任务必要文件，避免复制素材与凭据。
++2. 实现后保存 `after-manifest.json`、标准统一 diff 和验证结果，明确无提交号、未推送。记录新增文件和需要保留的证据目录。
++3. 回退先比较当前文件 SHA256 与 after 清单。完全匹配才可恢复 before 文件、删除本轮新增文件；有后续修改则逐块人工逆向合并，不能整文件覆盖。实际回退应保留本轮证据目录。
++4. 若 Git 可执行但根元数据无效，可在临时目录复制本轮文件，用 `git -c core.autocrlf=false apply --no-index --reverse --check <绝对patch路径>` 验证，然后在临时目录逆向应用并核对 before SHA256；不要借此初始化仓库。
++
++根 Git 恢复来源、根项目目标远端及可见性、嵌套仓库如何维护由用户确认。恢复后再次核对基线和隐私；不要用子仓库 GitHub API 直接写根文件绕过归属决策。
++
++## 交付与经验回写
++
++变更记录逐项标出需求、代码、程序测试、模型实测、同步部署、运行验证、提交与推送的实际状态，附失败原因、文件清单、原输出位置、审查范围和回退步骤。最后核对实际 diff 与任务基线，回写一条可复用规则；未调用其他工具就明确未调用。
++
++本轮治理规格见 [engineering-governance.md](specs/engineering-governance.md)，Git 缺口及实际验收见 [本轮记录](change-records/2026-10-08-engineering-governance/记录.md)。
++
++
++## 完整项目发布 checkout
++
++用户已指定 [yxriam/talking-head-lab](https://github.com/yxriam/talking-head-lab) 作为完整源码目标，现有public可见性不变。发布checkout为D:/project/facebook/talking-head-lab；源D:/project/cv根Git仍无效，不初始化、不移动原子仓库。参考 [发布规格](specs/github-project-publication.md)。后续在发布checkout开发或按本任务文件清单复制更新，审diff、相关验证后小步提交；不复制.git、媒体、数据或环境。历史脚本的个人音频示例路径仅在公开导出中脱敏，原文件保留本地，导出差异及SHA256在本轮清单记录；已发布源码为后续维护基线。
+--- /dev/null
++++ b/docs/templates/task-spec.md
+@@ -0,0 +1,42 @@
++# <任务名称>规格
++
++- 日期/时区、版本：<例如 2026-10-08，Pacific/Auckland；1.0>
++- 需求来源：<用户原要求/已确认决策/相关规格链接>
++- 初始状态与基线：<仓库根、HEAD/无有效Git、分支/远端、既有改动、快照路径>
++
++## 目标与边界
++
++目标：<一个会话可完成、可验收的结果>。
++范围/允许改动文件：<清单>。非目标：<明确排除>。
++约束：<架构、数据、语言、模型、API兼容性、安全边界>。
++
++## 输入/输出契约
++
++输入：<字段、时间/来源、边界、冻结用例路径>。
++输出：<结构、失败/回退表现、证据追溯、兼容性>。
++模型实验（适用时）：<输入、参数、提示词版本、最大尝试次数；单次一个变量>。
++
++## 决策与责任
++
++| 决策/动作 | 用户已确认或待确认 | AI执行责任 | 理由/证据 |
++|---|---|---|---|
++| <架构、安全或范围选择> | <决定者和原要求> | <实现与验证范围> | <依据> |
++
++## 任务拆分与验收
++
++| 子任务 | 单次交付 | 通过条件 | 依赖/状态 |
++|---|---|---|---|
++| T1 | <最小可审diff> | <可观察条件> | <待完成> |
++
++| 编号 | 冻结场景/输入 | 预期输出/失败表现 | 必要检查及证据 |
++|---|---|---|---|
++| AC01 | <正常场景> | <可判定结果> | <相关测试/引用/模型实跑> |
++| AC02 | <边界与兼容性> | <可判定结果> | <证据> |
++| AC03 | <历史失败用例> | <修复后行为，保留原失败> | <输入与原输出> |
++
++## 停止条件与未完成项
++
++<全部必要验收通过/冻结尝试次数达到/缺少用户架构决定时如何停；未通过项不伪装成功>。
++验证分层：需求记录、代码修改、程序测试、模型实测、同步部署、运行验证、commit/push分别记录。文档任务无需GPU测试。
++提交与回退：<预期单任务提交边界；无Git时 before/after SHA256与统一diff；有后续修改不得覆盖>。
++经验回写位置：<变更记录或共享规范>。
+--- /dev/null
++++ b/docs/templates/change-record.md
+@@ -0,0 +1,38 @@
++# <日期>：<任务实际交付>
++
++- 时区：Pacific/Auckland；规格：<相对链接>。
++- 仓库/分支/远端/基线：<真实结果或无有效Git>。
++- 修改前清单与快照：<路径>；实际diff：<路径或真实Git命令>。
++
++## 实际变化与责任
++
++| 文件 | 变化与目的 | 决定者/执行者 | 规格验收项 |
++|---|---|---|---|
++| <文件> | <实际动作> | <用户决策/Codex实施> | <AC编号> |
++
++## 阶段状态
++
++| 阶段 | 已完成/未完成/不适用 | 证据与限制 |
++|---|---|---|
++| 需求已记录 | <状态> | <规格> |
++| 代码已修改 | <状态> | <实际diff；仅文档则不适用> |
++| 程序测试通过 | <状态> | <命令、退出码、输出> |
++| 模型实测通过 | <状态> | <冻结用例、参数、原输出、耗时、失败项> |
++| 已同步部署 | <状态> | <同步清单、SHA256、重启> |
++| 运行服务验证 | <状态> | <版本、场景、真实响应> |
++| 已提交 | <状态> | <真实提交号；不得预填> |
++| 已推送 | <状态> | <目标分支、远端提交号/PR链接> |
++
++## 审查与失败证据
++
++Codex自查：<实际diff发现与修复>。
++Claude Code独立审查：<实际调用、发现、复核；未进行则原因>。
++检查结果：<逐项验收，引用原输出>。
++失败与修复：<失败场景/原输出/原因/最终状态；不能删除失败记录>。
++未完成项与所需用户决定：<精确范围，历史结果不能替代本轮通过>。
++
++## 回退与维护
++
++<有效Git时 git revert 实际提交号、验证、push；部署另同步/重启/复验>。
++<无Git时before/after清单和patch路径；当前SHA256不匹配时人工逆向合并，不覆盖后续修改>。
++经验回写：<本轮失败原因和一条可复用规则>。
+--- /dev/null
++++ b/.github/pull_request_template.md
+@@ -0,0 +1,18 @@
++## 问题与结果
++
++<!-- 写具体问题、最终行为和规格相对链接；一次PR一个可独立验收任务。 -->
++
++## 验证与交付状态
++
++<!-- 写实际命令/输出证据；分别标记模型实测、同步部署和运行验证，未进行要明确。 -->
++
++- [ ] 已对照规格审查实际 diff，范围与基线一致，无用户无关改动。
++- [ ] 直接相关检查通过；失败用例及原输出保留，不用程序测试冒充模型验收。
++- [ ] 未包含凭据、模型权重、环境、用户媒体或生成产物；忽略规则不代替已跟踪文件审查。
++- [ ] 新架构、安全边界及范围取舍已由人决定并记录。
++- [ ] 变更记录包含实际阶段、审查工具、剩余缺口及回退步骤。
++- [ ] 经验已回写；Claude Code是否实际调用已如实标注。
++
++## 回退与未完成项
++
++<!-- 使用实际提交号做git revert；已部署服务另外同步回退并验证。 -->
+--- /dev/null
++++ b/docs/specs/engineering-governance.md
+@@ -0,0 +1,75 @@
++# 工程治理与 GitHub 发布规格
++
++- 日期：2026-10-08，Pacific/Auckland；版本：1.0。
++- 需求来源：用户要求规格先行、可独立验收的小任务、多工具共享上下文、实际 diff 审查、测试、小步提交、维护回滚、人负责架构与安全决策、经验回写，并授权正常 commit/push。
++- 初始事实：根入口是目录链接；根 `.git` 为空，入口和目标均不是有效 Git 仓库。`facebook-scam/` 是独立有效仓库，分支 `main`，远端 `https://github.com/yxriam/facebook-scam.git`，存在大量既有修改、删除与未跟踪文件。该远端没有覆盖根文档和 `local-media/`。
++- GitHub 连接身份：`yxriam`；CLI `gh`、Claude Code 不在 PATH，常见本地 CLI 位置也未发现 Claude Code。远端可见性、根项目应归属哪个仓库尚未确认。
++
++## 目标、范围与非目标
++
++本会话交付一套可审查、可恢复的轻量工程治理文件：AGENTS 唯一规范、Claude/Cursor 入口、维护流程、任务与变更模板、PR 检查表、根忽略规则、真实现状和验证证据。
++
++范围仅为根级文档与配置，以及 `docs/change-records/2026-10-08-engineering-governance/` 下本轮证据。保留原账号规格及历史记录。非目标：业务代码、提示词、模型、API、页面行为、运行部署、恢复 Git 历史、迁移嵌套仓库、公开数据、创建远端、安装新工具。
++
++## 约束与责任
++
++| 决策 | 责任/决定者 | 理由与证据 |
++|---|---|---|
++| 现有架构、数据与安全边界 | 用户 | AGENTS.md；不改 Windows/WSL 分工和模型链 |
++| 正常提交、向已确认远端推送 | 用户已授权 | 本次需求；必须是覆盖本任务的有效仓库且仅包含验收文件 |
++| 根仓库恢复来源、远端归属、公开/私有、嵌套仓库处理 | 用户待决定 | 根 `.git` 为空；子仓库范围不同，不能冒充根仓库 |
++| 规格、文档组织、忽略规则与自查 | Codex | 常规实现；只在既定边界内操作 |
++| 独立 Claude Code 审查 | 已安装工具才可实际进行 | 不安装、不冒充、不向外部模型传用户素材；不可用时明确缺口 |
++
++根 Git 无效时禁止 `git init`、提交或伪造提交号；先保存修改前快照和统一 diff。不得暂存或推送子仓库既有改动。根 `.gitignore` 不会替独立子仓库提供忽略保护，也不会移除历史已跟踪文件；将此限制写入维护流程。
++
++## 输入/输出契约
++
++输入为实际 AGENTS.md、PROJECT.md、CLAUDE.md、账号规格、历史变更记录、package.json、现有忽略文件，以及只读 Git/工具盘点结果。输出为以下允许改动清单：
++
++- `AGENTS.md`、`CLAUDE.md`、`PROJECT.md`：保持既有产品决策，新增治理入口和真实状态。
++- `.cursor/rules/project.mdc`：使用官方 MDC frontmatter（alwaysApply），只要求读取同一规范，不复制完整规范。
++- `docs/WORKFLOW.md`：从规格到发布、部署验证和回退的具体操作，以及 Git 缺失分支。
++- `docs/templates/task-spec.md`、`docs/templates/change-record.md`：需求契约、责任、失败证据、阶段状态及回退占位。
++- `.github/pull_request_template.md`：供未来有效仓库使用的最小检查表；不声称已在远端启用。
++- `.gitignore`：凭据、模型、环境、缓存、生成媒体、采集与本机工具产物；保留源码、公共网页资源、规格、文本记录和脱敏示例。
++- 本规格、本轮记录、修改前清单/快照、统一 diff 和校验输出。证据文件不含用户原始媒体或凭据。
++
++## 任务拆分与验收
++
++| 任务 | 本会话通过条件 | 依赖 |
++|---|---|---|
++| G0 冻结规格与基线 | 已完整读取相关文件；根与子仓库、身份及未提交状态有记录；快照在修改前保存 | 无 |
++| G1 上下文与流程 | 各工具入口只引用 AGENTS；技术栈与目录可追溯；模板包含阶段、责任、停止条件、失败证据和回退 | G0 |
++| G2 发布边界与忽略 | 用 Git 原生匹配验证代表路径：敏感/生成产物忽略，源码/规格/示例/网页公共资源保留 | G0 |
++| G3 审查与交付 | 本轮实际统一 diff 经逐项自查；引用有效；既有文件、子仓库状态保留；真实发布缺口与回退可用 | G1、G2 |
++| G4 GitHub 发布 | 根有效仓库及远端可用后，显式暂存本任务文件，审 staged diff，提交并确认远端提交号 | 用户解决根仓库归属；本会话不可假造通过 |
++
++G0至G3构成一个独立文档/config任务，未来可作为一个小提交。G4因 Git 无效待用户决定；本地验收完成后不自动展开业务实现。
++
++| 编号 | 验收用例 | 通过标准 |
++|---|---|---|
++| AC01 | 规则一致 | CLAUDE/Cursor 指向 AGENTS/PROJECT/任务规格；AGENTS 原规则完整保留 |
++| AC02 | 引用与技术事实 | 本轮本地 Markdown 链接有效；Node >=22.13.0 与 package.json 对齐；官方 Cursor 格式可追溯 |
++| AC03 | 维护流程 | diff→相关测试→模型实测（适用时）→部署（适用时）→单任务 commit→push/远端确认→回退可执行；不混淆阶段 |
++| AC04 | 忽略正例 | `.env`及变体、cookies/token/密钥、权重、虚拟环境、日志、缓存、采集目录、根/后端生成媒体不进入待提交清单 |
++| AC05 | 忽略反例 | Python/TS 源码、锁文件、规格、变更记录、脱敏 env.example 和网页 public 资源不误忽略 |
++| AC06 | 回退材料 | 修改前清单包含存在性与 SHA256；既有文件快照；patch 能逆向恢复本轮文件，且不能覆盖后续修改 |
++| AC07 | 既有工作保留 | 账号规格、历史记录不覆盖；子仓库 status/index 与基线一致；业务实现未修改 |
++| AC08 | 实际状态 | 根 commit/push 未进行、无提交号；Claude 未调用原因明确；旧模型与部署结果注明为历史状态 |
++
++只运行文档引用/规则一致性、Git 忽略匹配、快照/diff/逆向恢复检查。业务文件未改，不运行 GPU、整站 build 或后端模型测试。Git 忽略验证可只读借用子仓库 Git 元数据并指定根 work-tree；这仅验证规则，不代表根仓库恢复，也不修改子仓库 index/历史。
++
++## 停止条件与失败保留
++
++G0至G3验收通过后交付；根 Git 无效仍如实标记 G4 未完成，并向用户提出根仓库归属决策。无有效根仓库不得改用子仓库远端提交根文件。任何引用、忽略或恢复失败都保留在验证记录中，修复后同时记录最终结果。没有独立 Claude Code 工具时交付自查结果并明确审查未进行，不把缺失工具变成安装任务。
++
++## 参考
++
++- [共享规范](../../AGENTS.md)、[项目索引](../../PROJECT.md)、[账号警示规格](account-warning-conflicts.md)。
++- [Cursor 官方 Rules 文档](https://cursor.com/docs/rules)：2026-10-08核对 `.cursor/rules/*.mdc`、frontmatter、alwaysApply 和显式读取引用文件的行为；未在本机 Cursor UI 验证加载。
++
++
++## 用户后续决定与规格扩展
++
++用户本轮明确指定现有仓库 yxriam/talking-head-lab 并要求完整项目。原G4的根仓库目标决定已解决；按 [完整发布规格](github-project-publication.md) 在独立clone的真实checkout导入、审查和发布。源根仍不执行git init，子仓库基线保留；不把最初仅文档的G0至G3扩大成业务功能验收。远端public及push权限已核对，现有可见性不变。
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,36 @@
++# Talking Head Lab
++
++本地 AI 媒体教学与反诈研究项目：Facebook 文字采集与账号防范分析、音色克隆、AI 人像视频及视频真伪检测。各功能可独立使用，默认在 Windows 采集/桥接、WSL Ubuntu 执行 GPU 推理。
++
++## 项目入口
++
++| 路径 | 内容 |
++|---|---|
++| [PROJECT.md](PROJECT.md) | 实际现状、模型与部署验证的适用范围、待完成项 |
++| [AGENTS.md](AGENTS.md) | AI工具共享规范、技术栈、测试和安全边界 |
++| [docs/WORKFLOW.md](docs/WORKFLOW.md) | 规格、实现、验收、发布、维护和回退 |
++| [网站启动说明.md](网站启动说明.md) | 本机配置、启动、停止和排错 |
++| [local-media/README.md](local-media/README.md) | FastAPI服务、GPU模型、接口和配置 |
++| [facebook-scam/README.md](facebook-scam/README.md) | 采集服务与查看器 |
++| `facebook-scam/video-forensics-web/` | React 19、TypeScript、vinext/Vite前端，主要工作台为 app/studio |
++| `local-media/` | Python后端、规则、模型桥接、既有测试与部署脚本 |
++| `docs/specs/`、`docs/change-records/` | 验收契约、真实变化和回退证据 |
++| 根与 `tools/` 中的脚本/研究文档 | 历史辅助工作，保留来源；不是当前服务入口 |
++
++## 环境与运行
++
++前端 Node.js >=22.13.0，以 [package.json](facebook-scam/video-forensics-web/package.json) 为准；安装时使用锁文件。Python依赖分模型服务 [requirements.txt](local-media/requirements.txt) 与 Windows采集 [requirements-crawl.txt](local-media/requirements-crawl.txt)。GPU模型环境与路径详见上述安装文档，模型不随源码下载。
++
++首次 clone 到不同路径时，先核对脚本内既有本机路径，不直接运行安装/部署脚本。现有 Windows 入口 D:/project/cv 指向 D:/project/NZ/cv；WSL运行代码 /opt/media-app/local-media，模型 /opt/media-models。日常启动使用 local-media/start-local.ps1，工作台地址 http://localhost:3100/studio。
++
++仓库包含可维护的完整项目源码、前后端、配置示例、测试、脚本和文档。模型权重、虚拟环境、个人与生成媒体、采集数据、浏览器登录态、真实密钥、日志和本地工具安装包保留本机；克隆源码不代表本机运行环境或历史模型实测已重建。
++
++真实凭据只写到本机配置位置，参考脱敏 env.example；不要提交到Git。Qwen仅接收整理后的文字，原资料指令按数据处理。TokenHub/TruthScan等可选外部接口按现有说明配置和授权，不改变默认本地分析边界。
++
++## 更新和回退
++
++每项变化先写规格、审实际diff、运行直接相关检查、保存真实状态，再做小步提交。详见 [维护流程](docs/WORKFLOW.md) 与 [首次完整发布规格](docs/specs/github-project-publication.md)。已共享提交使用 git revert，再验证与正常push；服务回退另需同步/重启/运行验证。
++
++当前源码发布 checkout 为 D:/project/facebook/talking-head-lab，源工作区仍为 D:/project/cv。原工作区根Git无效且含独立 facebook-scam 仓库：不要在它运行git init或把子仓库当根仓库。后续更新应在真实发布checkout维护，或从原工作区按明确文件清单复制变化并重新审查；不能无差别同步数据与素材。
++
++公开导入保留完整业务实现；历史脚本中个人音频路径/示例地址已在导出时替换为通用路径，原始脚本留本地。采集目标与带人物联系信息的历史实测原文不公开，历史摘要、验收规格与失败状态保留。详见首次发布清单与变更记录。
+--- /dev/null
++++ b/docs/specs/github-project-publication.md
+@@ -0,0 +1,52 @@
++# 完整项目首次发布到 talking-head-lab
++
++- 日期：2026-10-08，Pacific/Auckland；版本：1.0。
++- 来源：用户在治理任务中指定 `https://github.com/yxriam/talking-head-lab`，并明确要求“完整的项目”。
++- 用户决定：使用现有目标仓库，不再等待根仓库归属选择。GitHub API 已核对连接身份 yxriam、目标仓库 public、push 权限及 size=0；Git ls-remote 无引用，clone 确认空仓库。发布到其现有可见性，不更改可见性。
++
++## 目标、范围与非目标
++
++将当前完整项目的可维护源码、前后端、脚本、文档和脱敏配置发布到目标仓库，以真实 Git 历史维护更新和回退。保留目录结构及文本项目证据，不发布模型权重、个人/生成媒体、采集内容、登录会话、凭据、依赖环境或工具安装包。
++
++完整项目指源代码交付，不是本机数据/运行环境备份。根历史辅助脚本、前端公共静态资源、锁文件、测试及规格一并盘点；第三方安装内容与重复旧仓库不导入。业务实现不修改、服务不部署、不将现有源码导入称为新功能验收。
++
++## 架构与安全责任
++
++| 动作/决定 | 责任 | 依据 |
++|---|---|---|
++| 目标仓库和完整项目发布 | 用户 | 本轮指定 URL 和完整范围 |
++| 现有 public 可见性 | 使用目标既有设置，不更改 | 用户指定该目标；GitHub 元数据核对 |
++| 独立 checkout 导入 | Codex常规实现 | 源根 Git 无效；clone现有远端获取真实元数据，不在原目录 git init |
++| 过滤媒体/凭据/权重/环境 | 既有用户安全边界，Codex执行 | AGENTS、原任务禁止上传项 |
++| 工作区后续更新方式 | 保留原目录；独立发布 checkout 用于提交/push | 不移动用户目录或修改嵌套 Git；维护文档记录映射 |
++
++源入口 D:/project/cv → D:/project/NZ/cv 不做 git init；目标 clone 为 D:/project/facebook/talking-head-lab。不复制源/子目录 `.git`，不迁移或删除已有 facebook-scam 历史。整项目导入来自用户这次明确扩大的发布范围，不能混称仅本轮新增文档。
++
++## 输入/输出契约
++
++输入：本次冻结的源文件清单（路径、长度、SHA256）、根与子目录 ignore规则、允许公开的源码/文档/资源、治理规格及基线。输出：真实目标 checkout、README/安装与更新/回退入口、发布清单、内容筛查输出、独立小提交、远端可核对的提交号及记录。
++
++所有复制只在源目录读取，目标已存在文件不盲目覆盖；目标初始为空。先完成忽略与内容审查，才暂存。源码/文档中如有真实凭据或不应公开的数据，停止该文件导入，记录脱敏处理与缺口，不打印密钥原值。源历史素材保留本地。
++
++## 拆分与验收
++
++| 任务 | 交付与通过条件 |
++|---|---|
++| P0 冻结范围 | 发布规格、源基线、目标身份/可见性/空库已核对 |
++| P1 项目导入 | 当前前后端、依赖声明/锁文件、测试、根辅助脚本和文档导入；源/目标SHA256一致；清单不含禁止产物 |
++| P2 治理交付 | 按工程治理规格验收入口、模板、流程、引用、ignore、快照/patch；发布与原工作区分开记录 |
++| P3 提交和发布 | 分项目源码导入、治理文件两个独立提交（或按实际依赖更小的文档提交）；审staged diff后提交；正常push main，远端HEAD等于本地提交 |
++| P4 记录闭环 | 写真实提交号、目标/分支、验证、Claude未进行原因、回退命令；记录补充可单独提交 |
++
++验收：发布清单保留 Python/TS/锁文件/测试/公共资源；不含 .git、.env实值、模型、个人媒体、数据/会话、依赖环境；内容筛查覆盖文本候选与常见密钥格式、PEM私钥、带凭据URL，保留误报/排除原因。只读审查当前业务源内容与导入diff，不为未修改业务重跑GPU。轻量既有测试可作为导入基线，必须与新治理验收区分。未调用Claude不得声称独立审查。
++
++## 停止与回退
++
++push成功且远端核对、实际记录闭环后停止，不自动部署。若认证/网络失败，保留本地已验收提交，不假报上传；可使用已授权GitHub连接创建同样内容及真实提交，但必须逐项核对，不能覆盖并发远端更新。
++
++真实提交用 git revert 逆序回退并正常push；原工作区治理文件以修改前SHA256/快照/patch回退，不能覆盖后续用户修改。第一次源码提交无父提交时，回退使用明确的移除导入内容任务提交，不改写共享历史。源码仓库不包含本机模型与数据，因此恢复运行还需按安装与运行文档重建环境。
++
++
++### 首次清单审查修正
++
++发现一个名称异常但含pyvenv.cfg的旧虚拟环境，按实际环境标记而不只依赖目录名排除。历史私人音频路径/示例地址只在公开导出中脱敏，源文件不改；清单分别记录源和公开导出SHA256。原始人物实测文本与采集目标仅保留本地，公开其状态摘要。空env.example因跨行正则被误报为密钥，改为只匹配同一行，保留失败和修复记录。

@@ -1,0 +1,62 @@
+[
+  {
+    "path": "AGENTS.md",
+    "existed": true,
+    "sha256": "05EAA5F14ECC579912D4506105CA55ABCE72FAFC363A78AFEE8D89E14F8B4FDB"
+  },
+  {
+    "path": "CLAUDE.md",
+    "existed": true,
+    "sha256": "39CE017D979B725AF7DAFFB74EE771218EA6FC505796C42363299AE57BF2FB68"
+  },
+  {
+    "path": "PROJECT.md",
+    "existed": true,
+    "sha256": "95641BFE13D5457212C39DDF32FDCA65946F21D04C633DD253E6C40862CC2F5B"
+  },
+  {
+    "path": ".gitignore",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": ".cursor/rules/project.mdc",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": "docs/WORKFLOW.md",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": "docs/templates/task-spec.md",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": "docs/templates/change-record.md",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": ".github/pull_request_template.md",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": "docs/specs/engineering-governance.md",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": "README.md",
+    "existed": false,
+    "sha256": null
+  },
+  {
+    "path": "docs/specs/github-project-publication.md",
+    "existed": false,
+    "sha256": null
+  }
+]

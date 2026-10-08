@@ -1,0 +1,13 @@
+{
+  "scope": "initial source import",
+  "files": 181,
+  "account_llm_tests": 10,
+  "account_risk_tests": 14,
+  "account_story_tests": 21,
+  "server_tests": 7,
+  "all_passed": true,
+  "python_ast_files": 70,
+  "secret_findings": 0,
+  "whitespace_check": "existing baseline warnings preserved; CRLF recognized with cr-at-eol; no business reformatting",
+  "redaction_scope": "four historical root sample scripts; private paths/addresses only; source unchanged"
+}

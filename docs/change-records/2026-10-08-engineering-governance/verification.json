@@ -1,0 +1,465 @@
+{
+  "local_links": [
+    {
+      "from": "AGENTS.md",
+      "to": "docs/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "from": "AGENTS.md",
+      "to": "docs/templates/task-spec.md",
+      "exists": true
+    },
+    {
+      "from": "AGENTS.md",
+      "to": "docs/templates/change-record.md",
+      "exists": true
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "AGENTS.md",
+      "exists": true
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "PROJECT.md",
+      "exists": true
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "docs/specs/account-warning-conflicts.md",
+      "exists": true
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "docs/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "docs/templates/task-spec.md",
+      "exists": true
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "docs/templates/change-record.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "AGENTS.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "CLAUDE.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": ".cursor/rules/project.mdc",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/templates/task-spec.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/templates/change-record.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/specs/account-warning-conflicts.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/change-records/2026-10-08-spec-first/记录.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/specs/engineering-governance.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/specs/github-project-publication.md",
+      "exists": true
+    },
+    {
+      "from": "PROJECT.md",
+      "to": "docs/change-records/2026-10-08-engineering-governance/记录.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "../AGENTS.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "../PROJECT.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "templates/task-spec.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "templates/change-record.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "../.github/pull_request_template.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "specs/engineering-governance.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "change-records/2026-10-08-engineering-governance/记录.md",
+      "exists": true
+    },
+    {
+      "from": "docs/WORKFLOW.md",
+      "to": "specs/github-project-publication.md",
+      "exists": true
+    },
+    {
+      "from": "docs/specs/engineering-governance.md",
+      "to": "../../AGENTS.md",
+      "exists": true
+    },
+    {
+      "from": "docs/specs/engineering-governance.md",
+      "to": "../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "from": "docs/specs/engineering-governance.md",
+      "to": "account-warning-conflicts.md",
+      "exists": true
+    },
+    {
+      "from": "docs/specs/engineering-governance.md",
+      "to": "github-project-publication.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "PROJECT.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "AGENTS.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "docs/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "网站启动说明.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "local-media/README.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "facebook-scam/README.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "facebook-scam/video-forensics-web/package.json",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "local-media/requirements.txt",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "local-media/requirements-crawl.txt",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "docs/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "from": "README.md",
+      "to": "docs/specs/github-project-publication.md",
+      "exists": true
+    }
+  ],
+  "ignore_cases": [
+    {
+      "path": ".env",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": ".env.local",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": ".env.production",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/tokenhub.env",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "test.cookies",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "test.token",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "id_ed25519",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "test.pem",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "models/model.gguf",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "checkpoints/test.safetensors",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "test.pth",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/.venv/Lib/test.py",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "node_modules/test.js",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/test.log",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": ".pnpm-store/test",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/data/test/result.json",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/facebook-browser/test",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "facebook_capture/facebook_state.json",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "facebook-scam/data/accounts/test.json",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "facebook-scam/crawler/targets.json",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/ray-prompt-eval/source-facts.json",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/calibration-cache/test",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/example.mp4",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "example.wav",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "local-media/inspection/test.png",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "tools/TinyTeX/test.tex",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "/lib/test.py",
+      "expected_ignored": true,
+      "actual_ignored": true
+    },
+    {
+      "path": "AGENTS.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "CLAUDE.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": ".cursor/rules/project.mdc",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "docs/specs/engineering-governance.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "docs/WORKFLOW.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "docs/change-records/2026-10-08-engineering-governance/记录.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "local-media/account_llm.py",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "local-media/server.py",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "local-media/requirements.txt",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "local-media/tokenhub.env.example",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "local-media/truthscan.env.example",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": ".env.example",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "facebook-scam/video-forensics-web/app/studio/Studio.tsx",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "facebook-scam/video-forensics-web/package-lock.json",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "facebook-scam/video-forensics-web/pnpm-lock.yaml",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "facebook-scam/video-forensics-web/public/logo.png",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "figures/pipeline_gptimage2.png",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "tools/create_experiment_report.py",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "facebook_capture/README.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    },
+    {
+      "path": "facebook_intel_pipeline/README.md",
+      "expected_ignored": false,
+      "actual_ignored": false
+    }
+  ],
+  "failures": [],
+  "original_agents_lines_preserved": true,
+  "cursor_frontmatter": true,
+  "node_engine": ">=22.13.0",
+  "nested_status_unchanged": true,
+  "nested_index_unchanged": true,
+  "reverse_patch_check_exit": 0,
+  "reverse_patch_apply_exit": 0,
+  "reverse_patch_restored": true
+}

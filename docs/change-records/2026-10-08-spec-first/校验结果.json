@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-08",
+  "scope": "documentation_only",
+  "files": [
+    {
+      "file": "docs/specs/account-warning-conflicts.md",
+      "new": true,
+      "sha256": "c80beedfab5b3cb88d386eb355a72161f111d43db214651db34bd30ca8ea3836",
+      "changed_lines": 86
+    },
+    {
+      "file": "AGENTS.md",
+      "new": true,
+      "sha256": "05eaa5f14ecc579912d4506105ca55abce72fafc363a78afee8d89e14f8b4fdb",
+      "changed_lines": 53
+    },
+    {
+      "file": "CLAUDE.md",
+      "new": true,
+      "sha256": "39ce017d979b725af7daffb74ee771218ea6fc505796c42363299ae57bf2fb68",
+      "changed_lines": 7
+    },
+    {
+      "file": "PROJECT.md",
+      "new": false,
+      "sha256": "95641bfe13d5457212c39ddf32fdca65946f21d04c633dd253e6c40862cc2f5b",
+      "changed_lines": 10
+    },
+    {
+      "file": "local-media/ray-prompt-eval/最终实测.md",
+      "new": false,
+      "sha256": "9a2e27a062613ebfb2b8388af6240e894af7217ce6e75587b1db8f990a35ecd7",
+      "changed_lines": 2
+    },
+    {
+      "file": "docs/change-records/2026-10-08-spec-first/记录.md",
+      "new": true,
+      "sha256": "ff38727f15e97dd1cc24e977850c2670de97c767a27f7aa20665362a0fe000c6",
+      "changed_lines": 63
+    }
+  ],
+  "links": [
+    {
+      "source": "CLAUDE.md",
+      "link": "AGENTS.md",
+      "exists": true
+    },
+    {
+      "source": "CLAUDE.md",
+      "link": "PROJECT.md",
+      "exists": true
+    },
+    {
+      "source": "CLAUDE.md",
+      "link": "docs/specs/account-warning-conflicts.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT.md",
+      "link": "AGENTS.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT.md",
+      "link": "CLAUDE.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT.md",
+      "link": "docs/specs/account-warning-conflicts.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT.md",
+      "link": "docs/change-records/2026-10-08-spec-first/记录.md",
+      "exists": true
+    },
+    {
+      "source": "local-media/ray-prompt-eval/最终实测.md",
+      "link": "../../docs/specs/account-warning-conflicts.md",
+      "exists": true
+    }
+  ],
+  "checks": {
+    "all_links_exist": true,
+    "acceptance_items_AC01_to_AC12_present": true,
+    "historical_ray_output_preserved": true,
+    "publication_and_event_times_separated_in_example": true,
+    "code_or_runtime_modified": false,
+    "git_commit_created": false,
+    "independent_claude_review_performed": false
+  },
+  "git_limitation": "Workspace .git is empty; git rev-parse also failed on its junction target. No git init or fabricated commit."
+}
