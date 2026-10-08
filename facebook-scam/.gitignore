@@ -1,0 +1,6 @@
+*.cookies
+*.token
+.env
+__pycache__/
+*.pyc
+data/runs/

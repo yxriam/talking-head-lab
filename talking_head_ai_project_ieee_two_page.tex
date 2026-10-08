@@ -1,0 +1,106 @@
+\documentclass[10pt,conference]{IEEEtran}
+
+\usepackage{array}
+\usepackage{url}
+\usepackage{float}
+\setlength{\textfloatsep}{5pt}
+\setlength{\floatsep}{4pt}
+\setlength{\intextsep}{4pt}
+\renewcommand{\arraystretch}{0.88}
+
+\title{Consent-Aware Personalized Talking-Head Generation and Multi-Evidence Media Detection}
+
+\author{\IEEEauthorblockN{Xinran Yang}
+\IEEEauthorblockA{AI Project Proposal Draft}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This proposal describes a one-academic-year AI project on personalized talking-head generation and media authenticity analysis. The system creates speech and portrait video from a face image, an audio/video voice reference, and text, then evaluates uploaded or generated media with multiple independent forensic detectors. The contribution is a reproducible pipeline that measures generation quality, exposes detector disagreement and domain shift, and reports when either generation or detection evidence is unreliable.
+\end{abstract}
+
+\begin{IEEEkeywords}
+talking-head generation, voice cloning, deepfake detection, media forensics, robustness evaluation, responsible AI
+\end{IEEEkeywords}
+
+\section{Introduction}
+Recent text-to-speech, voice cloning, and audio-driven facial animation can generate talking-head video from a face image, a short voice reference, and text. The same capability supports accessibility and presentation but also creates risks of impersonation, misleading endorsement, and non-consensual synthetic media. This project therefore evaluates both generation quality and responsible-use mechanisms.
+
+This project asks: \emph{How can a personalized talking-head pipeline be generated and evaluated under controlled conditions, and how reliably can current forensic models distinguish its outputs from real video under source and compression shift?}
+
+\section{Related Work}
+Wav2Lip and MuseTalk prioritize mouth synchronization~\cite{wav2lip,musetalk}, whereas SadTalker predicts 3D expression and head-motion coefficients for fuller portrait animation~\cite{sadtalker}. Chatterbox voice cloning adds sensitivity to reference duration, noise, accent, and text length~\cite{chatterbox}. ECAPA-TDNN, ArcFace, and SyncNet provide speaker, identity, and lip-sync measurements~\cite{ecapa,arcface,syncnet}. Because averages can hide difficult inputs, results are also sliced by face scale, sharpness, pose, and mouth opening.
+
+Media-forensics models rely on complementary evidence. UCF separates manipulation-specific and shared forgery features~\cite{ucf}; RECCE combines reconstruction and classification~\cite{recce}; F3-Net analyzes frequency-aware clues~\cite{f3net}; NPR targets local pixel relationships introduced by neural upsampling~\cite{npr}; and GenD adapts CLIP features for cross-generator generalization~\cite{gend}. Because published detector scores are not calibrated probabilities for arbitrary web video, the project reports native scores, temporal evidence, and uncertainty rather than treating a single softmax value as ground-truth probability.
+
+\section{System Design}
+The prototype implements a WebUI with three user inputs: face image, voice reference audio/video, and text. If the voice source is video, ffmpeg extracts a mono 24 kHz reference segment. Chatterbox generates speech, the image is prepared by full-image, center-crop, or automatic face-crop mode, and SadTalker or MuseTalk renders the output video.
+
+Controlled parameters and provenance records make paired experiments reproducible.
+
+The media-detection branch accepts either an uploaded image/video or a generated result without requiring a local download. Video is decoded sequentially and sampled uniformly across its complete duration, targeting approximately 64 observations with bounds of 1--4 frames/s and at most 96 frames. Detected faces are aligned before inference. Five learned detectors (GenD, UCF, RECCE, F3-Net, and NPR) are shown independently, while a sixth temporal-staticness measure tests whether non-mouth regions remain implausibly unchanged in photo-driven video. Spectral, compression, noise, and motion measurements are retained as descriptive evidence.
+
+\section{Critical Functionalities and Research Questions}
+The system provides multimodal input, automatic audio extraction, image preparation, voice cloning, multiple local/cloud video backends, direct transfer of generated video to detection, six-method forensic analysis with time-localized evidence, and experiment logging. The research questions examine how generation settings affect quality and how detector family, calibration, compression, and generator shift affect authenticity decisions.
+
+\section{Evaluation Plan}
+The evaluation will use authorized or public/consented identities with recorded provenance. Paired generation changes one factor at a time: backend, crop mode, reference duration, source condition, or generation parameter.
+
+\begin{table}[H]
+\caption{Planned evaluation measures}
+\label{tab:evaluation}
+\centering
+\scriptsize
+\begin{tabular}{|p{0.27\columnwidth}|p{0.62\columnwidth}|}
+\hline
+\textbf{Dimension} & \textbf{Metric / evidence} \\
+\hline
+Lip sync & SyncNet-style score; 1--5 human rating. \\
+\hline
+Identity & ArcFace similarity between source image and generated frames. \\
+\hline
+Voice & ECAPA-TDNN similarity; accent/naturalness ratings. \\
+\hline
+Robustness & Slices by face scale, sharpness, pose, mouth, crop, backend. \\
+\hline
+Safety & Facebook provenance, consent, warning visibility. \\
+\hline
+Detection & AUROC, balanced accuracy, TPR at fixed FPR, calibration error, failure rate. \\
+\hline
+\end{tabular}
+\end{table}
+
+Blind human evaluation will rate lip synchronization, identity, speech and visual naturalness, and artifacts. Analysis reports averages and stressed source-condition slices.
+
+\section{Media Authenticity Method}
+Each learned detector produces frame-level native scores and high/low-evidence time windows. Video-level decisions use detector-specific statistics rather than a universal 0.5 threshold, because the deployed checkpoints exhibit substantial domain shift on modern talking-head generators. GenD uses lower-quartile and extreme-frame evidence; UCF uses the mean; RECCE uses the 90th percentile; and F3-Net uses the 75th percentile. NPR is reported diagnostically but excluded from voting because it showed no separation on the current talking-head calibration set. The temporal method contributes independent evidence when median adjacent-frame change falls below a calibrated boundary.
+
+Thresholds are selected using 17 labelled real and 22 deduplicated generated videos. The resulting rules fit all 39 calibration videos; this is an in-sample result, not an estimate of deployment accuracy. Leave-one-video-out evaluation of the shallow aggregation rule is 85.7\%. The final study will use identity-disjoint train/calibration/test partitions and report AUROC, balanced accuracy, precision, recall, F1, equal-error rate, TPR at fixed FPR, and 95\% identity-cluster bootstrap intervals. Compression, resizing, duration, and unseen-generator tests will measure robustness. Displayed percentages are model confidences or calibration-set empirical estimates, not literal probabilities that a video is real. An optional TruthScan result is treated as an independent external cross-check and never replaces local evidence.
+
+\section{Comparison and Failure Analysis}
+Paired generation comparisons cover local/cloud backends, crop strategies, reference quality, and stressed inputs. Detection compares individual models and calibrated aggregation on real video, local generations, and held-out generators under compression and resizing. Failures remain in the denominator and are categorized as identity drift, lip-sync error, temporal artifact, detector false positive, or detector false negative.
+
+\section{Scope}
+The project delivers a runnable WebUI, reproducible logs, quantitative and human evaluation, and failure analysis. Detector validity is limited to evaluated datasets and transformations; calibration fit is not presented as general Internet-video accuracy.
+
+\section{Expected Contribution}
+The final contribution will be an end-to-end talking-head generation and authenticity-analysis pipeline, plus evidence showing where generation metrics and forensic detectors succeed, disagree, or fail under domain shift. The work combines controlled generation, multi-model detection, time-localized explanations, calibrated evaluation, human assessment, and reproducible deployment measurements.
+
+\begin{thebibliography}{00}
+\bibitem{wav2lip} K. R. Prajwal, R. Mukhopadhyay, V. Namboodiri, and C. V. Jawahar, ``A Lip Sync Expert Is All You Need for Speech to Lip Generation In The Wild,'' arXiv:2008.10010, 2020.
+\bibitem{musetalk} Y. Zhang et al., ``MuseTalk: Real-Time High Quality Lip Synchronization with Latent Space Inpainting,'' arXiv:2410.10122, 2024.
+\bibitem{sadtalker} W. Zhang et al., ``SadTalker: Learning Realistic 3D Motion Coefficients for Stylized Audio-Driven Single Image Talking Face Animation,'' arXiv:2211.12194, 2022.
+\bibitem{chatterbox} Resemble AI, ``Chatterbox TTS,'' GitHub repository, 2026. [Online]. Available: \url{https://github.com/resemble-ai/chatterbox}
+\bibitem{ecapa} B. Desplanques, J. Thienpondt, and K. Demuynck, ``ECAPA-TDNN: Emphasized Channel Attention, Propagation and Aggregation in TDNN Based Speaker Verification,'' arXiv:2005.07143, 2020.
+\bibitem{arcface} J. Deng et al., ``ArcFace: Additive Angular Margin Loss for Deep Face Recognition,'' arXiv:1801.07698, 2018.
+\bibitem{syncnet} J. S. Chung and A. Zisserman, ``Out of Time: Automated Lip Sync in the Wild,'' in \emph{ACCV Workshops}, 2016.
+\bibitem{ucf} Z. Yan et al., ``UCF: Uncovering Common Features for Generalizable Deepfake Detection,'' in \emph{ICCV}, 2023.
+\bibitem{recce} J. Cao et al., ``End-to-End Reconstruction-Classification Learning for Face Forgery Detection,'' in \emph{CVPR}, 2022.
+\bibitem{f3net} Y. Qian et al., ``Thinking in Frequency: Face Forgery Detection by Mining Frequency-Aware Clues,'' in \emph{ECCV}, 2020.
+\bibitem{npr} C. Tan et al., ``Rethinking the Up-Sampling Operations in CNN-Based Generative Network for Generalizable Deepfake Detection,'' in \emph{CVPR}, 2024.
+\bibitem{gend} E. Yermakov et al., ``GenD: Generalizable Deepfake Detection Around the World,'' in \emph{WACV}, 2026.
+\bibitem{nist} National Institute of Standards and Technology, ``AI Risk Management Framework,'' 2023. [Online]. Available: \url{https://www.nist.gov/itl/ai-risk-management-framework}
+\end{thebibliography}
+
+\end{document}

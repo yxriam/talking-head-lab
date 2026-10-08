@@ -1,0 +1,5 @@
+facebook_state.json
+output/
+__pycache__/
+.venv/
+*.pyc

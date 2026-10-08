@@ -1,0 +1,6 @@
+facebook_state.json
+runs/
+__pycache__/
+.venv/
+*.pyc
+.env
