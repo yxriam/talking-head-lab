@@ -42,7 +42,7 @@ Cursor 入口为 [.cursor/rules/project.mdc](.cursor/rules/project.mdc)，维护
 | 独立 Claude Code 审查 | 未进行；未发现已安装 CLI，不把自查冒充独立审查 |
 | GitHub目标 | 用户指定 yxriam/talking-head-lab，现有public仓库，连接身份yxriam具有push权限 |
 | 根工作区 Git | .git为空，不初始化；原facebook-scam嵌套仓库不改动 |
-| 实际提交/推送 | 本地源码658ca46、治理970d64e已提交；CLI缺登录、连接App写入403，远端仍空；待完成认证后发布 |
+| 实际提交/推送 | 已推送到talking-head-lab/main，658ca46源码、970d64e治理、3c27666阶段记录；设备登录后远端HEAD核对一致，最终收尾记录见本轮变更记录 |
 
 发布checkout为D:/project/facebook/talking-head-lab，从用户目标真实clone获得Git元数据。源码复制不带原嵌套.git、不迁移既有facebook-scam历史；根忽略规则不会改变原独立子仓库的行为。后续维护和回退在真实发布checkout执行，源目录仍保留全部历史材料。
 

@@ -73,3 +73,8 @@ G0至G3验收通过后交付；根 Git 无效仍如实标记 G4 未完成，并�
 ## 用户后续决定与规格扩展
 
 用户本轮明确指定现有仓库 yxriam/talking-head-lab 并要求完整项目。原G4的根仓库目标决定已解决；按 [完整发布规格](github-project-publication.md) 在独立clone的真实checkout导入、审查和发布。源根仍不执行git init，子仓库基线保留；不把最初仅文档的G0至G3扩大成业务功能验收。远端public及push权限已核对，现有可见性不变。
+
+
+## 实际交付状态
+
+2026-10-08：本地治理、完整源码导入、独立提交与GitHub发布已完成；官方设备登录后正常push main，远端3c27666与本地一致，收尾文档另做小提交。验收、失败历史、最终远端结果和回退见docs/change-records/2026-10-08-engineering-governance/记录.md。独立Claude/GPU/部署未进行，不混作本轮通过。
