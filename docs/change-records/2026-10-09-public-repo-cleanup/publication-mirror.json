@@ -1,0 +1,33 @@
+{
+  "baseline": "1488f63f1a5025ea85bcd1bd1b25c8e98e823c13",
+  "archived_source_files": [
+    "generate_ray_british_disclosed_recommendation_audio.py",
+    "generate_ray_disclosed_recommendation_audio.py",
+    "run_ray_british_head_recommendation_sadtalker.sh",
+    "run_ray_disclosed_recommendation_sadtalker.sh",
+    "run_ray_sadtalker_fullface.sh",
+    "tools/build_ray_methods_report.py"
+  ],
+  "relocated_proposals": [
+    "build_chinese_proposal_pdf.py",
+    "build_talking_head_proposal_pdf.py",
+    "figure_prompts_gptimage2.md",
+    "social_media_scam_awareness_proposal.tex",
+    "social_media_scam_awareness_proposal_zh_compare.md",
+    "talking_head_ai_project_ieee_two_page.tex",
+    "talking_head_ai_project_two_page_draft.md",
+    "talking_head_ai_project_two_page_proposal.md"
+  ],
+  "remaining_name_files": [
+    "local-media/eval_ray_final.py",
+    "local-media/eval_ray_prompt.py",
+    "local-media/eval_ray_single_language.py",
+    "local-media/eval_ray_single_paragraph.py"
+  ],
+  "path_repair": [
+    "build_chinese_proposal_pdf.py ROOT",
+    "social_media_scam_awareness_proposal.tex figure paths"
+  ],
+  "source_candidate_business_code_copied": false,
+  "checks": "AST, actual figure paths, original move bytes, README references, tracked name paths"
+}

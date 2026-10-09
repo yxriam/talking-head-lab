@@ -102,7 +102,7 @@ local_sources=[
  'local-media/evaluate_multi_benchmark.py','local-media/merge_v3_visual_results.py',
  'local-media/compile_benchmark_report.py','local-media/patch_echomimic_v3_memory.py',
  'tools/create_experiment_report.py','tools/create_compact_multisample_report.py',
- 'archive/legacy-demos/build_ray_methods_report.py','tools/build_claude_handoff.py',
+ 'tools/build_ray_methods_report.py','tools/build_claude_handoff.py',
  'output/reports/facebook_voice_portrait_model_report_for_ray.md',
  'output/reports/facebook_voice_portrait_model_report_for_ray.docx',
  'output/multi-sample-report/video-gallery.html',
@@ -120,7 +120,7 @@ for rel in ['output/docx/audio-driven-portrait-evaluation-report-zh.docx',
 
 for rel in ['TALKING_HEAD_WEBUI_README.md','talking_head_webui_app.py',
             'talking_head_webui_chatterbox_generate.py',
-            'archive/legacy-demos/generate_ray_british_disclosed_recommendation_audio.py',
+            'generate_ray_british_disclosed_recommendation_audio.py',
             'generate_chatterbox_sample.py','generate_chatterbox_disclosure_audio.py']:
     collect(ROOT/rel,'SERVER_S1_IMPLEMENTATION_ONLY')
 collect(ROOT/'local-media/tokenhub.py','CLOUD_C1_IMPLEMENTATION_ONLY')

@@ -46,13 +46,3 @@
 
 
 发布操作已完成并同步：修正提交43b7dbb5e723fa377bffb3b323db959068987629已在origin/main，取消背景业务、共同协议与原图展示都在该提交。回退源码使用git revert该号；运行回退需另恢复本轮API快照且用户明确同意恢复背景行为。Claude未实际调用，本文件是共同交接入口，不称已读。
-
-## Codex 镜像与独立复核（2026-10-09）
-
-用户在本聊天提供 Claude 完整整理清单并交接发布。已在有效发布 checkout 从 1488f63 镜像：6 个已跟踪历史脚本移入本地忽略 archive/legacy-demos/ 并取消跟踪，8 个提案 git mv，两个共享文档只应用中性称呼，保留发布版关于未部署门控的状态说明；没有整份复制原工作区的未发布候选代码或规格。修复 handoff 工具两个路径。
-
-Codex 复核发现 Claude 移动后 build_chinese_proposal_pdf.py 的 ROOT 和 LaTeX 两个 figures 相对路径失效；已修正两工作区这两处提案路径。AST、两张实际图片路径、其余 6 个移动文件逐字节、README 移动引用、仅剩 4 个 eval_ray 文件检查通过；模型/运行服务未触及。证据 publication-mirror.json；发布修改前快照 publication-before/，与 Claude before/ 分开。
-
-独立镜像复核已完成；本记录目前尚未提交/推送，真实提交号在操作后追加。
-
-提交前实际 diff 曾发现镜像运行器文本写入在 Windows 统一了混合换行；已从 publication-before 精确字节恢复 AGENTS/PROJECT/handoff 工具再仅应用必要替换。活动业务目录无差异，路径修正 AST/资源核对通过。原样移动的 Markdown 双空格换行与 before 历史快照保持，未为了 whitespace 检查改历史正文。

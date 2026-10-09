@@ -160,6 +160,3 @@ facebook_state.json
 !/local-media/detector-runtime/networks-init.py
 !/local-media/detector-runtime/detectors-init.py
 !/local-media/detector-runtime/loss-init.py
-
-# Archived one-off cloud demo scripts and media (kept locally, not published)
-/archive/
