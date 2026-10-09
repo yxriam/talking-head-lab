@@ -1,0 +1,185 @@
+{
+  "checks": {
+    "real_source_and_job_match": true,
+    "actual_counts_match": true,
+    "actual_text_excerpts_unchanged": true,
+    "no_risk_model_called": true,
+    "capture_actual_service_get_only": true,
+    "screenshot_no_source_change_or_model": true,
+    "collector_bytes_match_used_version": true,
+    "actual_download_hash_92972887969c460790ceee877dfcc864": true,
+    "actual_download_hash_057581761fec409dbc5f5aad62149fef": true,
+    "actual_download_hash_f0ba324a72a94f509aace99be0175e5a": true,
+    "actual_download_hash_755aafd113854f24a992d4fc56e9a762": true,
+    "no_signed_urls_comment_ids_or_cookies": true,
+    "no_commenter_text_or_names_published": true,
+    "new_example_and_spec_links": true,
+    "six_readable_screenshots_under_5mb": true,
+    "runner_scripts_parse": true,
+    "business_source_and_dependencies_unchanged": true,
+    "actual_local_zip_export_both_languages": true
+  },
+  "links": [
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "EXAMPLE.md",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "EXAMPLE.en.md",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "../../../README.md#功能与效果展示",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "collection-summary.json",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "text-zh.jpg",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "images-zh.jpg",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "video-links-zh.jpg",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "../../../README.md#部署",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "target": "../../change-records/2026-10-09-facebook-trump-showcase/记录.md",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "EXAMPLE.md",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "EXAMPLE.en.md",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "../../../README.en.md#features-and-results",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "collection-summary.json",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "text-en.jpg",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "images-en.jpg",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "video-links-en.jpg",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "../../../README.en.md#deployment",
+      "exists": true
+    },
+    {
+      "from": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "target": "../../change-records/2026-10-09-facebook-trump-showcase/记录.md",
+      "exists": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "images-en.jpg",
+      "bytes": 170393,
+      "width": 1440,
+      "height": 1000,
+      "sha256": "834fa9c89614eee46d3e24a52b26028d7381b18793001ae2f6e0b6c6cb967790"
+    },
+    {
+      "file": "images-zh.jpg",
+      "bytes": 163359,
+      "width": 1440,
+      "height": 1000,
+      "sha256": "99c83e2f1cc850a7d8f99b2a10c545ff5d9984ae827ce4d74418202e57057c0f"
+    },
+    {
+      "file": "text-en.jpg",
+      "bytes": 118521,
+      "width": 1440,
+      "height": 1000,
+      "sha256": "b60c1f9001d2b3e3e06970ac2f3a57303fb1acba29022025ac464d7fa2c63ab7"
+    },
+    {
+      "file": "text-zh.jpg",
+      "bytes": 112081,
+      "width": 1440,
+      "height": 1000,
+      "sha256": "35390d12917e1c4a40d17a66a38d071004d7f10493840f111475c8d04dd3384e"
+    },
+    {
+      "file": "video-links-en.jpg",
+      "bytes": 137518,
+      "width": 1440,
+      "height": 1000,
+      "sha256": "c71308842bfa80a08d89aa7f1019d34f8990215e7dcdf38edf64067a092f2d56"
+    },
+    {
+      "file": "video-links-zh.jpg",
+      "bytes": 134550,
+      "width": 1440,
+      "height": 1000,
+      "sha256": "65074b8cdb3f75a975454b48a54f86e95071ff42fd5d6ed7b3d1c7844e2971f5"
+    }
+  ],
+  "actual_zip_export": [
+    {
+      "language": "zh",
+      "bytes": 70735,
+      "files": [
+        "result.json",
+        "text.txt",
+        "media/92972887969c460790ceee877dfcc864.jpg",
+        "media/057581761fec409dbc5f5aad62149fef.jpg",
+        "media/f0ba324a72a94f509aace99be0175e5a.jpg",
+        "media/755aafd113854f24a992d4fc56e9a762.jpg"
+      ]
+    },
+    {
+      "language": "en",
+      "bytes": 70735,
+      "files": [
+        "result.json",
+        "text.txt",
+        "media/92972887969c460790ceee877dfcc864.jpg",
+        "media/057581761fec409dbc5f5aad62149fef.jpg",
+        "media/f0ba324a72a94f509aace99be0175e5a.jpg",
+        "media/755aafd113854f24a992d4fc56e9a762.jpg"
+      ]
+    }
+  ],
+  "failures": []
+}

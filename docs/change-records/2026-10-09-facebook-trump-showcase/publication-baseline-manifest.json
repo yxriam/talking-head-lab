@@ -1,0 +1,38 @@
+[
+  {
+    "file": "README.md",
+    "before_reference": "published Git b631b7b (saved for rollback after editing)",
+    "before_sha256": "d33d5b245f0c3e39229e941bd18f7710d797737f312ab6fa1b9506ca01b305b8",
+    "after_sha256": "808a9fa1d8f0d700e781440900b2b76daeb2062bb0d7be74954390c2786173b6"
+  },
+  {
+    "file": "README.en.md",
+    "before_reference": "published Git b631b7b (saved for rollback after editing)",
+    "before_sha256": "5a82fc5392a10a93162d157904aee00db7cac88721c896472f32cbe2cc3995c7",
+    "after_sha256": "d957376f4d4a4370d177d12a10c70fa623e254f4c2caa61ad4789c575a332c7f"
+  },
+  {
+    "file": "docs/showcase/PROVENANCE.md",
+    "before_reference": "published Git b631b7b (saved for rollback after editing)",
+    "before_sha256": "a495a9930d357528ce87eb93288af7471c807a8bc2c9d792b82003c0d83ec044",
+    "after_sha256": "7acdc00b3c1177ae51c3893197602b86ebb42341614676e8e1294478ada5abf9"
+  },
+  {
+    "file": "docs/change-records/2026-10-09-readme-showcase/check-showcase.py",
+    "before_reference": "published Git b631b7b (saved for rollback after editing)",
+    "before_sha256": "9718102bed8ecec91fbe54a37ddffc6cdb44c429eff44261ced7d225f8381305",
+    "after_sha256": "e4facbe886a5d11136a6f31a311390cffe3b62cff83ae61b94326435a9d01718"
+  },
+  {
+    "file": "PROJECT.md",
+    "before_reference": "published Git b631b7b (saved for rollback after editing)",
+    "before_sha256": "951e20cd5187592d9026230d2256fb521d46a47fc4d19d195c5ea8bae3f6ebb5",
+    "after_sha256": "a8cea131dbd30eeaa8e5ab91a47615b9d47ed3be38a30c3622e97d1ebcde2fb4"
+  },
+  {
+    "file": "docs/AI-HANDOFF.md",
+    "before_reference": "published Git b631b7b (saved for rollback after editing)",
+    "before_sha256": "68c6f0f985e7e6c98de63e7632d47f9b6d06de3a2836cb4e551cd369f2aa778e",
+    "after_sha256": "a4c4d1daed7fc2658122113b62dfea207cbe5122bfc8a33e603f4fd9670a74cb"
+  }
+]

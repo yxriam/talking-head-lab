@@ -24,7 +24,7 @@ The input person was created with imagegen, and the reference voice with Windows
 
 [Play or download the MP4 with sound](docs/showcase/sadtalker-original-demo.mp4) · [Synthetic reference voice WAV](docs/showcase/reference-voice.wav) · [Chatterbox output WAV](docs/showcase/generated-voice.wav) · [Asset provenance and run evidence](docs/showcase/PROVENANCE.md)
 
-The person and reference voice are synthetic. Voice, video, and detection are actual runs from this task. Collection and account-analysis screenshots use an existing synthetic integration-test record to show the interface and text layout; this task performed no live Facebook collection or new account-analysis inference.
+The generation example uses a synthetic person and reference voice; voice, video, and detection are actual runs. Facebook screenshots below use a **real collection from Donald J. Trump's official page**. The account-safety prose layout still uses an existing synthetic test record, with no new account-analysis inference.
 
 ### What each module does
 
@@ -37,7 +37,15 @@ The person and reference voice are synthetic. Voice, video, and detection are ac
 
 ### 1. Collection and account-safety analysis
 
-![Actual collection interface showing an explicitly labeled synthetic local test record; private history is outside the screenshot](docs/showcase/crawl-en.jpg)
+![Excerpt from an actual collection of Trump's official Facebook page, with the URL, scroll range, text/media counts and source links](docs/showcase/facebook-trump/text-en.jpg)
+
+**Real account example:** [Donald J. Trump's Facebook page](https://www.facebook.com/DonaldTrump/). On 2026-10-09 at 06:41 UTC, the existing collector completed 4 scrolls in **13.0 seconds**, returning **45 visible text fragments, 11 image entries and 7 video entries**. It downloaded **4 images and 0 video/audio files**. Fragments include profile fields, interface text and some comments; they are not 45 posts.
+
+![Image previews, download status, source links and transfer controls from the same actual collection](docs/showcase/facebook-trump/images-en.jpg)
+
+Only 4 profile-text excerpts and workbench screenshots are published. Commenter data, original image files and browser sessions remain local. The 7 video entries are source links only, including different links to the same Reel. Publication dates were not extracted and remain missing. The real workbench and collector API loaded a public excerpt of the completed run for screenshots; capturing them performed no new collection or inference. [Example details and video-link interface](docs/showcase/facebook-trump/EXAMPLE.en.md) · [Sources, timestamps, counts and file SHA256 values](docs/showcase/facebook-trump/collection-summary.json).
+
+The visible introduction and purpose field identify an official political public page, so this example performs **collection only, with no personal-risk analysis**. It directly calls the sole existing collector and omits account analysis; that describes this example's execution, not completion of the automatic gate described below.
 
 Choose 4, 8, or 20 scrolls, preview visible text, images, videos, and audio, and export a ZIP. Login or verification pages require manual user action. For an account already identified as personal, rules and local Qwen organize traceable text into quoted relationships and contact information, and corresponding verification actions. This is text analysis: it does not identify faces, transcribe audio, or calculate a person's probability of being scammed.
 

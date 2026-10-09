@@ -1,0 +1,24 @@
+{
+  "job_id": "dc0b2ae09f004833b104c6f4c9116b73",
+  "options": {
+    "url": "https://www.facebook.com/DonaldTrump/",
+    "max_scrolls": 4,
+    "max_images": 4,
+    "max_videos": 1,
+    "download_media": true
+  },
+  "created_at": "2026-10-09T06:41:36.169678+00:00",
+  "collector_sha256": "9794cd8d6c29b0e7b43a144e6ad2ddb36a522d6aab19ca70ec99f2751f84b7b6",
+  "raw_data": "D:\\project\\NZ\\cv\\local-media\\crawl-data\\dc0b2ae09f004833b104c6f4c9116b73",
+  "account_model_called": false,
+  "status": "done",
+  "elapsed_seconds": 13.0,
+  "message": "已完成",
+  "counts": {
+    "text": 45,
+    "image": 4,
+    "video": 0,
+    "audio": 0
+  },
+  "finished_at": "2026-10-09T06:41:49.134258+00:00"
+}

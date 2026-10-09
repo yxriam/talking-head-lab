@@ -163,3 +163,7 @@ facebook_state.json
 
 # Archived one-off cloud demo scripts and media (kept locally, not published)
 /archive/
+
+# This task's local rollback copies duplicate verified Git history.
+/docs/change-records/2026-10-09-facebook-trump-showcase/publication-before/
+/docs/change-records/2026-10-09-facebook-trump-showcase/publication-diff.patch

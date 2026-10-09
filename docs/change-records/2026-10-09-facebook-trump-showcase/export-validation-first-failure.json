@@ -1,0 +1,7 @@
+{
+  "operation": "GET existing collector API export for public excerpt",
+  "status": 500,
+  "reason": "Preview setup omitted text.txt required by the existing export API",
+  "repair": "Write text.txt from the same actual excerpts and add it to the standalone runner output schema; no API source changes",
+  "new_collection_or_model_job": false
+}

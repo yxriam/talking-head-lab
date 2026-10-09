@@ -1,5 +1,6 @@
 """Read-only README/media validation using the bundled Python + Pillow."""
 import ast
+import argparse
 import hashlib
 import json
 import re
@@ -27,7 +28,7 @@ def slug(value):
     return re.sub(r'[^\w\- ]', '', value.lower()).replace(' ', '-')
 
 
-def main():
+def main(output=None):
     result = {'links': [], 'media': [], 'checks': {}, 'failures': []}
     docs = ['README.md', 'README.en.md', 'AGENTS.md', 'PROJECT.md',
             'docs/showcase/PROVENANCE.md', 'docs/specs/readme-showcase.md',
@@ -90,7 +91,10 @@ def main():
         result['media'].append(row)
     current_zh = set(re.findall(r'docs/showcase/([^\s)]+-zh[.]jpg)', zh))
     current_en = set(re.findall(r'docs/showcase/([^\s)]+-en[.]jpg)', en))
-    result['checks']['ten_bilingual_screenshots'] = len(current_zh) == 5 and len(current_en) == 5 and all((assets / name).exists() for name in current_zh | current_en)
+    result['checks']['bilingual_current_screenshot_pairs'] = (
+        len(current_zh) >= 5 and len(current_zh) == len(current_en)
+        and {name.replace('-zh.jpg', '-en.jpg') for name in current_zh} == current_en
+        and all((assets / name).exists() for name in current_zh | current_en))
     result['checks']['reference_and_generated_audio_distinct'] = sha(assets / 'reference-voice.wav') != sha(assets / 'generated-voice.wav')
     result['checks']['actual_voice_job_done'] = json.loads((EVIDENCE / 'voice-job.json').read_text(encoding='utf-8'))['status'] == 'done'
     video_job = json.loads((ROOT / 'docs/change-records/2026-10-09-original-image-video/video-job.json').read_text(encoding='utf-8'))
@@ -146,10 +150,12 @@ def main():
         if not passed:
             result['failures'].append('failed check: ' + name)
     result['visual_qa'] = 'Real current video/detection UI captured with user-approved existing Playwright/Edge and genuine completed-job replay; no source changes or extra inference for capture. Collection captures exclude private history.'
-    (EVIDENCE / 'validation.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+    (Path(output) if output else EVIDENCE / 'validation.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps({'checks': result['checks'], 'links': len(result['links']), 'assets': len(result['media']), 'failures': result['failures']}, ensure_ascii=False))
     raise SystemExit(bool(result['failures']))
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output', help='Save current checks separately from historical acceptance evidence')
+    main(parser.parse_args().output)

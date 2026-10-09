@@ -2,9 +2,9 @@
 
 日期 / Date: 2026-10-09, Pacific/Auckland。
 
-这些资源专门为中英文README制作，输入人像和参考声音均为合成素材。没有公开既有人物照片、真人声音、登录态、私人采集历史或密钥。
+这些资源专门为中英文README制作，生成演示的输入人像和参考声音均为合成素材。最新 Facebook 示例使用用户指定的 DonaldTrump 公共页面实采节选与工作台截图，来源见下方；未公开真人声音、登录态、私人采集历史或密钥。
 
-These assets were created for the bilingual README. The input person and reference voice are synthetic. Existing personal portraits, real-person voices, browser sessions, private collection history, and secrets were not published.
+These assets were created for the bilingual README. The generation input person and reference voice are synthetic. The latest Facebook example uses selected real results and workbench screenshots from the user-specified DonaldTrump public page, documented below. Real-person voices, browser sessions, private collection history and secrets were not published.
 
 ## 输入与实际输出 / Inputs and actual outputs
 
@@ -37,9 +37,9 @@ Each actual job ran once using the existing service and defaults. No best-of-man
 - `crawl-zh.jpg` / `crawl-en.jpg`：真实界面中已有的“本地集成测试（非Facebook实采）”记录；截图在私人历史区域前截止 / Existing explicitly synthetic integration-test record; private history is outside the capture.
 - `account-zh.jpg` / `account-en.jpg`：上述已有合成记录的文字排版，未在本轮重新执行或验收其Qwen账号生成 / Text layout from that existing synthetic record; its account-generation provenance was not re-executed or accepted in this task.
 
-截图使用computer-use的浏览器能力，直接读取真实页面；没有绘制虚假界面、篡改分数或清除真实历史。采集截图使用局部区域避免公开历史账号，账号分析截图仅截取合成记录区域。未访问真实Facebook目标，也未向云端提交人物或视频。
+上述最初合成展示阶段截图使用computer-use的浏览器能力，直接读取真实页面；没有绘制虚假界面、篡改分数或清除真实历史。旧采集截图使用局部区域避免公开历史账号，账号分析截图仅截取合成记录区域。该阶段未访问真实Facebook目标，也未向云端提交人物或视频；最新真实采集单独记录如下。
 
-Screenshots use the browser computer-use capability against the real workbench. Scores and the UI were not fabricated. Cropped regions keep private history outside the images. No live Facebook target or cloud video submission was used.
+The initial synthetic-showcase screenshots above use the browser computer-use capability against the real workbench. Scores and the UI were not fabricated. Cropped regions keep private history outside the images. That initial stage used no live Facebook target or cloud video submission; the later live collection is recorded separately below.
 
 ## 人像提示词 / Portrait prompt
 
@@ -67,3 +67,15 @@ The user explicitly removed background replacement. The current gallery shows th
 The new bilingual video/detection screenshots replay those genuine completed jobs in an isolated local browser context. The user approved screenshot-only use of existing Playwright/Edge. No project-source changes, tool installation, or additional model jobs were made for capture. A decoder timing issue was resolved by waiting for a real playback frame.
 
 视频原图约定及每次操作同步要求见 [共享协议](../../AGENTS.md) 与 [Codex/Claude共同交接](../AI-HANDOFF.md)，具体测试、运行版本差异与回退见 [背景纠正记录](../change-records/2026-10-09-original-image-video/记录.md)。文件交接已同步，Claude未实际调用，不称独立审查完成。
+
+## 新增真实 Facebook 示例 / Later live Facebook example
+
+用户指定 https://www.facebook.com/DonaldTrump/，使用唯一既有采集器于2026-10-09T06:41:36Z–06:41:49Z执行一次4次滚动采集：45条文字片段、11个图片条目、7个视频条目；4张图下载成功，视频/音频均0，13.0秒（collector内部12.2秒）。不是45篇帖子，也不是7个独立视频；date均缺失。官方简介与政治用途字段支持其公共政治页面用途，本例不调用分类模型或风险模型。
+
+The user selected DonaldTrump's real public Facebook page. One existing-collector run returned 45 text fragments, 11 image entries and 7 video entries over 4 scrolls, saving 4 images and no video/audio in 13.0 s (12.2 s inside the collector). Fragments are not posts; video entries include repeated Reel variants. Dates were not extracted. The introduction/purpose field supports an official political public-page observation; no classification or risk model was invoked.
+
+当前README使用 facebook-trump/text-zh/en.jpg 与 images-zh/en.jpg；video-links-zh/en.jpg在详情中显示真实“仅链接”。截图来自真实发布版工作台与现有采集API，读取本次真实任务的公开节选，API访问仅GET；首版离线回放已被此版替换。借用现有Playwright/Edge，用户授权仅截图，不修改业务源码/安装工具/重新采集或推理。原始图文件、评论者、登录态、CDN签名与追踪参数留本机。公开JSON仅选4条主页片段及媒体来源/状态/SHA256，不伪造缺失字段。
+
+Current README screenshots use the real published workbench and existing collector API reading a public excerpt of this completed run; capture used GET only. These replace the first offline replay captures. Existing Playwright/Edge was used under the user's screenshot-only permission, with no business-source edits, tool installation, repeated collection or inference. Original image files, commenter data, browser sessions, signed CDN URLs and tracking parameters remain local. Public JSON includes only 4 profile excerpts and media source/status/SHA256 metadata.
+
+[中文示例](facebook-trump/EXAMPLE.md) · [English example](facebook-trump/EXAMPLE.en.md) · [公开概览](facebook-trump/collection-summary.json) · [本轮变更记录](../change-records/2026-10-09-facebook-trump-showcase/记录.md)。特朗普图片/声音未用于生成、克隆或检测，页面方未认可或参与项目。

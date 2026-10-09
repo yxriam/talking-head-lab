@@ -1,0 +1,202 @@
+{
+  "id": "dc0b2ae09f004833b104c6f4c9116b73",
+  "kind": "crawl",
+  "status": "done",
+  "stage": "done",
+  "progress": 100,
+  "message": "已完成（仅采集，未运行风险分析）",
+  "counts": {
+    "text": 45,
+    "media": 18,
+    "scrolls": 4,
+    "image": 4,
+    "video": 0,
+    "audio": 0
+  },
+  "source_url": "https://www.facebook.com/DonaldTrump/",
+  "created_at": "2026-10-09T06:41:36.169678+00:00",
+  "runner": "direct call to existing collector.collect; account analysis omitted",
+  "elapsed_seconds": 13.0,
+  "result": {
+    "source_url": "https://www.facebook.com/DonaldTrump/",
+    "title": "Facebook",
+    "text": [
+      {
+        "text": "Donald J. Trump",
+        "source_url": "https://www.facebook.com/DonaldTrump/",
+        "context": "profile_or_page",
+        "date": null,
+        "reposted": false
+      },
+      {
+        "text": "This is the official Facebook page for Donald J. Trump",
+        "source_url": "https://www.facebook.com/DonaldTrump/",
+        "context": "profile_or_page",
+        "date": null,
+        "reposted": false
+      },
+      {
+        "text": "政治候选人",
+        "source_url": "https://www.facebook.com/DonaldTrump/",
+        "context": "profile_or_page",
+        "date": null,
+        "reposted": false
+      },
+      {
+        "text": "donaldjtrump.com",
+        "source_url": "https://www.facebook.com/DonaldTrump/",
+        "context": "profile_or_page",
+        "date": null,
+        "reposted": false
+      }
+    ],
+    "media": [
+      {
+        "id": "92972887969c460790ceee877dfcc864",
+        "filename": "92972887969c460790ceee877dfcc864.jpg",
+        "kind": "image",
+        "status": "downloaded",
+        "size": 1523,
+        "sha256": "e392970ef2fff893c9d760f0563cf68dfc4072def1bcf4ee82161fadeffa7045",
+        "source_url": "https://www.facebook.com/DonaldTrump/",
+        "name": "92972887969c460790ceee877dfcc864.jpg",
+        "url": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/92972887969c460790ceee877dfcc864"
+      },
+      {
+        "id": "057581761fec409dbc5f5aad62149fef",
+        "filename": "057581761fec409dbc5f5aad62149fef.jpg",
+        "kind": "image",
+        "status": "downloaded",
+        "size": 53295,
+        "sha256": "3c412f3886244fb39ed0a098376db65891092286d32adfd914547665ad0b9eb5",
+        "source_url": "https://www.facebook.com/photo/?fbid=765326708286485&set=a.486910622794763",
+        "name": "057581761fec409dbc5f5aad62149fef.jpg",
+        "url": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/057581761fec409dbc5f5aad62149fef"
+      },
+      {
+        "id": "f0ba324a72a94f509aace99be0175e5a",
+        "filename": "f0ba324a72a94f509aace99be0175e5a.jpg",
+        "kind": "image",
+        "status": "downloaded",
+        "size": 6526,
+        "sha256": "64dabf62fd9c9e804e00a75903844229f094b98577eac8b3ad781ec5fd4a2236",
+        "source_url": "https://www.facebook.com/photo/?fbid=1675814860570994&set=pb.100044274887410.-2207520000",
+        "name": "f0ba324a72a94f509aace99be0175e5a.jpg",
+        "url": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/f0ba324a72a94f509aace99be0175e5a"
+      },
+      {
+        "id": "755aafd113854f24a992d4fc56e9a762",
+        "filename": "755aafd113854f24a992d4fc56e9a762.jpg",
+        "kind": "image",
+        "status": "downloaded",
+        "size": 7970,
+        "sha256": "281a0fca841ddff2fa0500fdb4e2607abbf54587c837fa2c8da5ec8663286968",
+        "source_url": "https://www.facebook.com/photo/?fbid=1668673874618426&set=pb.100044274887410.-2207520000",
+        "name": "755aafd113854f24a992d4fc56e9a762.jpg",
+        "url": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/755aafd113854f24a992d4fc56e9a762"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1664939028325244&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1664939024991911&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1660211925464621&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1647232686762545&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/DonaldTrump/",
+        "name": "Facebook video"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/reel/1623661549400470/",
+        "name": "Facebook video"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1643959987089815&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1641094207376393&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "image",
+        "status": "link_only",
+        "reason": "未启用下载或已达到本次下载数量上限",
+        "source_url": "https://www.facebook.com/photo/?fbid=1636664024486078&set=pb.100044274887410.-2207520000",
+        "name": "Facebook image"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/reel/1623661549400470/",
+        "name": "Facebook video"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/reel/1457040859658195/",
+        "name": "Facebook video"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/reel/1457040859658195/",
+        "name": "Facebook video"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/reel/1084812184289666/",
+        "name": "Facebook video"
+      },
+      {
+        "kind": "video",
+        "status": "link_only",
+        "reason": "页面只提供链接，未发现可下载的原始文件",
+        "source_url": "https://www.facebook.com/reel/1084812184289666/",
+        "name": "Facebook video"
+      }
+    ],
+    "elapsed_seconds": 12.2,
+    "warnings": [
+      "公开节选 4 条主页片段（原采集 45 条）；原图和评论者资料留本机。 Public excerpt: 4 of 45 text fragments; originals and commenter data remain local."
+    ]
+  }
+}

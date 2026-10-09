@@ -1,0 +1,47 @@
+{
+  "permission": "用户已明确允许现有工具只截图，不改业务源码、不安装工具、不再次推理",
+  "actual_job_id": "dc0b2ae09f004833b104c6f4c9116b73",
+  "local_url": "http://localhost:3101/studio#crawl",
+  "method": "Existing Playwright/Edge; real localhost UI/API loading public excerpt of actual completed direct collector run",
+  "collector_service_online_during_capture": true,
+  "source_changed_for_screenshots": false,
+  "new_model_jobs": false,
+  "network_calls": [
+    {
+      "method": "GET",
+      "path": "/crawl/health"
+    },
+    {
+      "method": "GET",
+      "path": "/crawl/jobs"
+    },
+    {
+      "method": "GET",
+      "path": "/crawl/jobs/dc0b2ae09f004833b104c6f4c9116b73"
+    },
+    {
+      "method": "GET",
+      "path": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/92972887969c460790ceee877dfcc864"
+    },
+    {
+      "method": "GET",
+      "path": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/057581761fec409dbc5f5aad62149fef"
+    },
+    {
+      "method": "GET",
+      "path": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/f0ba324a72a94f509aace99be0175e5a"
+    },
+    {
+      "method": "GET",
+      "path": "/crawl/media/dc0b2ae09f004833b104c6f4c9116b73/755aafd113854f24a992d4fc56e9a762"
+    }
+  ],
+  "files": [
+    "text-zh.jpg",
+    "text-en.jpg",
+    "images-zh.jpg",
+    "images-en.jpg",
+    "video-links-zh.jpg",
+    "video-links-en.jpg"
+  ]
+}

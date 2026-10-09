@@ -1,0 +1,15 @@
+{
+  "local_only_paths_ignored": [
+    "docs/change-records/2026-10-09-facebook-trump-showcase/publication-before/README.md",
+    "docs/change-records/2026-10-09-facebook-trump-showcase/publication-diff.patch",
+    "local-media/crawl-data/example/job.json",
+    "local-media/facebook-browser/state.json",
+    "archive/legacy-demos/example.py"
+  ],
+  "public_example_paths_allowed": [
+    "docs/showcase/facebook-trump/text-zh.jpg",
+    "docs/showcase/facebook-trump/collection-summary.json",
+    "docs/change-records/2026-10-09-facebook-trump-showcase/collect-example.py"
+  ],
+  "passed": true
+}

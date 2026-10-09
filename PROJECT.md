@@ -99,3 +99,7 @@ AGENTS已建立Codex/Claude共同背景约定与每次操作完成后的同步�
 Claude 已归档本地历史人名演示素材、归位 8 个提案、修改中性称呼和 handoff 工具路径；Codex 按用户交接在有效发布 checkout 独立复核并镜像。复核另修正迁移导致的 PDF/LaTeX 图片路径。4 个账号评测脚本保留原名，历史快照保留。运行代码、模型、部署未变化；发布提交号见 docs/change-records/2026-10-09-public-repo-cleanup/记录.md。
 
 整理发布已完成：d570d9a952aed235b6c639c23f92199a0c67cc11，origin/main 已核对；模型与服务未变。
+
+## Facebook 真实页面展示（2026-10-09）
+
+按用户要求以 DonaldTrump 官方公共页面实采：4次滚动、45条文字片段、18个媒体条目（11图/7视频），4张图保存成功、视频音频0；13.0秒，来源/时间/缺失字段/SHA256可追溯。只调用现有采集器，未运行个人风险或分类模型、未生成特朗普媒体。双语README/详情/6张实际界面截图已准备；业务架构与账号候选未动。规格docs/specs/facebook-trump-showcase.md，记录docs/change-records/2026-10-09-facebook-trump-showcase/记录.md；文档发布与模型/部署状态分开。
