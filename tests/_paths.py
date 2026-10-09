@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-for name in ("collector", "inference"):
+for name in ("collector", "collector/eval", "inference"):
     folder = ROOT / name
     if folder.is_dir() and str(folder) not in sys.path:
         sys.path.insert(0, str(folder))

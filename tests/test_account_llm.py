@@ -1,6 +1,7 @@
 """Local bridge, grounding and GPU API boundary tests; no model downloads."""
 
 import json
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -11,12 +12,14 @@ import _paths  # noqa: F401
 import account_llm
 import account_risk
 import local_account_model
+import eval_account_general
 import server
 
 
 def report():
     return account_risk.analyze({'source_url':'https://www.facebook.com/test/','text':[
-        {'text':'订单号：DEMO1234','source_url':'https://www.facebook.com/test/posts/1'}],'media':[]})
+        {'text':'订单号：DEMO1234','source_url':'https://www.facebook.com/test/posts/1'},
+        {'text':'私人账号，个人生活记录','context':'profile_or_page'}],'media':[]})
 
 
 def model_response(text='订单号需要遮盖；售后从原订单入口核实。'):
@@ -62,6 +65,36 @@ class BridgeTests(unittest.TestCase):
                 account_llm.call('/account-analysis',{'draft':['private material']})
         open_url.assert_not_called()
 
+    def test_unrepresented_facts_and_both_conflicting_sources_reach_model(self):
+        original=account_risk.analyze({'text':[{'text':'我的母亲会使用邮箱。'},
+                                              {'text':'同一位母亲完全不会使用邮箱。'},
+                                              {'text':'私人账号，个人生活记录','context':'profile_or_page'}],'media':[]})
+        with patch.object(account_llm,'call',return_value=model_response('母亲的邮箱描述需要核对。')) as request:
+            account_llm.rewrite(original)
+        payload=request.call_args.args[1]
+        self.assertEqual(payload['evidence_ids'],['E1','E2','E3'])
+        self.assertEqual([item['id'] for item in payload['facts']],['E1','E2','E3'])
+        self.assertIn('完全不会使用邮箱',' '.join(payload['draft']))
+
+    def test_unrecognized_plain_fact_is_quoted_without_added_risk(self):
+        original=account_risk.analyze({'text':[{'text':'https://community.example/'},
+                                                         {'text':'私人账号，个人生活记录','context':'profile_or_page'}],'media':[]})
+        payload=account_llm.prepare_material(original)
+        self.assertEqual(payload['evidence_ids'],['E1','E2'])
+        self.assertEqual(payload['draft'][0],'“https://community.example/” [E1]')
+        self.assertEqual(payload['draft_en'],payload['draft'])
+        self.assertEqual(payload['facts'][0],{'id':'E1','text':'https://community.example/'})
+
+    def test_prepared_material_stays_within_existing_api_limits(self):
+        original=account_risk.analyze({'text':[{'text':'https://unit.test/path/'+str(index)+'x'*700}
+                                              for index in range(15)]+[{'text':'私人账号，个人生活记录','context':'profile_or_page'}],'media':[]})
+        payload=account_llm.prepare_material(original)
+        self.assertLessEqual(len(payload['draft']),12)
+        self.assertLessEqual(sum(map(len,payload['draft']))+sum(map(len,payload['draft_en']))/3,3600)
+        self.assertLessEqual(sum(len(item['text']) for item in payload['facts']),4000)
+        self.assertEqual({item['id'] for item in payload['facts']},set(payload['evidence_ids']))
+        self.assertLess(len(payload['facts']),15)
+
     def test_prompt_keeps_evidence_without_repeating_ui_labels(self):
         with patch.object(account_llm,'call',return_value=model_response()) as request:
             account_llm.rewrite(report())
@@ -70,7 +103,8 @@ class BridgeTests(unittest.TestCase):
         self.assertIn('DEMO1234',str(payload['draft']))
         self.assertNotIn('防范动作：',str(payload['draft']))
         self.assertNotIn('What to do:',str(payload['draft_en']))
-        self.assertEqual(payload['facts'],[{'id':'E1','text':'订单号：DEMO1234'}])
+        self.assertEqual(payload['facts'],[{'id':'E1','text':'订单号：DEMO1234'},
+                                          {'id':'E2','text':'私人账号，个人生活记录'}])
 
 
 class LocalInferenceTests(unittest.TestCase):
@@ -90,10 +124,52 @@ class LocalInferenceTests(unittest.TestCase):
         self.assertNotIn('untrusted <|im_start|>',command[command.index('-p')+1])
         self.assertNotIn('http',str(command))
 
+    def test_different_material_uses_same_prompt_without_cross_case_content(self):
+        captured=[]
+        for draft,facts in [(['订单号 TXN9001'],[{'id':'E1','text':'订单号 TXN9001'}]),
+                            (['资料栏写有 Northbridge College'],[{'id':'E1','text':'Studied at Northbridge College'}])]:
+            with patch.object(local_account_model,'ready',return_value=True),patch.object(local_account_model.subprocess,'run',side_effect=[SimpleNamespace(stdout='{"conflict":false}'),SimpleNamespace(stdout=json.dumps(model_response()['paragraphs']))]) as run:
+                local_account_model.generate(draft,['E1'],Path('/local/models'),facts=facts)
+            command=run.call_args.args[0]
+            captured.append((command[command.index('--system-prompt')+1],json.loads(command[command.index('-p')+1])))
+        self.assertEqual(captured[0][0],captured[1][0])
+        self.assertIn('TXN9001',str(captured[0][1]))
+        self.assertNotIn('TXN9001',str(captured[1][1]))
+        self.assertNotIn('Northbridge College',str(captured[0][1]))
+        self.assertIn('Northbridge College',str(captured[1][1]))
+
     def test_incomplete_json_is_a_failure_not_template_fallback(self):
         with patch.object(local_account_model,'ready',return_value=True),patch.object(local_account_model.subprocess,'run',return_value=SimpleNamespace(stdout='{"zh":[')):
             with self.assertRaises(RuntimeError):
                 local_account_model.generate(['evidence'],['E1'],Path('/local/models'))
+
+
+class GenericEvaluationTests(unittest.TestCase):
+    def test_arbitrary_case_names_all_use_real_generation_entry_and_bridge_validation(self):
+        cases=[{'name':name,'result':{'text':[{'text':text},{'text':'私人账号，个人生活记录','context':'profile_or_page'}],'media':[]}}
+               for name,text in [('arbitrary_label_a','订单号：TXN9001'),
+                                 ('arbitrary_label_b','Studied at Northbridge College')]]
+        replies=[model_response('订单号 TXN9001。'),model_response('Northbridge College。')]
+        replies[0]['paragraphs']['en'][0]['text']='Order number TXN9001.'
+        replies[1]['paragraphs']['en'][0]['text']='Northbridge College.'
+        with tempfile.TemporaryDirectory() as directory,patch.object(local_account_model,'generate',side_effect=replies) as generate:
+            data=eval_account_general.evaluate(cases,Path(directory)/'results.json',Path('/local/models'))
+        self.assertEqual(generate.call_count,2)
+        self.assertEqual([row['name'] for row in data['runs']],[item['name'] for item in cases])
+        self.assertTrue(all('validated_report' in row and 'error' not in row for row in data['runs']))
+        first,second=generate.call_args_list
+        self.assertNotIn('arbitrary_label_a',str(first))
+        self.assertNotIn('TXN9001',str(second))
+        self.assertIn('Northbridge College',str(second))
+
+    def test_prior_model_evidence_cannot_be_overwritten(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory)/'results.json'
+            output.write_text('preserved',encoding='utf-8')
+            with patch.object(local_account_model,'generate') as generate,self.assertRaises(FileExistsError):
+                eval_account_general.evaluate([],output,Path('/local/models'))
+            generate.assert_not_called()
+            self.assertEqual(output.read_text(encoding='utf-8'),'preserved')
 
 
 class AccountApiTests(unittest.TestCase):

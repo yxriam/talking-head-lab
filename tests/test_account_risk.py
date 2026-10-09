@@ -1,3 +1,4 @@
+# These tests exercise the low-level evidence engine; product gating is tested in test_account_scope.py.
 """Evidence rules must not turn exposure, quoted content, or missing data into personality claims."""
 
 import unittest
@@ -17,7 +18,7 @@ def result(*items, audiences=None):
 
 class EvidenceRiskTests(unittest.TestCase):
     def assess(self,*items,**kwargs):
-        return account_risk.analyze(result(*items,**kwargs),today=date(2026,10,8))
+        return account_risk._analyze_evidence(result(*items,**kwargs),today=date(2026,10,8))
 
     def test_absence_and_demographics_are_not_vulnerability(self):
         for items in [(),('教师，60岁，喜欢投资与旅游。','粉丝100000，关注银行账号。')]:

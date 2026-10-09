@@ -137,7 +137,7 @@ def run_job(identifier, options):
                     entry["source_url"] = result["source_url"]
             update(stage="analyzing", progress=97, message="正在整理账号反诈证据")
             result["analysis"] = account_risk.analyze(result)
-            update(stage="analyzing", progress=98, message="正在调用本地 Qwen 生成账号防范分析")
+            update(stage="analyzing", progress=98, message="正在调用本地 Qwen 生成账号防范分析" if result["analysis"]["analysis_scope"]["eligible"] else "已完成账号用途分类；仅私人账号进入风险分析")
             try:
                 result["analysis"] = account_llm.rewrite(result["analysis"])
             except account_llm.ModelError as error:

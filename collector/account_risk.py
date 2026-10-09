@@ -145,8 +145,7 @@ def visibility(evidence, scope):
 
 
 
-def analyze(result, today=None):
-    today = today or datetime.now(timezone.utc).date()
+def collect_evidence(result):
     evidence, seen = [], set()
     for item in result.get('text', []):
         text = ' '.join(str(item.get('text','')).split())[:1500]
@@ -155,6 +154,13 @@ def analyze(result, today=None):
         seen.add(text.casefold())
         evidence.append({**item, 'id':f'E{len(evidence)+1}', 'text':text,
                          'claim_type':evidence_type({**item,'text':text})})
+    return evidence
+
+
+def _analyze_evidence(result, today=None):
+    """Low-level rule report; the public entry gates account purpose first."""
+    today = today or datetime.now(timezone.utc).date()
+    evidence = collect_evidence(result)
     account = purpose(evidence,result)
     rows, protections = [], []
     for rule in RULES:
@@ -259,3 +265,52 @@ def analyze(result, today=None):
             'source_facts':[{'id':item['id'],'text':account_story.safe_text(item['text'])} for item in evidence],
             'subjects':subjects,'narrative':narrative,'conclusion':'\n\n'.join(narrative),
             'narrative_en':narrative_en,'conclusion_en':'\n\n'.join(narrative_en)}
+
+
+def analysis_scope(account):
+    """Account purpose, not audience visibility, determines personal eligibility."""
+    if account.get('label')=='私人账号':
+        return {'target':'personal','account_kind':'personal','eligible':True,
+                'reason':'可见用途证据支持私人账号，进入私人账号风险分析。'}
+    if account.get('label')=='公共账号' and account.get('subtype')!='公共创作者账号':
+        return {'target':'personal','account_kind':'business','eligible':False,
+                'reason':'可见用途证据支持企业或机构账号；本功能只分析私人账号。'}
+    return {'target':'personal','account_kind':'undetermined','eligible':False,
+            'reason':'现有资料不足以区分私人和企业用途；暂不进行私人账号风险分析。'}
+
+
+def classification_only(report):
+    """Return classification evidence without old or newly generated risk prose."""
+    account=report.get('account_purpose',{})
+    scope=analysis_scope(account)
+    ids=account.get('evidence_ids',[])
+    refs=(' ['+', '.join(ids)+']') if ids else ''
+    if scope['account_kind']=='business':
+        zh='账号用途分类：企业或机构账号。依据：主页有多项业务或机构用途说明。'+refs+' 本功能只分析私人账号，此账号不进入风险分析。'
+        en='Account purpose: business or institutional account. The profile contains several business or institutional purpose statements.'+refs+' Only personal accounts enter risk analysis.'
+    elif account.get('subtype')=='公共创作者账号':
+        zh='账号用途分类：公共创作者账号；私人或企业用途无法确定。创作者标记和发布记录不能单独确定企业用途。'+refs+' 暂不进行私人账号风险分析。'
+        en='Account purpose: public creator account; personal or business use is undetermined. Creator labels and publishing records alone do not establish business use.'+refs+' Personal-account risk analysis is paused.'
+    else:
+        zh='账号类型：无法确定。现有资料不足以区分私人与企业用途。'+refs+' 暂不进行私人账号风险分析。'
+        en='This account: account type undetermined. The material does not distinguish personal from business use.'+refs+' Personal-account risk analysis is paused.'
+    return {**report,'analysis_scope':scope,'generation':{'kind':'classification','model':None,'skip_reason':scope['reason']},
+            'method':'先按用途证据分类，仅私人账号进入风险分析',
+            'rows':[],'priorities':[],'protections':[],'subjects':[],
+            'narrative':[zh],'conclusion':zh,'narrative_en':[en],'conclusion_en':en}
+
+
+def analyze(result, today=None):
+    """Classify first; only personal accounts reach the risk rules."""
+    evidence=collect_evidence(result)
+    account=purpose(evidence,result)
+    scope=analysis_scope(account)
+    if scope['eligible']:
+        return {**_analyze_evidence(result,today=today),'analysis_scope':scope}
+    visible=visibility(evidence,result.get('scope',{}))
+    report={'version':'3','generated_at':datetime.now(timezone.utc).isoformat(),
+            'account_purpose':account,'visibility':visible,
+            'scope':f"本次采集 {len(evidence)} 条去重可见文字、{len(result.get('media',[]))} 条媒体记录；不代表完整账号历史。",
+            'limits':['用途分类仅依据已采集的文字与上下文；公开可见不等于企业账号，未识别图片或声音。'],
+            'source_facts':[{'id':item['id'],'text':account_story.safe_text(item['text'])} for item in evidence]}
+    return classification_only(report)

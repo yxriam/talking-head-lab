@@ -1,3 +1,4 @@
+# These tests exercise the low-level evidence engine; product gating is tested in test_account_scope.py.
 """Concrete output should keep roles, full email addresses and attribution precise."""
 
 import unittest
@@ -10,7 +11,7 @@ def assess(*text,media=None,source='https://www.facebook.com/test/',name=None):
     value={'source_url':source,'text':items,'media':media or [],'scope':{}}
     if name:
         value['display_name']=name
-    return account_risk.analyze(value)
+    return account_risk._analyze_evidence(value)
 
 
 class SpecificStoryTests(unittest.TestCase):

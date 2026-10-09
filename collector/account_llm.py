@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 import account_story
+import account_risk
 
 
 class ModelError(RuntimeError):
@@ -60,20 +61,52 @@ def status():
         return {'ready':False,'reason':str(error)}
 
 
-def rewrite(report):
+def prepare_material(report):
+    """Build bounded drafts and retain facts omitted by the rule prose.
+
+    Unrepresented facts are quoted as data, without inventing a risk scenario.
+    This same preparation is used by the bridge and offline evaluator.
+    """
+    if not account_risk.analysis_scope(report.get('account_purpose',{}))['eligible']:
+        raise ModelError('只有已分类为私人账号的材料可以生成风险正文')
     draft,draft_en=[],[]
-    # The fixed type paragraph is retained outside the model; do not ask a small
-    # model to reclassify it or waste its context repeating the same statement.
+    def add(zh,en):
+        if len(draft)>=12 or sum(map(len,draft))+len(zh)+(sum(map(len,draft_en))+len(en))/3>3600:
+            return False
+        draft.append(prose_draft(zh))
+        draft_en.append(prose_draft(en))
+        return True
+    # Keep the existing account-type paragraph outside model generation.
     for paragraph,english in zip(report['narrative'][1:],report['narrative_en'][1:]):
-        if sum(map(len,draft))+len(paragraph)+(sum(map(len,draft_en))+len(english))/3>3600:
+        if not add(paragraph,english):
             break
-        draft.append(prose_draft(paragraph))
-        draft_en.append(prose_draft(english))
-    refs=sorted(set(re.findall(r'\bE[1-9]\d*\b','\n'.join(draft))),key=lambda value:int(value[1:]))
+    refs=set(re.findall(r'\bE[1-9]\d*\b','\n'.join(draft)))
+    facts=[]
+    fact_length=0
+    for item in report.get('source_facts',[]):
+        if fact_length+len(item['text'])>4000:
+            continue
+        if item['id'] not in refs:
+            quoted='“'+item['text']+'” ['+item['id']+']'
+            if not add(quoted,quoted):
+                continue
+            refs.add(item['id'])
+        facts.append(item)
+        fact_length+=len(item['text'])
     if not draft or not refs:
         raise ModelError('现有材料没有可引用的具体资料，不能生成本地模型正文')
-    response=call('/account-analysis',{'draft':draft,'draft_en':draft_en,'evidence_ids':refs,
-        'facts':[item for item in report.get('source_facts',[]) if item['id'] in refs]},timeout=130)
+    return {'draft':draft,'draft_en':draft_en,
+            'evidence_ids':sorted(refs,key=lambda value:int(value[1:])), 'facts':facts}
+
+
+def rewrite(report):
+    scope=account_risk.analysis_scope(report.get('account_purpose',{}))
+    if not scope['eligible']:
+        return account_risk.classification_only(report)
+    report={**report,'analysis_scope':scope}
+    payload=prepare_material(report)
+    draft,draft_en,refs=payload['draft'],payload['draft_en'],payload['evidence_ids']
+    response=call('/account-analysis',payload,timeout=130)
     if not isinstance(response,dict) or not isinstance(response.get('model'),str) or not isinstance(response.get('elapsed_seconds'),(int,float)):
         raise ModelError('本地服务没有返回有效的模型来源信息；原分析保持不变')
     paragraphs=response.get('paragraphs',{})
