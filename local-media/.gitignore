@@ -1,9 +1,0 @@
-.venv/
-data/
-models/
-__pycache__/
-*.log
-.wsl-keeper.pid
-crawl-data/
-facebook-browser/
-legacy-code*.zip
