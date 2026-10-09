@@ -1,36 +1,256 @@
 # Talking Head Lab
 
-本地 AI 媒体教学与反诈研究项目：Facebook 文字采集与账号防范分析、音色克隆、AI 人像视频及视频真伪检测。各功能可独立使用，默认在 Windows 采集/桥接、WSL Ubuntu 执行 GPU 推理。
+**采集可见信息，生成声音与人像视频，再查看真伪检测证据。**
 
-## 项目入口
+[简体中文](README.md) · [English](README.en.md)
 
-| 路径 | 内容 |
+一个以 Windows + WSL2 为维护环境的 AI 媒体工作台，包含 Facebook 采集与账号防范分析、音色克隆、照片驱动视频和媒体真伪检测。四个模块可以独立使用，也可以通过资源 ID 接续完成流程。
+
+## 功能与效果展示
+
+### 先看一段真实生成结果
+
+<table>
+  <tr><th>① 合成输入人像</th><th>② 项目准备后的肖像</th><th>③ SadTalker 实际生成视频</th></tr>
+  <tr>
+    <td><img src="docs/showcase/synthetic-input.png" width="260" alt="imagegen 创建的虚构成年人物输入" /></td>
+    <td><img src="docs/showcase/prepared-portrait.png" width="260" alt="项目完成背景准备后的真实肖像" /></td>
+    <td><img src="docs/showcase/sadtalker-demo.gif" width="260" alt="SadTalker 实际输出的动态预览，标注 AI 生成与合成人物" /></td>
+  </tr>
+</table>
+
+人像输入由 imagegen 创建，参考声音由 Windows 系统语音合成；随后使用项目现有 Chatterbox 和 SadTalker 真实生成。GIF 来自同一份 **512×512、4.736 秒**视频。台词为：
+
+> Welcome to Talking Head Lab. This is an AI generated demonstration.
+
+[播放或下载带声音的 MP4](docs/showcase/sadtalker-demo.mp4) · [参考合成声音 WAV](docs/showcase/reference-voice.wav) · [Chatterbox 输出 WAV](docs/showcase/generated-voice.wav) · [素材来源与实跑记录](docs/showcase/PROVENANCE.md)
+
+本演示使用虚构人物与合成声音。声音、视频和检测为本轮真实任务；采集与账号分析截图使用已有合成集成测试记录，展示界面与文字排版，本轮没有执行 Facebook 实采或新的账号分析推理。
+
+### 四个模块分别做什么
+
+| 模块 | 输入什么 | 得到什么 | 可以接着做什么 |
+|---|---|---|---|
+| **爬取信息与账号分析** | 可访问的 Facebook 主页、帖子或视频链接；手动登录后的会话 | 可见原文、来源链接、可下载媒体、ZIP，以及有文字依据的防范提醒 | 选择已下载的照片、声音或视频，带入生成或检测 |
+| **音色克隆** | 清晰的参考音频或含音轨的视频，加上需要朗读的文字 | Chatterbox 生成的语音，可试听与下载 | 一键带入人像视频，复用资源 ID |
+| **AI 人像视频** | 正脸照片和驱动语音 | 背景准备后的肖像与照片驱动视频 | 预览、下载，再直接检测生成视频 |
+| **媒体真伪检测** | 图片、上传的视频，或工作台刚生成的视频 | 多方法结论、评分、采样帧与秒数、通过/未通过/证据不足汇总 | 对照具体时段和方法解释检查证据 |
+
+### 1. 采集与账号防范分析
+
+![真实采集界面，显示明确标注的本地合成测试记录，私人历史不在截图中](docs/showcase/crawl-zh.jpg)
+
+输入链接后，选择 4、8 或 20 次滚动，预览可见文字、图片、视频和音频，再导出 ZIP。遇到登录或验证页面会提示用户手动操作。账号警示面向已判定的私人账号，沿用可追溯的文字证据，由规则和本地 Qwen 整理原文中的关系与联系方式，以及对应的核验动作；不识别人脸、不转写声音，也不计算个人受骗概率。
+
+**当前版本边界：**最新要求是先区分私人、企业/机构与无法确定，只分析私人。新门控与通用化实现目前仅在原工作区，尚未同步到本发布版本或运行服务；当前GitHub版本没有完成自动门控，使用前应人工确认私人用途，企业/机构和无法确定应跳过风险分析。通用正文仍有重复、引用失真和警示遗漏的已知未通过项。
+
+![已有合成测试记录的账号分析文字布局；不作为本轮 Qwen 实跑证据](docs/showcase/account-zh.jpg)
+
+引用保留原语言，切换中文/English 会切换分析正文和 ZIP 内的文字报告。重大防范矛盾的证据对、时间传递与影响解释仍有[待完成规格](docs/specs/account-warning-conflicts.md)，现有界面展示不代表该新规格已经全部实现。
+
+### 2. 参考声音 → 新台词
+
+![音色克隆界面及本轮实际生成的音频](docs/showcase/voice-zh.jpg)
+
+支持音频和含音轨的视频作为参考，视频会先提取音轨；参考最多使用前 20 秒，文字最多 500 字符。生成后可以试听、下载，或点击“用这段语音生成人像视频”。本例系统参考声音约 7.3 秒，项目实际输出为 **4.68 秒**，生成任务报告用时 **38.1 秒**；这些时间仅对应本演示环境。
+
+### 3. 照片与声音 → 人像视频
+
+![人像视频界面、模型选择和本轮 SadTalker 输出](docs/showcase/video-zh.jpg)
+
+生成前，现有流程用 Qwen 根据台词选择环境，SDXL 生成背景，U2Net 保留原图人物像素，再交给所选视频模型。输出构图沿用各模型能力。
+
+| 模型选项 | 运行位置 | 当前接口的时长限制 | 输出方式 |
+|---|---|---|---|
+| SadTalker | 本地 GPU | 60 秒以内 | 扩展脸部区域，方形视频 |
+| EchoMimic V1 | 本地 GPU | 20 秒以内 | 原生方形视频 |
+| JoyVASA | 本地 GPU | 60 秒以内 | 原生方形视频 |
+| EchoMimic V3 Flash | 本地 GPU | 4 秒以内的实验模式 | 原生短视频 |
+| YT HumanActor | 腾讯 TokenHub + COS | 2–60 秒 | 竖版肖像，保留云端输出画幅 |
+
+本页新演示实跑的是 **SadTalker**，任务报告渲染耗时 **64.1 秒**，不包含前置肖像准备时间。其他选项按配置显示可用状态；本轮未重新生成这些模型的样片。腾讯接入的准确模型 ID 为 `yt-video-humanactor`，配置说明见部署部分。
+
+### 4. 视频 → 多方法检测证据
+
+![同一份真实生成视频的本地检测结果，云端复核未勾选](docs/showcase/detect-zh.jpg)
+
+检测包含 GenD、NPR、UCF、RECCE、F3-Net 和照片驱动时序静态性；频谱、光流及连续性指标另作辅助取证。视频域中 NPR 展示“证据不足”并退出投票。每种方法提供自己的解释与适用的高/低评分时段。
+
+本演示同一视频得到 **AI 生成倾向**，界面汇总评分 **95.8%**，结果为 **1 项通过、4 项未通过、1 项证据不足**，任务报告用时 **21.5 秒**。[原始 JSON 报告](docs/showcase/detection-report.json)保留实际数值。这些评分来自当前模型与本地阈值，适用范围是该样例；未知视频应结合多方法分歧、采样和来源判断。
+
+## 部署
+
+### 环境与两种启动方式
+
+| 组件 | 所需环境 |
 |---|---|
-| [PROJECT.md](PROJECT.md) | 实际现状、模型与部署验证的适用范围、待完成项 |
-| [AGENTS.md](AGENTS.md) | AI工具共享规范、技术栈、测试和安全边界 |
-| [docs/WORKFLOW.md](docs/WORKFLOW.md) | 规格、实现、验收、发布、维护和回退 |
-| [网站启动说明.md](网站启动说明.md) | 本机配置、启动、停止和排错 |
-| [local-media/README.md](local-media/README.md) | FastAPI服务、GPU模型、接口和配置 |
-| [facebook-scam/README.md](facebook-scam/README.md) | 采集服务与查看器 |
-| `facebook-scam/video-forensics-web/` | React 19、TypeScript、vinext/Vite前端，主要工作台为 app/studio |
-| `local-media/` | Python后端、规则、模型桥接、既有测试与部署脚本 |
-| `docs/specs/`、`docs/change-records/` | 验收契约、真实变化和回退证据 |
-| 根与 `tools/` 中的脚本/研究文档 | 历史辅助工作，保留来源；不是当前服务入口 |
+| 仅浏览界面 | Node.js **>=22.13.0**，以[前端 package.json](facebook-scam/video-forensics-web/package.json)为准 |
+| Windows 采集 | Python 3.10+、Playwright；已有 Chrome/Edge 可复用，否则安装 Chromium |
+| 完整本地推理 | Windows + WSL2 / Ubuntu 22.04，NVIDIA GPU，模型独立环境及权重 |
+| 维护目录 | WSL 模型 `/opt/media-models`；后端运行代码 `/opt/media-app/local-media` |
+| 可选云端 | TokenHub + COS；TruthScan 配置独立启用 |
 
-## 环境与运行
+本轮实际验证了发布 checkout 的 `npm ci`、前端构建和上述合成素材任务。全新机器的完整 GPU 安装未在本轮重跑；当前安装脚本包含固定路径、Python 3.10 目录与 CUDA 编译参数，安装前需要按设备核对。
 
-前端 Node.js >=22.13.0，以 [package.json](facebook-scam/video-forensics-web/package.json) 为准；安装时使用锁文件。Python依赖分模型服务 [requirements.txt](local-media/requirements.txt) 与 Windows采集 [requirements-crawl.txt](local-media/requirements-crawl.txt)。GPU模型环境与路径详见上述安装文档，模型不随源码下载。
+### A. 先运行界面预览
 
-首次 clone 到不同路径时，先核对脚本内既有本机路径，不直接运行安装/部署脚本。现有 Windows 入口 D:/project/cv 指向 D:/project/NZ/cv；WSL运行代码 /opt/media-app/local-media，模型 /opt/media-models。日常启动使用 local-media/start-local.ps1，工作台地址 http://localhost:3100/studio。
+在一个新目录克隆并启动前端：
 
-仓库包含可维护的完整项目源码、前后端、配置示例、测试、脚本和文档。模型权重、虚拟环境、个人与生成媒体、采集数据、浏览器登录态、真实密钥、日志和本地工具安装包保留本机；克隆源码不代表本机运行环境或历史模型实测已重建。
+```powershell
+git clone https://github.com/yxriam/talking-head-lab.git
+Set-Location talking-head-lab/facebook-scam/video-forensics-web
+npm ci
+npm run dev -- --host 127.0.0.1 --port 3100
+```
 
-真实凭据只写到本机配置位置，参考脱敏 env.example；不要提交到Git。Qwen仅接收整理后的文字，原资料指令按数据处理。TokenHub/TruthScan等可选外部接口按现有说明配置和授权，不改变默认本地分析边界。
+打开 **http://localhost:3100/studio**。没有后端与模型时，可以查看四个界面，生成和检测会显示未就绪状态。需要本地模型功能时继续下面的配置。
 
-## 更新和回退
+### B. 配置完整 Windows + WSL 环境
 
-每项变化先写规格、审实际diff、运行直接相关检查、保存真实状态，再做小步提交。详见 [维护流程](docs/WORKFLOW.md) 与 [首次完整发布规格](docs/specs/github-project-publication.md)。已共享提交使用 git revert，再验证与正常push；服务回退另需同步/重启/运行验证。
+**1. 核对路径。**现有 Linux 安装/同步脚本仍引用 `D:/project/cv` 与 `D:/project/NZ/cv`。全新机器可以采用以下目录布局；已有 checkout 换路径时，先调整 `prepare-linux.ps1`、`run-linux.ps1`、`activate-api.sh`、`sync-runtime.sh` 和安装脚本中的对应路径。维护者当前发布 checkout 位于 `D:/project/facebook/talking-head-lab`，更新运行代码时同样要核对实际源目录。
 
-当前源码发布 checkout 为 D:/project/facebook/talking-head-lab，源工作区仍为 D:/project/cv。原工作区根Git无效且含独立 facebook-scam 仓库：不要在它运行git init或把子仓库当根仓库。后续更新应在真实发布checkout维护，或从原工作区按明确文件清单复制变化并重新审查；不能无差别同步数据与素材。
+<details>
+<summary>全新机器的固定路径示例（仅在目录尚不存在时使用）</summary>
 
-公开导入保留完整业务实现；历史脚本中个人音频路径/示例地址已在导出时替换为通用路径，原始脚本留本地。采集目标与带人物联系信息的历史实测原文不公开，历史摘要、验收规格与失败状态保留。详见首次发布清单与变更记录。
+```powershell
+New-Item -ItemType Directory -Path D:\project\NZ -Force
+git clone https://github.com/yxriam/talking-head-lab.git D:\project\NZ\cv
+New-Item -ItemType Junction -Path D:\project\cv -Target D:\project\NZ\cv
+Set-Location D:\project\cv
+```
+
+</details>
+
+**2. 安装 Windows 采集依赖与前端依赖。**在项目根目录执行：
+
+```powershell
+py -3 -m venv local-media\.venv
+local-media\.venv\Scripts\python.exe -m pip install -r local-media\requirements-crawl.txt
+local-media\.venv\Scripts\python.exe -m playwright install chromium
+Set-Location facebook-scam/video-forensics-web
+npm ci
+npm run build
+Set-Location ../..
+```
+
+低内存或正在进行模型任务时，先结束大任务；本轮构建用 `$env:RAYON_NUM_THREADS='2'` 限制原生构建线程后通过。浏览器使用默认检测到的 Chrome/Edge，或 Playwright Chromium。
+
+**3. 准备 WSL 和模型。**安装 Ubuntu、完成其首次用户设置，然后检查 `nvidia-smi`：
+
+```powershell
+wsl --install -d Ubuntu-22.04
+wsl -d Ubuntu-22.04 -- nvidia-smi
+powershell -ExecutionPolicy Bypass -File .\local-media\prepare-linux.ps1
+```
+
+下面是已有安装脚本的依赖顺序。模型体积大，逐个执行并核对各步日志。`install-scene-llm.sh` 中的 CUDA 架构 `120` 等编译参数需与自己的设备匹配。
+
+<details>
+<summary>本地模型及后端服务安装顺序</summary>
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task setup-models
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-generators
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-echomimic
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-detectors
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-npr
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-gend
+wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-instantid.sh
+wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-scene-llm.sh
+wsl -d Ubuntu-22.04 -u root -- mkdir -p /opt/media-app/local-media
+wsl -d Ubuntu-22.04 -u root -- cp /mnt/d/project/cv/local-media/patch_echomimic_v3_memory.py /opt/media-app/local-media/
+wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-sota-generators.sh
+powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task activate-api
+```
+
+当前 `sync-runtime.sh` 会检查所列模型目录，因此完整启动路径需要先准备这些目录。权重就绪、模型语义验收和服务验证分别记录；完整过程、日志、网络修复与停止方法见[安装和启动详解](网站启动说明.md)。
+
+</details>
+
+**4. 日常启动与健康检查。**模型环境和服务已准备后，在项目根目录运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\local-media\start-local.ps1
+curl.exe http://localhost:3100/api/health
+curl.exe http://127.0.0.1:8003/crawl/health
+```
+
+模型健康地址应返回 `status: ok`，各能力的 `ready` 表示当前配置状态。页面在 `http://localhost:3100/studio`；采集由 Windows 8003 提供，推理由 WSL 8002 提供，前端代理这两条链路。关闭浏览器会保留后台服务，完整停止方式见[启动详解](网站启动说明.md#3-怎么正确停止)。
+
+### 可选：腾讯人像生成与云端复核
+
+腾讯 TokenHub 使用 `yt-video-humanactor`，API Key 和 COS 的 SecretId、SecretKey、地域、存储桶写到 Ubuntu 的 `/etc/media-app/tokenhub.env`，通过现有 systemd 配置脚本加载。图片和音频上传 COS，使用短时签名 `image_url` / `audio_url` 提交，轮询完成后下载视频，程序尝试清理临时对象。
+
+TruthScan 使用 `/etc/media-app/truthscan.env`。勾选云端复核会上传视频并使用账户额度；本轮演示已取消该勾选，仅执行本地方法。详细配置见[后端说明](local-media/README.md#tokenhub-人像驱动)与[云端复核说明](local-media/README.md#truthscan-免费云端复核)。真实配置、会话与密钥保留本机。
+
+## 使用
+
+1. **采集**：打开“爬取信息”→手动登录→粘贴可访问链接→开始采集→预览原文和素材→先确认用途，仅私人账号检查账号提醒，其他材料跳过风险分析→导出 ZIP。
+2. **声音**：上传清晰、已授权的参考声音→输入台词→生成并试听→点击“用这段语音生成人像视频”。
+3. **视频**：选择清晰正脸→选择驱动声音和模型→生成→预览/下载→点击“检测这个视频”。
+4. **检测**：复用刚生成的视频或上传独立图片/视频→选择是否进行外部复核→查看汇总、方法解释和对应帧/秒数。
+
+可以从任何模块开始。语音/视频交接复用资源 ID，不需要反复下载上传；直接上传的驱动音频没有自动转写，会使用默认中性环境。当前 API 单文件上限 500 MB，GPU任务顺序执行。上传和生成文件保存在运行服务的 `data/`，由使用者按任务清理。
+
+## 项目结构与代码分布
+
+```text
+talking-head-lab/
+├─ README.md / README.en.md                 中文 / 英文入口
+├─ facebook-scam/
+│  ├─ crawler/facebook.py                   唯一在线采集实现
+│  └─ video-forensics-web/
+│     ├─ app/studio/                        四模块页面、样式、前端 API
+│     ├─ build/sites-vite-plugin.ts         必需的 Vite 源码插件
+│     └─ tests/                             前端既有检查
+├─ local-media/
+│  ├─ crawl_server.py / server.py            Windows采集 / WSL媒体 API
+│  ├─ account_risk.py / account_story.py      文字证据规则与正文整理
+│  ├─ account_llm.py / local_account_model.py 本地模型桥接与推理
+│  ├─ generate.py / video_profiles.py        生成子进程、构图与时长策略
+│  ├─ local_scene.py / prepare_scene.py      场景选择与肖像准备
+│  ├─ detect.py                             媒体检测和辅助取证
+│  ├─ tokenhub.py / truthscan.py             可选外部接口
+│  ├─ detector-runtime/                     检测安装注册源码
+│  └─ test_*.py / *.sh / *.ps1               测试、安装、启动与同步
+├─ docs/showcase/                           本轮公开合成演示及来源说明
+├─ docs/specs/ / docs/change-records/        契约、变化、验证与回退
+└─ AGENTS.md / CLAUDE.md / .cursor/rules/    共享协作规范与工具入口
+```
+
+根目录其他脚本与研究文档保留历史来源，当前工作台从 `app/studio/` 维护。模型权重、虚拟环境、私人人物媒体、采集数据与真实凭据不在源码仓库；此处明确标注的合成展示资源用于阅读 README。
+
+## 二次开发
+
+### 修改什么，去哪里
+
+| 要做的改动 | 入口与检查范围 |
+|---|---|
+| 改界面、布局或增加前端交互 | `Studio.tsx`、`CrawlPanel.tsx`、`studio.css`、`crawl.css`、`api.ts`；前端构建与行为检查 |
+| 改采集字段 | `crawler/facebook.py`→`crawl_server.py`→账号规则/桥接/输出；保留来源与时间，运行采集测试 |
+| 改账号提示或正文 | `account_risk.py`→`account_story.py`→`account_llm.py`→`server.py /account-analysis`→`local_account_model.py`；程序与真实模型分别验收 |
+| 增加视频模型 | `video_profiles.py`、`generate.py`、`server.py` 能力/队列、前端模型选项；明确构图、时长、失败行为 |
+| 改检测方法 | `detect.py` 与报告字段、前端显示；保留真实阈值、采样时段和证据不足状态 |
+
+### 验证、同步与回退
+
+先读 [AGENTS.md](AGENTS.md) 和 [PROJECT.md](PROJECT.md)，按[维护流程](docs/WORKFLOW.md)冻结任务规格、审实际 diff、运行直接相关检查，再做一个任务一个提交。
+
+```powershell
+local-media\.venv\Scripts\python.exe -m unittest discover -s local-media -p test_account_llm.py -v
+local-media\.venv\Scripts\python.exe -m unittest discover -s local-media -p test_server.py -v
+Set-Location facebook-scam/video-forensics-web
+npm run build
+```
+
+按改动范围补充账号规则/正文、采集或模型相关检查。提示词修改需要冻结用例和真实模型输出，程序测试不能替代语义验收。
+
+后端部署沿用 `sync-runtime.sh` 的 SHA256 同步，再重启并验证运行服务；脚本中的源路径需指向实际维护 checkout。源码提交、GitHub推送、运行部署是不同阶段。
+
+```powershell
+wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/sync-runtime.sh
+wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
+curl.exe http://localhost:3100/api/health
+```
+
+已共享任务用 `git revert <实际提交号>`，验证后正常 `git push origin main`。本轮的真实输入、耗时、失败修复、验证和回退见[展示变更记录](docs/change-records/2026-10-09-readme-showcase/记录.md)。

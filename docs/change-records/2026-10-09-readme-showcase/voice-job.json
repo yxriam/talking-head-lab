@@ -1,0 +1,17 @@
+{
+  "id": "2dc507869ece42bf883596b90c1a1973",
+  "kind": "voice",
+  "status": "done",
+  "message": "已完成",
+  "progress": 100,
+  "model": "chatterbox",
+  "result": {
+    "id": "2dc507869ece42bf883596b90c1a1973",
+    "name": "output.wav",
+    "filename": "output.wav",
+    "kind": "audio",
+    "url": "/media/2dc507869ece42bf883596b90c1a1973",
+    "source_text": "Welcome to Talking Head Lab. This is an AI generated demonstration."
+  },
+  "elapsed_seconds": 38.1
+}

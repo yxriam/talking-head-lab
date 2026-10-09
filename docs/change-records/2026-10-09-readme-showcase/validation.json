@@ -1,0 +1,634 @@
+{
+  "links": [
+    {
+      "from": "README.md",
+      "target": "README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/sadtalker-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/crawl-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/account-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/specs/account-warning-conflicts.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/voice-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/video-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/detect-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/detection-report.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "facebook-scam/video-forensics-web/package.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "网站启动说明.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "网站启动说明.md",
+      "fragment": "3-怎么正确停止",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "local-media/README.md",
+      "fragment": "tokenhub-人像驱动",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "local-media/README.md",
+      "fragment": "truthscan-免费云端复核",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "PROJECT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/prepared-portrait.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/sadtalker-demo.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/sadtalker-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/crawl-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/account-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/specs/account-warning-conflicts.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/voice-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/video-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/detect-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/detection-report.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "facebook-scam/video-forensics-web/package.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "网站启动说明.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "网站启动说明.md",
+      "fragment": "3-怎么正确停止",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "local-media/README.md",
+      "fragment": "tokenhub-人像驱动",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "local-media/README.md",
+      "fragment": "truthscan-免费云端复核",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "PROJECT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/prepared-portrait.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/sadtalker-demo.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "AGENTS.md",
+      "target": "docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "AGENTS.md",
+      "target": "docs/templates/task-spec.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "AGENTS.md",
+      "target": "docs/templates/change-record.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "CLAUDE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": ".cursor/rules/project.mdc",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/templates/task-spec.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/templates/change-record.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/account-warning-conflicts.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/change-records/2026-10-08-spec-first/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/engineering-governance.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/github-project-publication.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/change-records/2026-10-08-engineering-governance/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/readme-showcase.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/showcase/PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "prepared-portrait.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "sadtalker-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "sadtalker-demo.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "detection-report.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "target": "../../specs/readme-showcase.md",
+      "fragment": "",
+      "valid": true
+    }
+  ],
+  "media": [
+    {
+      "path": "docs/showcase/account-en.jpg",
+      "bytes": 59598,
+      "sha256": "2d664a8aadc492919fe49406c1d65a2242c0f02d22249d8faaa8e0d82a973fed",
+      "width": 931,
+      "height": 424,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/account-zh.jpg",
+      "bytes": 49354,
+      "sha256": "dc4aa516ee8866344d58588eb2b43b4da458d46d2e88d8978cd1bbe82cc2c38d",
+      "width": 931,
+      "height": 307,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/crawl-en.jpg",
+      "bytes": 69475,
+      "sha256": "d1e92f847cd7e4891b595ac5dfe78a9b98443095018b49d50eb26321049ddad7",
+      "width": 1265,
+      "height": 850,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/crawl-zh.jpg",
+      "bytes": 66171,
+      "sha256": "0d197c20a6423e4e5c738ea3295ada91c50809b72118a121e7b48cb02ea25e2f",
+      "width": 1265,
+      "height": 850,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-en.jpg",
+      "bytes": 89382,
+      "sha256": "08e4ad016a81bd9403ea6e9bec64338a9beecd90ed385ce5618de6af8fe12aae",
+      "width": 1265,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-zh.jpg",
+      "bytes": 91382,
+      "sha256": "25d2046615a03f407453bf7c9705c9ea765c36914b10035dc10c477fee8a3ed4",
+      "width": 1265,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detection-report.json",
+      "bytes": 28116,
+      "sha256": "013dcd9676cc2365dc512edc5395f7f90bb12088b7979413cf86c9814b334c43"
+    },
+    {
+      "path": "docs/showcase/generated-voice.wav",
+      "bytes": 224684,
+      "sha256": "4fdfa407a3a50defe7dee57d3e5ee85526dd5f25e73d0c9647f4d6bf2194720d",
+      "duration_seconds": 4.68
+    },
+    {
+      "path": "docs/showcase/prepared-portrait.png",
+      "bytes": 801497,
+      "sha256": "19f31ee835772cfe0caee5e068fc13c5f83e24d20a27c0e70d03d8bc4397dc1e",
+      "width": 768,
+      "height": 768,
+      "format": "PNG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/PROVENANCE.md",
+      "bytes": 5897,
+      "sha256": "788447e54de4acd8b5c76a3ce8a492651fa86341e407c4e4cbbf763ea0a966c4"
+    },
+    {
+      "path": "docs/showcase/reference-voice.wav",
+      "bytes": 322116,
+      "sha256": "42de25443a1a6ac0e625e8c188ab4ab0ba3ed9086e91449a54d1beb4a19ad25f",
+      "duration_seconds": 7.303174603174603
+    },
+    {
+      "path": "docs/showcase/sadtalker-demo.gif",
+      "bytes": 3325926,
+      "sha256": "a9b161c222b6b3a3a4b513bea465a9659e58c5b636fe511c2701f7baa7fe396a",
+      "width": 360,
+      "height": 360,
+      "format": "GIF",
+      "frames": 47
+    },
+    {
+      "path": "docs/showcase/sadtalker-demo.mp4",
+      "bytes": 377389,
+      "sha256": "8d2635e30bd42566bb00c501962705e2e0e7b68406c30536885f1fe7fd64daf5"
+    },
+    {
+      "path": "docs/showcase/synthetic-input.png",
+      "bytes": 2136999,
+      "sha256": "c0f15c82ce1858185324426f50a5d54c306fd66b4cca66532eae59445387c52a",
+      "width": 1254,
+      "height": 1254,
+      "format": "PNG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-en.jpg",
+      "bytes": 102378,
+      "sha256": "fb97add4c79c0de2458ae78caf12abc691f35f323c22ab0747662179f6c6fad7",
+      "width": 1264,
+      "height": 1270,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-zh.jpg",
+      "bytes": 92551,
+      "sha256": "7475ccee926d230ec2b189e1afefe16c3ade63064b44eae8613c72608deccd76",
+      "width": 1264,
+      "height": 1227,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/voice-en.jpg",
+      "bytes": 69581,
+      "sha256": "202128ac1b1b27ceedfde9c259d6806fba88cd4c0d1d901ae4e5032c41d2f665",
+      "width": 1264,
+      "height": 1130,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/voice-zh.jpg",
+      "bytes": 62079,
+      "sha256": "430956825f5e081f00b376905f50ba8d8036604c924a20d4290c9db478f949d3",
+      "width": 1264,
+      "height": 1110,
+      "format": "JPEG",
+      "frames": 1
+    }
+  ],
+  "checks": {
+    "zh_requested_order": true,
+    "en_requested_order": true,
+    "language_cross_links": true,
+    "same_deployment_usage_development_commands": true,
+    "private_gate_version_boundary": true,
+    "existing_fixture_not_new_qwen_run": true,
+    "ten_bilingual_screenshots": true,
+    "reference_and_generated_audio_distinct": true,
+    "actual_voice_job_done": true,
+    "actual_video_job_done": true,
+    "report_matches_actual_job": true,
+    "actual_report_summary": true,
+    "no_cloud_result_in_demo": true,
+    "restored_source_matches_original": true,
+    "targeted_ignore_exceptions_only": true,
+    "dependency_files_unchanged": true,
+    "frontend_build_passed_with_failure_retained": true
+  },
+  "failures": [],
+  "powershell_blocks_per_language": 8,
+  "visual_qa": "Real screenshots reviewed; collection captures exclude private history. Browser runtime reset later; no final GitHub screenshot claimed."
+}

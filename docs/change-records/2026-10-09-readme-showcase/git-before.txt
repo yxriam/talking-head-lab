@@ -1,0 +1,3 @@
+?? docs/change-records/2026-10-09-readme-showcase/
+?? docs/specs/readme-showcase.md
+?? ray_report_review/

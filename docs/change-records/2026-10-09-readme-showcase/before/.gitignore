@@ -148,15 +148,3 @@ facebook_state.json
 /docs/change-records/2026-10-08-engineering-governance/source-import.patch
 /docs/change-records/2026-10-08-engineering-governance/source-pathspec.txt
 /docs/change-records/2026-10-08-engineering-governance/source-whitespace-check.txt
-
-# This build directory contains required Vite plugin source, not generated output.
-!/facebook-scam/video-forensics-web/build/
-/facebook-scam/video-forensics-web/build/*
-!/facebook-scam/video-forensics-web/build/sites-vite-plugin.ts
-
-# These three registration adapters are installer source, not runtime output.
-!/local-media/detector-runtime/
-/local-media/detector-runtime/*
-!/local-media/detector-runtime/networks-init.py
-!/local-media/detector-runtime/detectors-init.py
-!/local-media/detector-runtime/loss-init.py

@@ -66,14 +66,3 @@ Ubuntu 运行文件位于 `/opt/media-app/local-media`，模型源码和 CUDA �
 API测试只覆盖输入边界、资源复用/分段播放和未就绪错误，不代表模型推理验证。
 采集验证：`local-media/.venv/Scripts/python.exe -m unittest discover -s local-media -p test_crawl.py -v`；含真实浏览器处理本地模拟页面，不冒充 Facebook 实采。已移除的旧源码可以从 `local-media/legacy-code-20261008.zip` 恢复，历史数据与素材未删除。
 账号风险规则验证：`local-media/.venv/Scripts/python.exe -m unittest discover -s local-media -p test_account_risk.py -v`。历史成功采集记录可点击“分析账号信息”或“更新分析”，结论保存在该任务 `result.json` 与 ZIP 导出的 `account-analysis.txt`。
-
-
-## 双语README与公开合成展示（2026-10-09）
-
-新增README.md/README.en.md，按功能与效果→部署/使用→结构/二次开发组织。公开演示仅使用本轮合成人像与系统声音：Chatterbox、SadTalker、同一视频本地检测各实际跑一次；十张中英文截图、MP4/GIF、音频、输入/准备后肖像和真实检测JSON在docs/showcase/，来源说明清楚区分输入与输出。采集/账号截图为已有合成测试记录，不代表本轮实采或新的Qwen语义验收。
-
-发布打包补回之前被通用忽略规则误排除的Vite插件和三个检测安装注册源码，内容与原工作区相同。npm ci和前端构建通过（首次内存失败与RAYON_NUM_THREADS=2恢复留记录）；未新装GPU模型、未部署/重启运行服务。独立Claude Code审查未进行。
-
-用户最新先分类、仅私人风险分析要求已写入本发布规范；原工作区的门控/通用化业务变更尚未进入此checkout，也未部署。README明确当前版本缺少新自动门控，使用前人工确认私人用途，其他材料跳过；不把67项入口测试或未通过的模型正文算成本发布验收。
-
-本轮契约：[README展示规格](docs/specs/readme-showcase.md)，素材：[来源说明](docs/showcase/PROVENANCE.md)，实际校验与回退：[变更记录](docs/change-records/2026-10-09-readme-showcase/记录.md)。提交与推送以记录中的实际号与远端核对为准，ray_report_review/不纳入本轮。
