@@ -103,3 +103,5 @@ Claude 已归档本地历史人名演示素材、归位 8 个提案、修改中�
 ## Facebook 真实页面展示（2026-10-09）
 
 按用户要求以 DonaldTrump 官方公共页面实采：4次滚动、45条文字片段、18个媒体条目（11图/7视频），4张图保存成功、视频音频0；13.0秒，来源/时间/缺失字段/SHA256可追溯。只调用现有采集器，未运行个人风险或分类模型、未生成特朗普媒体。双语README/详情/6张实际界面截图已准备；业务架构与账号候选未动。规格docs/specs/facebook-trump-showcase.md，记录docs/change-records/2026-10-09-facebook-trump-showcase/记录.md；文档发布与模型/部署状态分开。
+
+Facebook示例已发布：c95040897de7e80ea1f36421facd7091c6ec2f39，origin/main已核对。双语README及实采证据通过；临时预览进程已停止，业务架构/账号候选/原模型服务未修改。

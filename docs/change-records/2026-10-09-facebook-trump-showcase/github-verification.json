@@ -1,0 +1,36 @@
+{
+  "showcase_commit": "c95040897de7e80ea1f36421facd7091c6ec2f39",
+  "github_files_verified": [
+    {
+      "file": "README.md",
+      "github_raw_bytes_match": true,
+      "source_mirror_bytes_match": true,
+      "sha256": "808a9fa1d8f0d700e781440900b2b76daeb2062bb0d7be74954390c2786173b6"
+    },
+    {
+      "file": "README.en.md",
+      "github_raw_bytes_match": true,
+      "source_mirror_bytes_match": true,
+      "sha256": "d957376f4d4a4370d177d12a10c70fa623e254f4c2caa61ad4789c575a332c7f"
+    },
+    {
+      "file": "docs/showcase/facebook-trump/collection-summary.json",
+      "github_raw_bytes_match": true,
+      "source_mirror_bytes_match": true,
+      "sha256": "ddc1e08f92da7b046b76e30c09039f401d1b089239f69ae79f79c4799e7c8e01"
+    },
+    {
+      "file": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "github_raw_bytes_match": true,
+      "source_mirror_bytes_match": true,
+      "sha256": "f09be677825a2a0e7c8edf6c025d36cc720a4b441f353fdc2409160cbb6398ef"
+    },
+    {
+      "file": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "github_raw_bytes_match": true,
+      "source_mirror_bytes_match": true,
+      "sha256": "30bd871cf63f2fd7e6c00d746d93d17dba82494bd513ade7686423d0aa7adcb7"
+    }
+  ],
+  "passed": true
+}
