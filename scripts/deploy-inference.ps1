@@ -12,7 +12,7 @@ if ($NoRestart) { return }
 & wsl.exe -d $distro -u root -- systemctl restart local-media.service
 if ($LASTEXITCODE -ne 0) { throw 'Service restart failed. Run: wsl -d Ubuntu-22.04 -u root -- systemctl status local-media.service' }
 for ($attempt = 0; $attempt -lt 20; $attempt++) {
-    & wsl.exe -d $distro -u root -- curl -fsS -o /dev/null http://127.0.0.1:8002/health
+    & wsl.exe -d $distro -u root -- curl -fs -o /dev/null http://127.0.0.1:8002/health
     if ($LASTEXITCODE -eq 0) { Write-Host 'Inference API is healthy.' -ForegroundColor Green; return }
     Start-Sleep -Seconds 1
 }
