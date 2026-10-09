@@ -159,7 +159,7 @@ export default function Studio({ generatedVideo: initialVideo = null, generatedV
   const [notice,setNotice] = useState('');
   const [progress,setProgress] = useState(0);
   const [videoModel,setVideoModel] = useState<VideoModel>('sadtalker');
-  const [useTruthScan,setUseTruthScan] = useState(true);
+  const [useTruthScan,setUseTruthScan] = useState(false);
   useEffect(()=>{const requested=new URLSearchParams(location.search).get('lang');const saved=localStorage.getItem('studio-language');if(requested==='en'||(requested!=='zh'&&saved==='en'))setLanguage('en')},[]);
   useEffect(()=>{document.documentElement.lang=language==='zh'?'zh-CN':'en';localStorage.setItem('studio-language',language)},[language]);
   useEffect(()=>{
