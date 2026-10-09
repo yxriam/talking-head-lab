@@ -12,7 +12,20 @@ Write-Host '1/3 Collector Python environment...'
 if (-not (Test-Path -LiteralPath $python)) {
     $launcher = Get-Command py.exe -ErrorAction SilentlyContinue
     if ($launcher) { & py.exe -3 -m venv (Join-Path $collector '.venv') }
-    else { & python.exe -m venv (Join-Path $collector '.venv') }
+    else {
+        $command = Get-Command python.exe -ErrorAction SilentlyContinue
+        $interpreter = if ($command -and $command.Source -notmatch '\\Microsoft\\WindowsApps\\') { $command.Source } else { $null }
+        if (-not $interpreter -and $MigrateFrom) {
+            $previousPython = Join-Path $MigrateFrom 'local-media\.venv\Scripts\python.exe'
+            if (Test-Path -LiteralPath $previousPython) { $interpreter = $previousPython }
+        }
+        if (-not $interpreter) {
+            $bundledPython = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
+            if (Test-Path -LiteralPath $bundledPython) { $interpreter = $bundledPython }
+        }
+        if (-not $interpreter) { throw 'A real Python 3.10+ interpreter was not found; the Windows Store alias cannot create a venv.' }
+        & $interpreter -m venv (Join-Path $collector '.venv')
+    }
     if ($LASTEXITCODE -ne 0) { throw 'Could not create collector\.venv. Install Python 3.10+ and retry.' }
 }
 & $python -m pip install --disable-pip-version-check -r (Join-Path $collector 'requirements.txt')
