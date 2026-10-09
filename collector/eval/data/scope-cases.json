@@ -1,0 +1,55 @@
+[
+  {
+    "name": "scope_personal",
+    "result": {
+      "text": [
+        {
+          "text": "私人账号，个人生活记录",
+          "context": "profile_or_page"
+        },
+        {
+          "text": "我的邮箱：hello@personal.example",
+          "context": "post"
+        }
+      ],
+      "media": []
+    },
+    "acceptance": {
+      "account_kind": "personal"
+    }
+  },
+  {
+    "name": "scope_business",
+    "result": {
+      "text": [
+        {
+          "text": "本店营业时间为9点至18点；本公司官方账号",
+          "context": "profile_or_page"
+        },
+        {
+          "text": "我的母亲的邮箱是 family@unit.test；我正在找工作。",
+          "context": "post"
+        }
+      ],
+      "media": []
+    },
+    "acceptance": {
+      "account_kind": "business"
+    }
+  },
+  {
+    "name": "scope_unknown",
+    "result": {
+      "text": [
+        {
+          "text": "订单号：ORDER6789",
+          "context": "post"
+        }
+      ],
+      "media": []
+    },
+    "acceptance": {
+      "account_kind": "undetermined"
+    }
+  }
+]

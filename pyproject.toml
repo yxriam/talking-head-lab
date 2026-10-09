@@ -1,0 +1,10 @@
+# Lint configuration only; this repository is not an installable Python package.
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+# detector-runtime holds registration adapters copied into the third-party DeepfakeBench tree.
+extend-exclude = ["archive", "legacy", "docs", "inference/install/detector-runtime"]
+
+[tool.ruff.lint]
+# Syntax errors, undefined names and unused imports.
+select = ["E9", "F63", "F7", "F82", "F401"]

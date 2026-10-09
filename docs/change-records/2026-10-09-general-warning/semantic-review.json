@@ -1,0 +1,93 @@
+{
+  "reviewer": "Codex manual review of saved raw zh/en; not independent Claude review",
+  "automated_checks_are_not_semantic_acceptance": true,
+  "matrix": [
+    {
+      "name": "relative_a",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "relative_b",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "order",
+      "pass": false,
+      "failures": [
+        "两段重复同一付款风险，第二段再次给相似核验动作，未满足不重复与事实/风险分段要求。"
+      ]
+    },
+    {
+      "name": "employment",
+      "pass": false,
+      "failures": [
+        "英文把中文原文译为带引号的 I am job hunting，并呈现成原文；不符合原文引语必须原样保留。"
+      ]
+    },
+    {
+      "name": "housing",
+      "pass": false,
+      "failures": [
+        "英文两段完全重复；中文第二段重复第一段的风险与动作。"
+      ]
+    },
+    {
+      "name": "ordinary_personal_contact",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "ordinary_profile",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "ordinary_link",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "instruction_as_data",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "direct_conflict",
+      "pass": true,
+      "failures": []
+    }
+  ],
+  "ray_regression": {
+    "pass": false,
+    "failures": [
+      "只返回大学和母亲邮箱事实，完全遗漏草稿中的付款/验证码损失及核验动作。"
+    ]
+  },
+  "overall_model_acceptance": false,
+  "versions": [
+    {
+      "version": 1,
+      "input_sha256": "c8f38abd58d44473a91d5f29b5717f9f661beef5e11cd52119d067edc4795c67",
+      "system_sha256": "80a53c29f89a9241138855d98eaf0b247bada08490fdc325edef280ab16121cc",
+      "automated_pass_count": 2,
+      "count": 10
+    },
+    {
+      "version": 2,
+      "input_sha256": "c8f38abd58d44473a91d5f29b5717f9f661beef5e11cd52119d067edc4795c67",
+      "system_sha256": "80a53c29f89a9241138855d98eaf0b247bada08490fdc325edef280ab16121cc",
+      "automated_pass_count": 3,
+      "count": 10
+    },
+    {
+      "version": 3,
+      "input_sha256": "c8f38abd58d44473a91d5f29b5717f9f661beef5e11cd52119d067edc4795c67",
+      "system_sha256": "c352e226a68c0822b2ff0b77bebdbc864820f62a9972b8ea1bfd15f1f68fb197",
+      "automated_pass_count": 10,
+      "count": 10
+    }
+  ],
+  "provenance": "后果和动作由已有通用规则提供，Qwen负责改写；矛盾通用前缀由代码添加，不是Qwen自行写出。"
+}

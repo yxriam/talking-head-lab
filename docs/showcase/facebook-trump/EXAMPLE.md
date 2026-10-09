@@ -1,8 +1,8 @@
 # Facebook 实采示例：Donald J. Trump
 
-[中文](EXAMPLE.md) · [English](EXAMPLE.en.md) · [返回项目展示](../../../README.md#功能与效果展示)
+[中文](EXAMPLE.md) · [English](EXAMPLE.en.md) · [返回首页](../../../README.md#效果展示)
 
-目标：[https://www.facebook.com/DonaldTrump/](https://www.facebook.com/DonaldTrump/)。用户指定以这个真实账号展示 Facebook 采集。只调用项目既有 `facebook-scam/crawler/facebook.py`，使用本机已保存的会话；未另建爬虫，也未运行账号分类模型或个人风险模型。
+目标：[https://www.facebook.com/DonaldTrump/](https://www.facebook.com/DonaldTrump/)。用户指定以这个真实账号展示 Facebook 采集。只调用项目既有 `collector/facebook.py`，使用本机已保存的会话；未另建爬虫，也未运行账号分类模型或个人风险模型。
 
 ## 取得了什么
 
@@ -17,7 +17,7 @@
 | 耗时 | 任务 13.0 秒，采集函数 12.2 秒；仅代表本次环境 |
 | 发布日期 | 本次提取器未取得，原记录 date=null；不将采集时间冒充发帖时间 |
 
-[公开概览 JSON](collection-summary.json)保留链接、时间、片段节选、媒体状态与已下载文件的 SHA256。原始数据留在本机已忽略的 `local-media/crawl-data/<任务 ID>/`，没有发布完整帖子/评论、评论者姓名、追踪参数、CDN 签名、登录状态或独立原图文件。
+[公开概览 JSON](collection-summary.json)保留链接、时间、片段节选、媒体状态与已下载文件的 SHA256。原始数据留在本机已忽略的 `collector/crawl-data/<任务 ID>/`，没有发布完整帖子/评论、评论者姓名、追踪参数、CDN 签名、登录状态或独立原图文件。
 
 ## 界面怎样使用这些结果
 
@@ -35,15 +35,15 @@
 
 ## 在本机复现只采集的流程
 
-先按[部署与使用说明](../../../README.md#部署)配置 Windows 采集依赖、启动采集服务，首次使用在工作台点击“打开 Facebook 登录窗口”并手工登录。然后从项目根目录执行：
+先按[部署指南](../../guides/SETUP.md)配置 Windows 采集依赖、启动采集服务，首次使用在工作台点击“打开 Facebook 登录窗口”并手工登录。然后从项目根目录执行：
 
 ```powershell
-local-media\.venv\Scripts\python.exe docs\change-records\2026-10-09-facebook-trump-showcase\collect-example.py
+collector\.venv\Scripts\python.exe docs\change-records\2026-10-09-facebook-trump-showcase\collect-example.py
 ```
 
 运行器固定本链接与 4 次滚动、最多 4 张图片/1 段视频，直接调用现有采集器；只写本机采集任务与回执，遇到登录/验证就停止，不覆盖已提交的本次验收证据。完成后可在已启动的采集工作台打开新历史记录。它不调用账号分析模块。
 
-该公共页面的实际简介与用途字段支持“官方政治公共页面”的观察，所以本例不输出个人风险警示。发布版自动私人门控仍待单独验收；本示例通过直接采集器调用明确跳过旧 API 的自动账号分析，不能据此声称门控已部署。
+该公共页面的实际简介与用途字段支持“官方政治公共页面”的观察，所以本例不输出个人风险警示。本示例采集时直接调用采集器，没有经过账号分析；现在的工作台会先分类，这类公共页面只显示分类说明。
 
 ## 证据与展示边界
 

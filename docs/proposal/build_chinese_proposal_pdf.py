@@ -22,8 +22,8 @@ from reportlab.lib.utils import ImageReader
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "output" / "pdf" / "social_media_scam_awareness_proposal_zh.pdf"
-PIPELINE_FIG = ROOT / "figures" / "pipeline_gptimage2.png"
-EVALUATION_FIG = ROOT / "figures" / "evaluation_gptimage2.png"
+PIPELINE_FIG = Path(__file__).resolve().parent / "figures" / "pipeline_gptimage2.png"
+EVALUATION_FIG = Path(__file__).resolve().parent / "figures" / "evaluation_gptimage2.png"
 
 
 def scaled_image(path, max_width):

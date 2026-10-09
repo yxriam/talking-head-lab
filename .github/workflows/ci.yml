@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  python:
+    name: Python lint and program tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: pip install ruff numpy python-multipart -r collector/requirements.txt
+      - name: Lint
+        run: ruff check collector inference tests
+      - name: Byte-compile
+        run: python -m compileall -q collector inference tests
+      - name: Shell syntax
+        run: |
+          for file in $(git ls-files 'inference/**/*.sh' 'inference/*.sh'); do bash -n "$file"; done
+      # test_crawl.py drives a real browser profile and is run locally (scripts/test.ps1), not here.
+      - name: Program tests (no model, no GPU, no browser)
+        working-directory: tests
+        run: python -m unittest $(ls test_*.py | grep -v test_crawl | sed 's/\.py$//') -v
+
+  web:
+    name: Web build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run build
