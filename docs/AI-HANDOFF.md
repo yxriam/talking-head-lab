@@ -56,3 +56,5 @@ Codex 复核发现 Claude 移动后 build_chinese_proposal_pdf.py 的 ROOT 和 L
 独立镜像复核已完成；本记录目前尚未提交/推送，真实提交号在操作后追加。
 
 提交前实际 diff 曾发现镜像运行器文本写入在 Windows 统一了混合换行；已从 publication-before 精确字节恢复 AGENTS/PROJECT/handoff 工具再仅应用必要替换。活动业务目录无差异，路径修正 AST/资源核对通过。原样移动的 Markdown 双空格换行与 before 历史快照保持，未为了 whitespace 检查改历史正文。
+
+Claude 整理已由 Codex 复核发布：d570d9a952aed235b6c639c23f92199a0c67cc11，已推送 origin/main 并核对相同远端提交号；32 个任务文件，原有 ray_report_review/ 未处理。回退共享源码用 git revert d570d9a；运行服务未变，无部署回退。原工作区历史媒体和发布 checkout 的忽略 archive 均保留。未执行 Claude 新一轮审查，不声称它已读取本追加内容。

@@ -97,3 +97,5 @@ AGENTS已建立Codex/Claude共同背景约定与每次操作完成后的同步�
 ## 公开仓库整理（2026-10-09）
 
 Claude 已归档本地历史人名演示素材、归位 8 个提案、修改中性称呼和 handoff 工具路径；Codex 按用户交接在有效发布 checkout 独立复核并镜像。复核另修正迁移导致的 PDF/LaTeX 图片路径。4 个账号评测脚本保留原名，历史快照保留。运行代码、模型、部署未变化；发布提交号见 docs/change-records/2026-10-09-public-repo-cleanup/记录.md。
+
+整理发布已完成：d570d9a952aed235b6c639c23f92199a0c67cc11，origin/main 已核对；模型与服务未变。
