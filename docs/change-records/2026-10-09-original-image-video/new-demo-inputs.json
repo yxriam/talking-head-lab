@@ -1,0 +1,16 @@
+{
+  "input_image_id": "b46ea4211df6464496d69e937dc8dd75",
+  "input_image_sha256": "c0f15c82ce1858185324426f50a5d54c306fd66b4cca66532eae59445387c52a",
+  "audio_id": "2dc507869ece42bf883596b90c1a1973",
+  "video_job_id": "da4977bd616f46bd945a5188449571f0",
+  "model": "sadtalker",
+  "background_replacement": false,
+  "single_new_generation": true,
+  "payload": {
+    "kind": "video",
+    "image_id": "b46ea4211df6464496d69e937dc8dd75",
+    "audio_id": "2dc507869ece42bf883596b90c1a1973",
+    "model": "sadtalker",
+    "text": "Welcome to Talking Head Lab. This is an AI generated demonstration."
+  }
+}

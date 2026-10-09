@@ -1,0 +1,56 @@
+SUITE test_server.py EXIT 0
+D:\project\NZ\cv\local-media\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_all_video_workers_receive_original_image_and_ignore_legacy_scene_text (test_server.ApiTests.test_all_video_workers_receive_original_image_and_ignore_legacy_scene_text) ... ok
+test_detection_accepts_images_but_rejects_audio (test_server.ApiTests.test_detection_accepts_images_but_rejects_audio) ... ok
+test_progress_is_derived_from_real_model_output (test_server.ApiTests.test_progress_is_derived_from_real_model_output) ... ok
+test_reject_empty_unsupported_and_oversized_files (test_server.ApiTests.test_reject_empty_unsupported_and_oversized_files) ... ok
+test_reject_external_origin_and_paths (test_server.ApiTests.test_reject_external_origin_and_paths) ... ok
+test_upload_reuse_and_range_playback (test_server.ApiTests.test_upload_reuse_and_range_playback) ... ok
+test_video_model_is_validated_and_selected (test_server.ApiTests.test_video_model_is_validated_and_selected) ... ok
+test_video_readiness_does_not_require_background_models (test_server.ApiTests.test_video_readiness_does_not_require_background_models) ... ok
+test_voice_accepts_video_and_records_reference_kind (test_server.ApiTests.test_voice_accepts_video_and_records_reference_kind) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.387s
+
+OK
+
+
+SUITE test_video_profiles.py EXIT 0
+test_each_model_has_one_explicit_visual_path (test_video_profiles.VideoProfileTests.test_each_model_has_one_explicit_visual_path) ... ok
+test_only_sadtalker_crops_renderer_padding (test_video_profiles.VideoProfileTests.test_only_sadtalker_crops_renderer_padding) ... ok
+test_unknown_model_is_rejected (test_video_profiles.VideoProfileTests.test_unknown_model_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+
+SUITE test_account_llm.py EXIT 0
+{"name": "arbitrary_label_a", "check_failures": [], "response": {"model": "Qwen3-1.7B Q8_0", "elapsed_seconds": 2.0, "paragraphs": {"zh": [{"text": "订单号 TXN9001。", "evidence_ids": ["E1"]}], "en": [{"text": "Order number TXN9001.", "evidence_ids": ["E1"]}]}}}
+{"name": "arbitrary_label_b", "check_failures": [], "response": {"model": "Qwen3-1.7B Q8_0", "elapsed_seconds": 2.0, "paragraphs": {"zh": [{"text": "Northbridge College。", "evidence_ids": ["E1"]}], "en": [{"text": "Northbridge College.", "evidence_ids": ["E1"]}]}}}
+D:\project\NZ\cv\local-media\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_active_gpu_work_blocks_parallel_account_inference (test_account_llm.AccountApiTests.test_active_gpu_work_blocks_parallel_account_inference) ... ok
+test_api_runs_local_inference_and_releases_gpu_on_error (test_account_llm.AccountApiTests.test_api_runs_local_inference_and_releases_gpu_on_error) ... ok
+test_unavailable_model_invalid_input_and_external_origin_are_explicit (test_account_llm.AccountApiTests.test_unavailable_model_invalid_input_and_external_origin_are_explicit) ... ok
+test_external_endpoint_is_rejected_before_sending_any_data (test_account_llm.BridgeTests.test_external_endpoint_is_rejected_before_sending_any_data) ... ok
+test_invented_email_unknown_source_and_attack_format_are_rejected (test_account_llm.BridgeTests.test_invented_email_unknown_source_and_attack_format_are_rejected) ... ok
+test_missing_translation_and_truncated_output_are_not_success (test_account_llm.BridgeTests.test_missing_translation_and_truncated_output_are_not_success) ... ok
+test_model_prose_replaces_template_and_records_real_provenance (test_account_llm.BridgeTests.test_model_prose_replaces_template_and_records_real_provenance) ... ok
+test_prepared_material_stays_within_existing_api_limits (test_account_llm.BridgeTests.test_prepared_material_stays_within_existing_api_limits) ... ok
+test_prompt_keeps_evidence_without_repeating_ui_labels (test_account_llm.BridgeTests.test_prompt_keeps_evidence_without_repeating_ui_labels) ... ok
+test_unrecognized_plain_fact_is_quoted_without_added_risk (test_account_llm.BridgeTests.test_unrecognized_plain_fact_is_quoted_without_added_risk) ... ok
+test_unrepresented_facts_and_both_conflicting_sources_reach_model (test_account_llm.BridgeTests.test_unrepresented_facts_and_both_conflicting_sources_reach_model) ... ok
+test_arbitrary_case_names_all_use_real_generation_entry_and_bridge_validation (test_account_llm.GenericEvaluationTests.test_arbitrary_case_names_all_use_real_generation_entry_and_bridge_validation) ... ok
+test_prior_model_evidence_cannot_be_overwritten (test_account_llm.GenericEvaluationTests.test_prior_model_evidence_cannot_be_overwritten) ... ok
+test_cli_uses_existing_gpu_model_and_json_constraints (test_account_llm.LocalInferenceTests.test_cli_uses_existing_gpu_model_and_json_constraints) ... ok
+test_different_material_uses_same_prompt_without_cross_case_content (test_account_llm.LocalInferenceTests.test_different_material_uses_same_prompt_without_cross_case_content) ... ok
+test_incomplete_json_is_a_failure_not_template_fallback (test_account_llm.LocalInferenceTests.test_incomplete_json_is_a_failure_not_template_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.154s
+
+OK

@@ -124,7 +124,6 @@ class AccountAnalysisInput(BaseModel):
     draft: list[str] = Field(min_length=1,max_length=12)
     draft_en: list[str] = Field(default_factory=list,max_length=12)
     evidence_ids: list[str] = Field(min_length=1,max_length=100)
-    facts: list[dict[str,str]] = Field(default_factory=list,max_length=100)
 
 
 @app.post('/account-analysis')
@@ -132,8 +131,6 @@ def account_analysis(item: AccountAnalysisInput):
     global account_busy
     if sum(map(len,item.draft))+sum(map(len,item.draft_en))/3>3600 or any(not re.fullmatch(r'E[1-9]\d*',value) for value in item.evidence_ids):
         raise HTTPException(422,'账号证据草稿过长或来源编号无效')
-    if any(set(fact)!={'id','text'} or fact['id'] not in item.evidence_ids or not fact['text'] or len(fact['text'])>1500 for fact in item.facts) or sum(len(fact['text']) for fact in item.facts)>4000:
-        raise HTTPException(422,'原始事实过长或来源编号无效')
     if sys.platform!='linux' or not local_account_model.ready(runtime()):
         raise HTTPException(503,'本地账号 LLM 尚未就绪')
     with lock:
@@ -141,7 +138,7 @@ def account_analysis(item: AccountAnalysisInput):
             raise HTTPException(409,'本地 GPU 正在处理其他任务，请完成后再更新账号分析')
         account_busy=True
     try:
-        return local_account_model.generate(item.draft,item.evidence_ids,runtime(),draft_en=item.draft_en,facts=item.facts)
+        return local_account_model.generate(item.draft,item.evidence_ids,runtime(),draft_en=item.draft_en)
     except (subprocess.SubprocessError,RuntimeError,ValueError) as error:
         raise HTTPException(502,'本地账号 LLM 推理失败；未用模板冒充模型结果') from error
     finally:

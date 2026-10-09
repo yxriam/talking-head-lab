@@ -59,7 +59,7 @@ for original in files:
 # Verify syntax without importing uninstalled model packages.
 for file in target.glob('*.py'):
     compile(file.read_text(encoding='utf-8'), str(file), 'exec')
-for name in ('runtime', 'chatterbox', 'SadTalker', 'EchoMimic', 'JoyVASA', 'EchoMimicV3', 'scene-llm', 'llama.cpp', 'DeepfakeBench', 'NPR', 'GenD'):
+for name in ('runtime', 'chatterbox', 'SadTalker', 'EchoMimic', 'JoyVASA', 'EchoMimicV3', 'InstantID', 'scene-llm', 'llama.cpp', 'DeepfakeBench', 'NPR', 'GenD'):
     path = Path('/opt/media-models') / name
     if not path.is_dir():
         raise RuntimeError(f'Missing existing model directory: {path}')

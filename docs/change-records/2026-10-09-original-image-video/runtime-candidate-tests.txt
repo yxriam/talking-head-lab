@@ -1,0 +1,16 @@
+D:\project\NZ\cv\local-media\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_all_video_workers_receive_original_image_and_ignore_legacy_scene_text (test_server.ApiTests.test_all_video_workers_receive_original_image_and_ignore_legacy_scene_text) ... ok
+test_detection_accepts_images_but_rejects_audio (test_server.ApiTests.test_detection_accepts_images_but_rejects_audio) ... ok
+test_progress_is_derived_from_real_model_output (test_server.ApiTests.test_progress_is_derived_from_real_model_output) ... ok
+test_reject_empty_unsupported_and_oversized_files (test_server.ApiTests.test_reject_empty_unsupported_and_oversized_files) ... ok
+test_reject_external_origin_and_paths (test_server.ApiTests.test_reject_external_origin_and_paths) ... ok
+test_upload_reuse_and_range_playback (test_server.ApiTests.test_upload_reuse_and_range_playback) ... ok
+test_video_model_is_validated_and_selected (test_server.ApiTests.test_video_model_is_validated_and_selected) ... ok
+test_video_readiness_does_not_require_background_models (test_server.ApiTests.test_video_readiness_does_not_require_background_models) ... ok
+test_voice_accepts_video_and_records_reference_kind (test_server.ApiTests.test_voice_accepts_video_and_records_reference_kind) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.282s
+
+OK

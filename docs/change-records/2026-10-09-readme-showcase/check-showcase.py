@@ -65,7 +65,7 @@ def main():
     commands_en = re.findall(r'```powershell\n(.*?)\n```', en, re.S)
     result['checks']['same_deployment_usage_development_commands'] = commands_zh == commands_en
     result['powershell_blocks_per_language'] = len(commands_zh)
-    for token in ['4.736', '4.68', '38.1', '64.1', '21.5', '95.8%', 'yt-video-humanactor', 'RAYON_NUM_THREADS']:
+    for token in ['4.736', '4.68', '38.1', '61.9', '24.1', '95.8%', 'yt-video-humanactor', 'RAYON_NUM_THREADS']:
         if token not in zh or token not in en:
             result['failures'].append('bilingual fact mismatch: ' + token)
     result['checks']['private_gate_version_boundary'] = '当前GitHub版本没有完成自动门控' in zh and 'This GitHub version has not completed automatic gating' in en
@@ -82,19 +82,25 @@ def main():
             with Image.open(path) as picture:
                 row.update(width=picture.width, height=picture.height, format=picture.format,
                            frames=getattr(picture, 'n_frames', 1))
-                if path.name == 'sadtalker-demo.gif' and (row['frames'] < 2 or picture.info.get('loop') != 0):
+                if path.name == 'sadtalker-original-demo.gif' and (row['frames'] < 2 or picture.info.get('loop') != 0):
                     result['failures'].append('GIF must contain actual animated frames and loop')
         if path.suffix == '.wav':
             with wave.open(str(path)) as sound:
                 row['duration_seconds'] = sound.getnframes() / sound.getframerate()
         result['media'].append(row)
-    result['checks']['ten_bilingual_screenshots'] = len(list(assets.glob('*-zh.jpg'))) == 5 and len(list(assets.glob('*-en.jpg'))) == 5
+    current_zh = set(re.findall(r'docs/showcase/([^\s)]+-zh[.]jpg)', zh))
+    current_en = set(re.findall(r'docs/showcase/([^\s)]+-en[.]jpg)', en))
+    result['checks']['ten_bilingual_screenshots'] = len(current_zh) == 5 and len(current_en) == 5 and all((assets / name).exists() for name in current_zh | current_en)
     result['checks']['reference_and_generated_audio_distinct'] = sha(assets / 'reference-voice.wav') != sha(assets / 'generated-voice.wav')
     result['checks']['actual_voice_job_done'] = json.loads((EVIDENCE / 'voice-job.json').read_text(encoding='utf-8'))['status'] == 'done'
-    video_job = json.loads((EVIDENCE / 'video-job.json').read_text(encoding='utf-8'))
-    detection_job = json.loads((EVIDENCE / 'detection-job.json').read_text(encoding='utf-8'))
-    report = json.loads((assets / 'detection-report.json').read_text(encoding='utf-8'))
-    result['checks']['actual_video_job_done'] = video_job['status'] == 'done' and video_job['model'] == 'sadtalker'
+    video_job = json.loads((ROOT / 'docs/change-records/2026-10-09-original-image-video/video-job.json').read_text(encoding='utf-8'))
+    detection_job = json.loads((ROOT / 'docs/change-records/2026-10-09-original-image-video/detection-job.json').read_text(encoding='utf-8'))
+    report = json.loads((assets / 'detection-original-report.json').read_text(encoding='utf-8'))
+    result['checks']['actual_video_job_done'] = video_job['status'] == 'done' and video_job['model'] == 'sadtalker' and video_job['result']['scene'] == 'original'
+    result['checks']['no_prepared_portrait_in_current_readme'] = 'prepared-portrait.png' not in zh and 'prepared-portrait.png' not in en
+    result['checks']['shared_protocol_and_handoff'] = all((ROOT / name).exists() for name in ['docs/AI-HANDOFF.md','CLAUDE.md','AGENTS.md'])
+    original = json.loads((ROOT / 'docs/change-records/2026-10-09-original-image-video/original-image-proof.json').read_text(encoding='utf-8'))
+    result['checks']['actual_input_image_unmodified'] = original['image_unmodified'] and original['scene_text_ignored']
     result['checks']['report_matches_actual_job'] = detection_job['status'] == 'done' and detection_job['result'] == report
     result['checks']['actual_report_summary'] = report['summary'] == {'total': 6, 'completed': 5, 'passed': 1, 'failed': 4, 'uncertain': 1}
     result['checks']['no_cloud_result_in_demo'] = all(method['id'] != 'truthscan' for method in report['methods'])
@@ -108,7 +114,7 @@ def main():
     for name in restored:
         if name.endswith('.py'):
             ast.parse((ROOT / name).read_text(encoding='utf-8'))
-    test_paths = restored + ['docs/showcase/sadtalker-demo.mp4', 'docs/showcase/reference-voice.wav',
+    test_paths = restored + ['docs/showcase/sadtalker-original-demo.mp4', 'docs/showcase/reference-voice.wav',
                              '.env.local', 'local-media/tokenhub.env', 'models/private.gguf',
                              'local-media/data/private/output.mp4', 'local-media/facebook-browser/state.json',
                              'facebook-scam/video-forensics-web/build/unrelated-output.json',
@@ -139,7 +145,7 @@ def main():
     for name, passed in result['checks'].items():
         if not passed:
             result['failures'].append('failed check: ' + name)
-    result['visual_qa'] = 'Real screenshots reviewed; collection captures exclude private history. Browser runtime reset later; no final GitHub screenshot claimed.'
+    result['visual_qa'] = 'Real current video/detection UI captured with user-approved existing Playwright/Edge and genuine completed-job replay; no source changes or extra inference for capture. Collection captures exclude private history.'
     (EVIDENCE / 'validation.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps({'checks': result['checks'], 'links': len(result['links']), 'assets': len(result['media']), 'failures': result['failures']}, ensure_ascii=False))
     raise SystemExit(bool(result['failures']))

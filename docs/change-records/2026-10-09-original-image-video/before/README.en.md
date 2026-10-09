@@ -11,18 +11,19 @@ An AI media workbench maintained on Windows + WSL2. It combines Facebook collect
 ### A real generated example
 
 <table>
-  <tr><th>① Synthetic original image</th><th>② Video generated directly from that image</th></tr>
+  <tr><th>① Synthetic input portrait</th><th>② Portrait prepared by the project</th><th>③ Actual SadTalker video output</th></tr>
   <tr>
     <td><img src="docs/showcase/synthetic-input.png" width="260" alt="Fictional adult portrait created with imagegen as an input" /></td>
-    <td><img src="docs/showcase/sadtalker-original-demo.gif" width="260" alt="Animated preview from actual SadTalker inference, labeled AI-generated and synthetic" /></td>
+    <td><img src="docs/showcase/prepared-portrait.png" width="260" alt="Actual portrait after the project background-preparation stage" /></td>
+    <td><img src="docs/showcase/sadtalker-demo.gif" width="260" alt="Animated preview from actual SadTalker inference, labeled AI-generated and synthetic" /></td>
   </tr>
 </table>
 
-The input person was created with imagegen, and the reference voice with Windows speech synthesis. The project uses the actual **Chatterbox** output and passes the original image directly to **SadTalker**, with no added background-replacement stage. The GIF comes from the same **512×512, 4.736-second** video. Spoken text:
+The input person was created with imagegen, and the reference voice with Windows speech synthesis. The existing project then ran **Chatterbox and SadTalker**. The GIF comes from the same **512×512, 4.736-second** video. Spoken text:
 
 > Welcome to Talking Head Lab. This is an AI generated demonstration.
 
-[Play or download the MP4 with sound](docs/showcase/sadtalker-original-demo.mp4) · [Synthetic reference voice WAV](docs/showcase/reference-voice.wav) · [Chatterbox output WAV](docs/showcase/generated-voice.wav) · [Asset provenance and run evidence](docs/showcase/PROVENANCE.md)
+[Play or download the MP4 with sound](docs/showcase/sadtalker-demo.mp4) · [Synthetic reference voice WAV](docs/showcase/reference-voice.wav) · [Chatterbox output WAV](docs/showcase/generated-voice.wav) · [Asset provenance and run evidence](docs/showcase/PROVENANCE.md)
 
 The person and reference voice are synthetic. Voice, video, and detection are actual runs from this task. Collection and account-analysis screenshots use an existing synthetic integration-test record to show the interface and text layout; this task performed no live Facebook collection or new account-analysis inference.
 
@@ -32,7 +33,7 @@ The person and reference voice are synthetic. Voice, video, and detection are ac
 |---|---|---|---|
 | **Collection and account analysis** | An accessible Facebook profile, post, or video URL, with a manually authenticated browser session | Visible original text, source links, downloadable media, a ZIP, and text-supported safety suggestions | Pass downloaded photos, audio, or video to generation or detection |
 | **Voice cloning** | Clear reference audio or a video containing speech, plus new text | Chatterbox-generated speech for preview and download | Send the voice directly to portrait video using its resource ID |
-| **AI portrait video** | A front-facing portrait and driving audio | Video driven directly from the original image | Preview, download, or directly detect the result |
+| **AI portrait video** | A front-facing portrait and driving audio | A prepared portrait and photo-driven video | Preview, download, or directly detect the result |
 | **Media authenticity** | An image, an uploaded video, or a video generated in the workbench | Method results, scores, sampled frames and times, and pass/fail/insufficient-evidence counts | Compare the specific time windows and method explanations |
 
 ### 1. Collection and account-safety analysis
@@ -55,9 +56,9 @@ Reference inputs can be audio or video with an audio track. The pipeline extract
 
 ### 3. A photo and speech → a portrait video
 
-![Portrait-video interface, model choices, and the actual SadTalker result](docs/showcase/video-original-en.jpg)
+![Portrait-video interface, model choices, and the actual SadTalker result](docs/showcase/video-en.jpg)
 
-The original image and driving audio go directly to the selected video model. There is no added setting selection, background generation, or portrait compositing. Required native cropping, resizing, alignment, and output composition follow the selected model; account-text Qwen remains independent.
+Before rendering, the existing pipeline uses Qwen to select a setting from the speech, SDXL to generate a background, and U2Net to preserve the person pixels from the input. The selected video model keeps its own supported composition.
 
 | Model option | Execution | Current API duration limit | Output |
 |---|---|---|---|
@@ -67,15 +68,15 @@ The original image and driving audio go directly to the selected video model. Th
 | EchoMimic V3 Flash | Local GPU | Experimental clips up to 4 seconds | Native short video |
 | YT HumanActor | Tencent TokenHub + COS | 2–60 seconds | Portrait input, native cloud output dimensions |
 
-The new example runs **SadTalker**. Its job reports **61.9 seconds**, with no background-preparation stage. Other choices expose their configured readiness; they were not regenerated in this task. The Tencent model ID is `yt-video-humanactor`; configuration appears in the deployment section.
+The new example runs **SadTalker**. Its job reports **64.1 seconds** of rendering, excluding the preceding portrait-preparation stage. Other choices expose their configured readiness; they were not regenerated in this task. The Tencent model ID is `yt-video-humanactor`; configuration appears in the deployment section.
 
 ### 4. A video → evidence from several methods
 
-![Local detection of the same real generated video, with cloud checking disabled](docs/showcase/detect-original-en.jpg)
+![Local detection of the same real generated video, with cloud checking disabled](docs/showcase/detect-en.jpg)
 
 The detector includes GenD, NPR, UCF, RECCE, F3-Net, and photo-driven temporal staticness. Spectrum, optical-flow, and continuity measurements provide supporting forensic evidence. In the video domain, NPR displays insufficient evidence and is excluded from the vote. Methods expose their explanations and applicable higher/lower-score time windows.
 
-The demonstration video returns **AI-generated likely**, a displayed aggregate score of **95.8%**, and **1 passed, 4 failed, 1 insufficient**. The job reports **24.1 seconds**. The [original JSON report](docs/showcase/detection-original-report.json) preserves the actual values. Scores follow the current models and local thresholds for this sample; unfamiliar videos require consideration of method disagreement, sampling, and provenance.
+The demonstration video returns **AI-generated likely**, a displayed aggregate score of **95.8%**, and **1 passed, 4 failed, 1 insufficient**. The job reports **21.5 seconds**. The [original JSON report](docs/showcase/detection-report.json) preserves the actual values. Scores follow the current models and local thresholds for this sample; unfamiliar videos require consideration of method disagreement, sampling, and provenance.
 
 ## Deployment
 
@@ -154,6 +155,7 @@ powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task insta
 powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-detectors
 powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-npr
 powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-gend
+wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-instantid.sh
 wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-scene-llm.sh
 wsl -d Ubuntu-22.04 -u root -- mkdir -p /opt/media-app/local-media
 wsl -d Ubuntu-22.04 -u root -- cp /mnt/d/project/cv/local-media/patch_echomimic_v3_memory.py /opt/media-app/local-media/
@@ -188,7 +190,7 @@ TruthScan uses `/etc/media-app/truthscan.env`. Enabling its checkbox uploads the
 3. **Video**: select a clear front-facing portrait → choose audio and a model → generate → preview/download → choose “Detect this video.”
 4. **Detect**: reuse the generated video or upload an independent image/video → decide whether to enable the external cross-check → review the summary, explanations, frames, and times.
 
-Start from any module. Voice/video handoffs reuse resource IDs without repeated downloads and uploads. Directly uploaded driving audio is used for driving, without automatic transcription or a background stage. The current API file limit is 500 MB, and GPU work is serialized. Uploaded and generated files remain in the running service's `data/`, with task cleanup managed by the user.
+Start from any module. Voice/video handoffs reuse resource IDs without repeated downloads and uploads. Directly uploaded driving audio is not automatically transcribed and uses the default neutral setting. The current API file limit is 500 MB, and GPU work is serialized. Uploaded and generated files remain in the running service's `data/`, with task cleanup managed by the user.
 
 ## Project structure and code map
 
@@ -206,7 +208,7 @@ talking-head-lab/
 │  ├─ account_risk.py / account_story.py      Text evidence rules and prose
 │  ├─ account_llm.py / local_account_model.py Local bridge and inference
 │  ├─ generate.py / video_profiles.py        Model subprocesses, layout, duration
-│  ├─ local_scene.py / prepare_scene.py      Historical background experiments, outside video flow
+│  ├─ local_scene.py / prepare_scene.py      Setting selection, portrait preparation
 │  ├─ detect.py                             Detection and supporting forensics
 │  ├─ tokenhub.py / truthscan.py             Optional external adapters
 │  ├─ detector-runtime/                     Detector registration installer source

@@ -1,0 +1,1091 @@
+{
+  "id": "60a504e5caff45ce8fe3d1c945a1d00d",
+  "kind": "detect",
+  "status": "done",
+  "message": "已完成",
+  "progress": 100,
+  "model": "GenD ensemble",
+  "result": {
+    "media_type": "video",
+    "sampling": {
+      "media_type": "video",
+      "sampled_frames": 19,
+      "face_frames": 19,
+      "multiple_face_frames": 0,
+      "decoded_frames": 117,
+      "duration_seconds": 4.68,
+      "effective_sample_fps": 4.0,
+      "sampling_strategy": "顺序解码并按时长均匀覆盖；最多 4 fps、96 帧",
+      "sample_times": [
+        0.0,
+        0.24,
+        0.48,
+        0.76,
+        1.0,
+        1.28,
+        1.52,
+        1.8,
+        2.04,
+        2.32,
+        2.56,
+        2.8,
+        3.08,
+        3.32,
+        3.6,
+        3.84,
+        4.12,
+        4.36,
+        4.64
+      ]
+    },
+    "verdict": "AI 生成倾向",
+    "reason": "5 项模型完成判断：1 项通过、4 项未通过、1 项证据不足。任一经本地校准的异常信号即计为 AI 证据。",
+    "ai_probability": 0.9583333333333334,
+    "real_probability": 0.04166666666666663,
+    "confidence": 0.9583333333333334,
+    "summary": {
+      "total": 6,
+      "completed": 5,
+      "passed": 1,
+      "failed": 4,
+      "uncertain": 1
+    },
+    "note": "页面中的百分比是模型分类置信度的汇总近似，并非针对任意现实视频校准后的统计概率。压缩、缩放、剪辑、滤镜和未知生成器都可能改变结果。",
+    "methods": [
+      {
+        "id": "gend",
+        "name": "GenD CLIP-L/14",
+        "status": "done",
+        "verdict": "未通过：AI 倾向",
+        "decision": "fail",
+        "passed": false,
+        "ai_probability": 0.947988847270608,
+        "real_probability": 0.05201115272939205,
+        "confidence": 0.947988847270608,
+        "score": 0.947988847270608,
+        "primary": false,
+        "principle": "对预训练 CLIP 视觉编码器做参数高效适配，强调跨数据集与未知伪造方式的泛化。",
+        "paper": "https://arxiv.org/abs/2508.06248",
+        "threshold_text": "原始分数第25百分位<18.6% 时记为 AI 证据；最低帧>85.3% 也记为 AI 证据",
+        "metrics": {
+          "原始伪造类中位数": 0.0645,
+          "原始伪造类均值": 0.0619,
+          "原始伪造类第 75 百分位": 0.0729,
+          "原始伪造类第 25 百分位": 0.052,
+          "原始伪造类第 90 百分位": 0.0822,
+          "原始伪造类最高帧": 0.0872,
+          "帧间四分位差": 0.0209,
+          "有效帧数": 19
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "time": 0.0,
+            "score": 0.07052
+          },
+          {
+            "frame": 2,
+            "time": 0.24,
+            "score": 0.05248
+          },
+          {
+            "frame": 3,
+            "time": 0.48,
+            "score": 0.06601
+          },
+          {
+            "frame": 4,
+            "time": 0.76,
+            "score": 0.05834
+          },
+          {
+            "frame": 5,
+            "time": 1.0,
+            "score": 0.05074
+          },
+          {
+            "frame": 6,
+            "time": 1.28,
+            "score": 0.04392
+          },
+          {
+            "frame": 7,
+            "time": 1.52,
+            "score": 0.08463
+          },
+          {
+            "frame": 8,
+            "time": 1.8,
+            "score": 0.0872
+          },
+          {
+            "frame": 9,
+            "time": 2.04,
+            "score": 0.06454
+          },
+          {
+            "frame": 10,
+            "time": 2.32,
+            "score": 0.07373
+          },
+          {
+            "frame": 11,
+            "time": 2.56,
+            "score": 0.02306
+          },
+          {
+            "frame": 12,
+            "time": 2.8,
+            "score": 0.05154
+          },
+          {
+            "frame": 13,
+            "time": 3.08,
+            "score": 0.03176
+          },
+          {
+            "frame": 14,
+            "time": 3.32,
+            "score": 0.07202
+          },
+          {
+            "frame": 15,
+            "time": 3.6,
+            "score": 0.08158
+          },
+          {
+            "frame": 16,
+            "time": 3.84,
+            "score": 0.07066
+          },
+          {
+            "frame": 17,
+            "time": 4.12,
+            "score": 0.06169
+          },
+          {
+            "frame": 18,
+            "time": 4.36,
+            "score": 0.07428
+          },
+          {
+            "frame": 19,
+            "time": 4.64,
+            "score": 0.0571
+          }
+        ],
+        "evidence": {
+          "area": "对齐后的整个人脸区域",
+          "explanation": "这些时段的人脸特征与该模型训练分布的偏离程度最高或最低；分数能定位可疑时段，不能单独证明某个器官被修改。",
+          "high": [
+            {
+              "start_frame": 11,
+              "end_frame": 13,
+              "start_time": 2.56,
+              "end_time": 3.08,
+              "ai_probability": 0.9645
+            },
+            {
+              "start_frame": 5,
+              "end_frame": 6,
+              "start_time": 1.0,
+              "end_time": 1.28,
+              "ai_probability": 0.9527
+            }
+          ],
+          "low": [
+            {
+              "start_frame": 7,
+              "end_frame": 8,
+              "start_time": 1.52,
+              "end_time": 1.8,
+              "ai_probability": 0.9141
+            },
+            {
+              "start_frame": 15,
+              "end_frame": 15,
+              "start_time": 3.6,
+              "end_time": 3.6,
+              "ai_probability": 0.9184
+            },
+            {
+              "start_frame": 18,
+              "end_frame": 18,
+              "start_time": 4.36,
+              "end_time": 4.36,
+              "ai_probability": 0.9257
+            }
+          ]
+        }
+      },
+      {
+        "id": "npr",
+        "name": "NPR",
+        "status": "done",
+        "verdict": "证据不足：不参与视频真实性投票",
+        "decision": "uncertain",
+        "passed": false,
+        "ai_probability": 0.5,
+        "real_probability": 0.5,
+        "confidence": 0.5,
+        "score": 0.5,
+        "primary": false,
+        "principle": "分析生成网络上采样造成的邻域像素关系；对整图生成较敏感，对部分人脸换脸可能漏检。",
+        "paper": "https://openaccess.thecvf.com/content/CVPR2024/html/Tan_Rethinking_the_Up-Sampling_Operations_in_CNN-Based_Generative_Network_for_Generalizable_Deepfake_CVPR_2024_paper.html",
+        "threshold_text": "本地校准中无区分能力，不参与视频投票",
+        "metrics": {
+          "原始伪造类中位数": 0.0,
+          "原始伪造类均值": 0.0,
+          "原始伪造类第 75 百分位": 0.0,
+          "原始伪造类第 25 百分位": 0.0,
+          "原始伪造类第 90 百分位": 0.0,
+          "原始伪造类最高帧": 0.0,
+          "帧间四分位差": 0.0,
+          "有效帧数": 19
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "time": 0.0,
+            "score": 0.0
+          },
+          {
+            "frame": 2,
+            "time": 0.24,
+            "score": 0.0
+          },
+          {
+            "frame": 3,
+            "time": 0.48,
+            "score": 0.0
+          },
+          {
+            "frame": 4,
+            "time": 0.76,
+            "score": 0.0
+          },
+          {
+            "frame": 5,
+            "time": 1.0,
+            "score": 0.0
+          },
+          {
+            "frame": 6,
+            "time": 1.28,
+            "score": 0.0
+          },
+          {
+            "frame": 7,
+            "time": 1.52,
+            "score": 0.0
+          },
+          {
+            "frame": 8,
+            "time": 1.8,
+            "score": 0.0
+          },
+          {
+            "frame": 9,
+            "time": 2.04,
+            "score": 0.0
+          },
+          {
+            "frame": 10,
+            "time": 2.32,
+            "score": 0.0
+          },
+          {
+            "frame": 11,
+            "time": 2.56,
+            "score": 0.0
+          },
+          {
+            "frame": 12,
+            "time": 2.8,
+            "score": 0.0
+          },
+          {
+            "frame": 13,
+            "time": 3.08,
+            "score": 0.0
+          },
+          {
+            "frame": 14,
+            "time": 3.32,
+            "score": 0.0
+          },
+          {
+            "frame": 15,
+            "time": 3.6,
+            "score": 0.0
+          },
+          {
+            "frame": 16,
+            "time": 3.84,
+            "score": 0.0
+          },
+          {
+            "frame": 17,
+            "time": 4.12,
+            "score": 0.0
+          },
+          {
+            "frame": 18,
+            "time": 4.36,
+            "score": 0.0
+          },
+          {
+            "frame": 19,
+            "time": 4.64,
+            "score": 0.0
+          }
+        ],
+        "evidence": {
+          "area": "对齐后的整个人脸区域",
+          "high": [],
+          "low": [],
+          "explanation": "这些时段的人脸特征与该模型训练分布的偏离程度最高或最低；分数能定位可疑时段，不能单独证明某个器官被修改。 本视频各采样帧分数几乎相同，没有可区分的高低时段。"
+        }
+      },
+      {
+        "id": "ucf",
+        "name": "UCF",
+        "status": "done",
+        "verdict": "未通过：AI 倾向",
+        "decision": "fail",
+        "passed": false,
+        "ai_probability": 0.9934756060951928,
+        "real_probability": 0.006524393904807191,
+        "confidence": 0.9934756060951928,
+        "score": 0.9934756060951928,
+        "primary": false,
+        "principle": "分离伪造特有特征与不同伪造方式共有的特征，提高未知伪造的泛化能力。",
+        "paper": "https://arxiv.org/abs/2304.13949",
+        "threshold_text": "原始分数均值<25.5% 时记为 AI 证据",
+        "metrics": {
+          "原始伪造类中位数": 0.0038,
+          "原始伪造类均值": 0.0065,
+          "原始伪造类第 75 百分位": 0.0068,
+          "原始伪造类第 25 百分位": 0.0031,
+          "原始伪造类第 90 百分位": 0.0103,
+          "原始伪造类最高帧": 0.0348,
+          "帧间四分位差": 0.0038,
+          "有效帧数": 19
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "time": 0.0,
+            "score": 0.00229
+          },
+          {
+            "frame": 2,
+            "time": 0.24,
+            "score": 0.00674
+          },
+          {
+            "frame": 3,
+            "time": 0.48,
+            "score": 0.00462
+          },
+          {
+            "frame": 4,
+            "time": 0.76,
+            "score": 0.00691
+          },
+          {
+            "frame": 5,
+            "time": 1.0,
+            "score": 0.00461
+          },
+          {
+            "frame": 6,
+            "time": 1.28,
+            "score": 0.009
+          },
+          {
+            "frame": 7,
+            "time": 1.52,
+            "score": 0.00197
+          },
+          {
+            "frame": 8,
+            "time": 1.8,
+            "score": 0.00294
+          },
+          {
+            "frame": 9,
+            "time": 2.04,
+            "score": 0.00382
+          },
+          {
+            "frame": 10,
+            "time": 2.32,
+            "score": 0.00351
+          },
+          {
+            "frame": 11,
+            "time": 2.56,
+            "score": 0.00666
+          },
+          {
+            "frame": 12,
+            "time": 2.8,
+            "score": 0.00333
+          },
+          {
+            "frame": 13,
+            "time": 3.08,
+            "score": 0.00368
+          },
+          {
+            "frame": 14,
+            "time": 3.32,
+            "score": 0.03484
+          },
+          {
+            "frame": 15,
+            "time": 3.6,
+            "score": 0.0032
+          },
+          {
+            "frame": 16,
+            "time": 3.84,
+            "score": 0.00721
+          },
+          {
+            "frame": 17,
+            "time": 4.12,
+            "score": 0.01539
+          },
+          {
+            "frame": 18,
+            "time": 4.36,
+            "score": 0.00163
+          },
+          {
+            "frame": 19,
+            "time": 4.64,
+            "score": 0.00162
+          }
+        ],
+        "evidence": {
+          "area": "对齐后的整个人脸区域",
+          "explanation": "这些时段的人脸特征与该模型训练分布的偏离程度最高或最低；分数能定位可疑时段，不能单独证明某个器官被修改。",
+          "high": [
+            {
+              "start_frame": 18,
+              "end_frame": 19,
+              "start_time": 4.36,
+              "end_time": 4.64,
+              "ai_probability": 0.9984
+            },
+            {
+              "start_frame": 1,
+              "end_frame": 1,
+              "start_time": 0.0,
+              "end_time": 0.0,
+              "ai_probability": 0.9977
+            },
+            {
+              "start_frame": 7,
+              "end_frame": 8,
+              "start_time": 1.52,
+              "end_time": 1.8,
+              "ai_probability": 0.9975
+            }
+          ],
+          "low": [
+            {
+              "start_frame": 14,
+              "end_frame": 14,
+              "start_time": 3.32,
+              "end_time": 3.32,
+              "ai_probability": 0.9652
+            },
+            {
+              "start_frame": 16,
+              "end_frame": 17,
+              "start_time": 3.84,
+              "end_time": 4.12,
+              "ai_probability": 0.9887
+            },
+            {
+              "start_frame": 6,
+              "end_frame": 6,
+              "start_time": 1.28,
+              "end_time": 1.28,
+              "ai_probability": 0.991
+            }
+          ]
+        }
+      },
+      {
+        "id": "recce",
+        "name": "RECCE",
+        "status": "done",
+        "verdict": "未通过：AI 倾向",
+        "decision": "fail",
+        "passed": false,
+        "ai_probability": 0.9885831095278264,
+        "real_probability": 0.011416890472173646,
+        "confidence": 0.9885831095278264,
+        "score": 0.9885831095278264,
+        "primary": false,
+        "principle": "通过重建与分类联合学习捕捉伪造区域和真实人脸分布之间的差异。",
+        "paper": "https://openaccess.thecvf.com/content/CVPR2022/html/Cao_End-to-End_Reconstruction-Classification_Learning_for_Face_Forgery_Detection_CVPR_2022_paper.html",
+        "threshold_text": "原始分数第90百分位<49.7% 时记为 AI 证据",
+        "metrics": {
+          "原始伪造类中位数": 0.0037,
+          "原始伪造类均值": 0.0059,
+          "原始伪造类第 75 百分位": 0.0093,
+          "原始伪造类第 25 百分位": 0.0019,
+          "原始伪造类第 90 百分位": 0.0114,
+          "原始伪造类最高帧": 0.0254,
+          "帧间四分位差": 0.0074,
+          "有效帧数": 19
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "time": 0.0,
+            "score": 0.00366
+          },
+          {
+            "frame": 2,
+            "time": 0.24,
+            "score": 0.01296
+          },
+          {
+            "frame": 3,
+            "time": 0.48,
+            "score": 0.00999
+          },
+          {
+            "frame": 4,
+            "time": 0.76,
+            "score": 0.01085
+          },
+          {
+            "frame": 5,
+            "time": 1.0,
+            "score": 0.00337
+          },
+          {
+            "frame": 6,
+            "time": 1.28,
+            "score": 0.00104
+          },
+          {
+            "frame": 7,
+            "time": 1.52,
+            "score": 0.00398
+          },
+          {
+            "frame": 8,
+            "time": 1.8,
+            "score": 0.00329
+          },
+          {
+            "frame": 9,
+            "time": 2.04,
+            "score": 0.0046
+          },
+          {
+            "frame": 10,
+            "time": 2.32,
+            "score": 0.00248
+          },
+          {
+            "frame": 11,
+            "time": 2.56,
+            "score": 0.01103
+          },
+          {
+            "frame": 12,
+            "time": 2.8,
+            "score": 0.00222
+          },
+          {
+            "frame": 13,
+            "time": 3.08,
+            "score": 0.00862
+          },
+          {
+            "frame": 14,
+            "time": 3.32,
+            "score": 0.02539
+          },
+          {
+            "frame": 15,
+            "time": 3.6,
+            "score": 0.00166
+          },
+          {
+            "frame": 16,
+            "time": 3.84,
+            "score": 0.00089
+          },
+          {
+            "frame": 17,
+            "time": 4.12,
+            "score": 0.00517
+          },
+          {
+            "frame": 18,
+            "time": 4.36,
+            "score": 0.00046
+          },
+          {
+            "frame": 19,
+            "time": 4.64,
+            "score": 0.00034
+          }
+        ],
+        "evidence": {
+          "area": "对齐后的整个人脸区域",
+          "explanation": "这些时段的人脸特征与该模型训练分布的偏离程度最高或最低；分数能定位可疑时段，不能单独证明某个器官被修改。",
+          "high": [
+            {
+              "start_frame": 18,
+              "end_frame": 19,
+              "start_time": 4.36,
+              "end_time": 4.64,
+              "ai_probability": 0.9996
+            },
+            {
+              "start_frame": 6,
+              "end_frame": 6,
+              "start_time": 1.28,
+              "end_time": 1.28,
+              "ai_probability": 0.999
+            },
+            {
+              "start_frame": 15,
+              "end_frame": 16,
+              "start_time": 3.6,
+              "end_time": 3.84,
+              "ai_probability": 0.9987
+            }
+          ],
+          "low": [
+            {
+              "start_frame": 14,
+              "end_frame": 14,
+              "start_time": 3.32,
+              "end_time": 3.32,
+              "ai_probability": 0.9746
+            },
+            {
+              "start_frame": 2,
+              "end_frame": 4,
+              "start_time": 0.24,
+              "end_time": 0.76,
+              "ai_probability": 0.9887
+            },
+            {
+              "start_frame": 11,
+              "end_frame": 11,
+              "start_time": 2.56,
+              "end_time": 2.56,
+              "ai_probability": 0.989
+            }
+          ]
+        }
+      },
+      {
+        "id": "f3net",
+        "name": "F3-Net",
+        "status": "done",
+        "verdict": "未通过：AI 倾向",
+        "decision": "fail",
+        "passed": false,
+        "ai_probability": 0.9942607339471579,
+        "real_probability": 0.00573926605284214,
+        "confidence": 0.9942607339471579,
+        "score": 0.9942607339471579,
+        "primary": false,
+        "principle": "联合频率感知分解与局部频率统计检测人脸伪造痕迹。",
+        "paper": "https://arxiv.org/abs/2007.09355",
+        "threshold_text": "原始分数第75百分位<33.0% 时记为 AI 证据",
+        "metrics": {
+          "原始伪造类中位数": 0.0039,
+          "原始伪造类均值": 0.0044,
+          "原始伪造类第 75 百分位": 0.0057,
+          "原始伪造类第 25 百分位": 0.0027,
+          "原始伪造类第 90 百分位": 0.0068,
+          "原始伪造类最高帧": 0.0115,
+          "帧间四分位差": 0.0031,
+          "有效帧数": 19
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "time": 0.0,
+            "score": 0.00341
+          },
+          {
+            "frame": 2,
+            "time": 0.24,
+            "score": 0.00677
+          },
+          {
+            "frame": 3,
+            "time": 0.48,
+            "score": 0.00246
+          },
+          {
+            "frame": 4,
+            "time": 0.76,
+            "score": 0.00675
+          },
+          {
+            "frame": 5,
+            "time": 1.0,
+            "score": 0.00382
+          },
+          {
+            "frame": 6,
+            "time": 1.28,
+            "score": 0.00286
+          },
+          {
+            "frame": 7,
+            "time": 1.52,
+            "score": 0.00413
+          },
+          {
+            "frame": 8,
+            "time": 1.8,
+            "score": 0.00627
+          },
+          {
+            "frame": 9,
+            "time": 2.04,
+            "score": 0.00226
+          },
+          {
+            "frame": 10,
+            "time": 2.32,
+            "score": 0.00393
+          },
+          {
+            "frame": 11,
+            "time": 2.56,
+            "score": 0.00429
+          },
+          {
+            "frame": 12,
+            "time": 2.8,
+            "score": 0.00518
+          },
+          {
+            "frame": 13,
+            "time": 3.08,
+            "score": 0.00682
+          },
+          {
+            "frame": 14,
+            "time": 3.32,
+            "score": 0.00521
+          },
+          {
+            "frame": 15,
+            "time": 3.6,
+            "score": 0.0034
+          },
+          {
+            "frame": 16,
+            "time": 3.84,
+            "score": 0.01147
+          },
+          {
+            "frame": 17,
+            "time": 4.12,
+            "score": 0.00209
+          },
+          {
+            "frame": 18,
+            "time": 4.36,
+            "score": 0.00172
+          },
+          {
+            "frame": 19,
+            "time": 4.64,
+            "score": 0.00144
+          }
+        ],
+        "evidence": {
+          "area": "对齐后的整个人脸区域",
+          "explanation": "这些时段的人脸特征与该模型训练分布的偏离程度最高或最低；分数能定位可疑时段，不能单独证明某个器官被修改。",
+          "high": [
+            {
+              "start_frame": 17,
+              "end_frame": 19,
+              "start_time": 4.12,
+              "end_time": 4.64,
+              "ai_probability": 0.9983
+            },
+            {
+              "start_frame": 9,
+              "end_frame": 9,
+              "start_time": 2.04,
+              "end_time": 2.04,
+              "ai_probability": 0.9977
+            },
+            {
+              "start_frame": 3,
+              "end_frame": 3,
+              "start_time": 0.48,
+              "end_time": 0.48,
+              "ai_probability": 0.9975
+            }
+          ],
+          "low": [
+            {
+              "start_frame": 16,
+              "end_frame": 16,
+              "start_time": 3.84,
+              "end_time": 3.84,
+              "ai_probability": 0.9885
+            },
+            {
+              "start_frame": 2,
+              "end_frame": 2,
+              "start_time": 0.24,
+              "end_time": 0.24,
+              "ai_probability": 0.9932
+            },
+            {
+              "start_frame": 4,
+              "end_frame": 4,
+              "start_time": 0.76,
+              "end_time": 0.76,
+              "ai_probability": 0.9932
+            }
+          ]
+        }
+      },
+      {
+        "id": "temporal_static",
+        "name": "照片驱动时序静态性",
+        "status": "done",
+        "verdict": "通过：存在自然时序变化",
+        "decision": "pass",
+        "passed": true,
+        "score": 0.42570779150638705,
+        "ai_probability": 0.42570779150638705,
+        "real_probability": 0.574292208493613,
+        "confidence": 0.574292208493613,
+        "primary": false,
+        "principle": "比较相邻采样画面的平均像素变化，识别单张照片驱动视频中常见的近静态画布。",
+        "paper": "https://arxiv.org/abs/2508.00701",
+        "threshold_text": "相邻画面变化中位数 < 1.35% 时记为 AI 证据",
+        "metrics": {
+          "相邻画面变化中位数": 0.01586,
+          "相邻画面变化第90百分位": 0.02661,
+          "有效时段数": 18
+        },
+        "frames": [
+          {
+            "frame": 2,
+            "time": 0.24,
+            "score": 0.23955
+          },
+          {
+            "frame": 3,
+            "time": 0.48,
+            "score": 0.45881
+          },
+          {
+            "frame": 4,
+            "time": 0.76,
+            "score": 0.38839
+          },
+          {
+            "frame": 5,
+            "time": 1.0,
+            "score": 0.44865
+          },
+          {
+            "frame": 6,
+            "time": 1.28,
+            "score": 0.11963
+          },
+          {
+            "frame": 7,
+            "time": 1.52,
+            "score": 0.4791
+          },
+          {
+            "frame": 8,
+            "time": 1.8,
+            "score": 0.64773
+          },
+          {
+            "frame": 9,
+            "time": 2.04,
+            "score": 0.59455
+          },
+          {
+            "frame": 10,
+            "time": 2.32,
+            "score": 0.73767
+          },
+          {
+            "frame": 11,
+            "time": 2.56,
+            "score": 0.19247
+          },
+          {
+            "frame": 12,
+            "time": 2.8,
+            "score": 0.51355
+          },
+          {
+            "frame": 13,
+            "time": 3.08,
+            "score": 0.42875
+          },
+          {
+            "frame": 14,
+            "time": 3.32,
+            "score": 0.28349
+          },
+          {
+            "frame": 15,
+            "time": 3.6,
+            "score": 0.50941
+          },
+          {
+            "frame": 16,
+            "time": 3.84,
+            "score": 0.41419
+          },
+          {
+            "frame": 17,
+            "time": 4.12,
+            "score": 0.01
+          },
+          {
+            "frame": 18,
+            "time": 4.36,
+            "score": 0.01
+          },
+          {
+            "frame": 19,
+            "time": 4.64,
+            "score": 0.26034
+          }
+        ],
+        "evidence": {
+          "area": "整幅画面，重点观察背景、头发外缘和肩部之外",
+          "explanation": "AI 率高的时段相邻画面变化很小，符合单张照片画布仅局部驱动的特征；自然拍摄通常同时包含传感器噪声、轻微机位或背景变化。",
+          "high": [
+            {
+              "start_frame": 7,
+              "end_frame": 9,
+              "start_time": 1.8,
+              "end_time": 2.32,
+              "ai_probability": 0.66
+            },
+            {
+              "start_frame": 11,
+              "end_frame": 11,
+              "start_time": 2.8,
+              "end_time": 2.8,
+              "ai_probability": 0.5135
+            },
+            {
+              "start_frame": 14,
+              "end_frame": 14,
+              "start_time": 3.6,
+              "end_time": 3.6,
+              "ai_probability": 0.5094
+            }
+          ],
+          "low": [
+            {
+              "start_frame": 16,
+              "end_frame": 17,
+              "start_time": 4.12,
+              "end_time": 4.36,
+              "ai_probability": 0.01
+            },
+            {
+              "start_frame": 5,
+              "end_frame": 5,
+              "start_time": 1.28,
+              "end_time": 1.28,
+              "ai_probability": 0.1196
+            },
+            {
+              "start_frame": 10,
+              "end_frame": 10,
+              "start_time": 2.56,
+              "end_time": 2.56,
+              "ai_probability": 0.1925
+            }
+          ]
+        }
+      }
+    ],
+    "supporting_methods": [
+      {
+        "id": "spectrum",
+        "name": "频谱分布取证",
+        "status": "descriptive",
+        "verdict": "取证指标，需参考库校准",
+        "score": null,
+        "principle": "对亮度通道加 Hann 窗后计算二维 FFT，并做径向功率分布；生成与缩放流程可能改变高频统计。",
+        "paper": "https://openaccess.thecvf.com/content_CVPR_2020/html/Durall_Watch_Your_Up-Convolution_CNN_Based_Generative_Deep_Neural_Networks_Are_CVPR_2020_paper.html",
+        "metrics": {
+          "高频能量占比": 0.000658,
+          "径向谱斜率": -3.3804
+        },
+        "distribution": [
+          0.965702,
+          0.024604,
+          0.006992,
+          0.001525,
+          0.00056,
+          0.000209,
+          0.000135,
+          9e-05,
+          6.5e-05,
+          4.4e-05,
+          2.3e-05,
+          1.6e-05,
+          1.6e-05,
+          1.4e-05,
+          9e-06,
+          7e-06,
+          5e-06,
+          3e-06,
+          2e-06,
+          1e-06,
+          1e-06,
+          1e-06,
+          1e-06,
+          1e-06
+        ]
+      },
+      {
+        "id": "continuity",
+        "name": "视频时序连续性",
+        "status": "descriptive",
+        "verdict": "时序异常需结合剪辑与压缩解释",
+        "score": null,
+        "principle": "对连续对齐人脸计算稠密光流、帧间变化及运动向量突变，覆盖静态分类器忽略的时间维度。",
+        "paper": "https://arxiv.org/abs/2311.10788",
+        "metrics": {
+          "帧间残差中位数": 0.0292,
+          "光流幅度中位数": 1.485,
+          "运动突变中位数": 1.2599,
+          "时间跨度秒": 4.64
+        }
+      }
+    ]
+  },
+  "elapsed_seconds": 24.1
+}

@@ -1,0 +1,10 @@
+{
+  "runtime_candidate_sha256": "78ab7b67a59eb6f3a71c85e3a17a4c3f7537ce9ea6866cf594f1dc029b574c1a",
+  "backend_file_synced": "server.py",
+  "account_block_preserved": true,
+  "service_restart": "active",
+  "frontend_and_api_health": "ok",
+  "wsl_keepalive": "restored using existing startup behavior",
+  "safety_settings_changed": false,
+  "model_parameters_changed": false
+}

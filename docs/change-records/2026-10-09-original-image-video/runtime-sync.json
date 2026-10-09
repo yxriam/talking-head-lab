@@ -1,0 +1,8 @@
+{
+  "file": "/opt/media-app/local-media/server.py",
+  "backup": "/opt/media-app/local-media/.server-before-original-image-20261009-01a11aec.py",
+  "before_sha256": "813ad8dda318629342fdf2cae5cdb499d9f1fe8e8005fa107d204149d32ef3f2",
+  "after_sha256": "ae324165e4ad0aa2315b203d1ffe2c83fb568de1cda17eecdbea8440fb8e7f72",
+  "only_file_synced": "server.py",
+  "busy_before": false
+}

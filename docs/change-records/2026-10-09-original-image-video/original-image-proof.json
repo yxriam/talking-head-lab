@@ -1,0 +1,12 @@
+{
+  "request_image": "/opt/media-app/local-media/data/b46ea4211df6464496d69e937dc8dd75/input.png",
+  "input_image_sha256": "c0f15c82ce1858185324426f50a5d54c306fd66b4cca66532eae59445387c52a",
+  "image_unmodified": true,
+  "no_background_artifacts": [
+    "generated-portrait.png",
+    "scene.json",
+    "scene-prompt.txt"
+  ],
+  "scene_text_ignored": true,
+  "runtime_server_sha256": "78ab7b67a59eb6f3a71c85e3a17a4c3f7537ce9ea6866cf594f1dc029b574c1a"
+}

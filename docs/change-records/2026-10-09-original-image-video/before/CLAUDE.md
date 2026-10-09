@@ -7,8 +7,3 @@
 进行独立审查时记录实际 diff、规格不符项、测试证据和剩余风险。没有运行 Claude Code 就不记录“Claude 已审查”。本轮仅建立入口文件，不表示已调用此工具。
 
 日常交付按 [维护流程](docs/WORKFLOW.md)，需求与交付记录分别使用 [任务规格模板](docs/templates/task-spec.md) 和 [变更记录模板](docs/templates/change-record.md)。优先阅读实际 diff 与原始验证输出，再报告发现及复核；入口存在不等于本机安装或调用过 Claude Code。
-
-
-## 与Codex共用的最新交接
-
-接手前先读 [共同交接](docs/AI-HANDOFF.md)，核对AGENTS中的“视频原图与背景约定”和“操作完成后的共同交接”。每次操作完成写回实际动作、验证、部署/提交状态与回退，保持同一协议；文件同步不代表已进行Claude独立审查。

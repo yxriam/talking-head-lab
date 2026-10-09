@@ -73,13 +73,13 @@ wsl -d Ubuntu-22.04 -u root -- bash /opt/media-app/local-media/configure-truthsc
 
 Chatterbox、SadTalker、EchoMimic V1、JoyVASA、EchoMimic V3 Flash 及五个检测模型已在 RTX 5070 Ti 上部署并通过真实推理。JoyVASA 会同时驱动嘴型、表情和头部姿态；EchoMimic V3 Flash 使用 Transformer/VAE 驻留 GPU、T5/CLIP 按需卸载的混合模式，适合 4 秒以内的高质量短片。检测页还加入照片驱动时序静态性方法，并可选用 TruthScan Generic 云端复核。每种方法分别显示 AI/正常拍摄百分比、单项结论、AI 率较高与较低的采样帧和秒数。汇总报告显示通过、未通过与证据不足的数量。传统频谱和连续性指标作为辅助取证，不参与概率投票。
 
-视频现在将用户原图与驱动音频直接交给所选模型，不执行场景选择、SDXL背景生成、U2Net合成或准备后的新肖像步骤。所选模型必需的原生裁剪、缩放、对齐与输出画幅按video_profiles/generate执行；TokenHub同样上传用户原图。账号分析继续独立使用本地Qwen3-1.7B Q8_0。历史local_scene/prepare_scene与安装素材保留，不在当前视频任务中调用。
+视频生成前的场景选择使用本地 `Qwen3-1.7B Q8_0`，通过本机编译的 `llama.cpp` CUDA 后端运行；台词不会提交给外部 LLM。模型只在固定的九类环境中选择一个。SDXL 只生成不含人物的新背景，U2Net 分割原图人物并以原像素合成，因此不会重新生成或改变脸部。SadTalker、EchoMimic V1、JoyVASA 和 EchoMimic V3 使用 768×768 方形肖像；TokenHub HumanActor 使用 768×1024 竖版肖像。实测单次场景分类约 1.5 秒，四类中文回归样例均得到预期环境。
 
 网页默认选择当前本地样片中身份保持更稳定的 SadTalker。其输出使用扩展方形人脸区域，不回贴到原图；大幅张嘴时仍可能拉扯嘴型。JoyVASA 输入关闭裁剪旋转，直接保留模型原生方形结果。
 
 账号防范分析也复用本地 `Qwen3-1.7B Q8_0`，由 Ubuntu `/account-analysis` 生成双语正文，Windows `account_llm.py` 保留证据规则与账号类型、验证模型输出及来源。模型仅接收已整理文字，不接收原始媒体，也不接入外部服务。来源标识区分本地 LLM 与失败时的规则草稿；手动更新失败不覆盖上次报告。GPU 推理与视频/检测任务互斥。该模型是文本 LLM，不是 VLM。
 
-2026-10-09用户明确取消背景替换：原图路径和字节沿上传→任务→模型保持一致，视频就绪不再依赖InstantID/场景环境。旧视频text字段仍接受但忽略背景用途；语音text/source_text保持原用途。新任务不会创建scene.json、scene-prompt.txt或generated-portrait.png，scene兼容键标记original。共享约定与操作交接见../AGENTS.md和../docs/AI-HANDOFF.md。
+自动背景替换已在每个视频任务生成前调用 `prepare_video_portrait`：Qwen 按台词选择环境，SDXL 生成空背景，U2Net 保留原图人物像素。只有工作台生成语音携带 `source_text` 时，前端才会把台词传给场景分类器；直接上传的音频目前不自动转写，因此选择默认 `neutral_studio`（中性背景），并非跳过背景生成。SadTalker 的方形脸部裁剪可能让背景露出较少。
 
 检测模型独立分析同一组对齐人脸帧。视频边界使用 `D:\project\data\real` 的 17 个真实视频和 `D:\project\data\fake` 的 22 个去重生成视频离线拟合。透明规则为 GenD、UCF、RECCE、F3-Net 的真实分布包络与整幅画面时序变化的并集；NPR 在当前视频域只展示、不投票。当前 39 个校准样本回放为 39/39，其中真实 17/17、AI 22/22。这是当前小样本拟合结果，不是未知互联网视频的准确率。资源 ID、文件夹、文件名、文件哈希、生成任务记录和媒体元数据不参与线上检测结论。
 

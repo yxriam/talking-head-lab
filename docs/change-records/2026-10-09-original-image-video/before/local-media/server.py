@@ -18,6 +18,7 @@ from pydantic import BaseModel, Field
 
 import tokenhub
 import truthscan
+import local_scene
 import local_account_model
 from video_profiles import VIDEO_PROFILES, video_profile
 
@@ -93,19 +94,23 @@ def capabilities():
               and (root / "NPR/READY").is_file()
               and (root / "GenD/READY").is_file())
     reason = "需先完成 WSL2 与模型安装及推理验证" if not linux else "模型尚未安装或未通过推理验证"
+    portrait = (linux and (root / "InstantID/.venv/bin/python").is_file()
+                and (root / "InstantID/READY").is_file()
+                and (root / "scene-llm/READY").is_file()
+                and (root / "llama.cpp/build-cuda/bin/llama-cli").is_file())
+    portrait_reason = "本地场景 LLM 或身份保持生图模型尚未通过验证"
     cloud, cloud_reason = tokenhub.ready()
-    cloud = linux and cloud
     def video_state(backend_ready, name, backend_reason=reason):
-        return {"ready": bool(backend_ready), "name": name,
-                "reason": "" if backend_ready else backend_reason}
+        return {"ready": bool(backend_ready and portrait), "name": name,
+                "reason": "" if backend_ready and portrait else portrait_reason if backend_ready else backend_reason}
     return {"voice": {"ready": bool(voice), "name": "Chatterbox", "reason": "" if voice else reason},
-            "video": {"ready": bool(video or echo or joyvasa or echo_v3 or cloud), "name": "Local audio-to-head / TokenHub",
-                      "reason": "" if video or echo or joyvasa or echo_v3 or cloud else reason,
+            "video": {"ready": bool(portrait and (video or echo or joyvasa or echo_v3 or cloud)), "name": "Local audio-to-head / TokenHub",
+                      "reason": "" if portrait and (video or echo or joyvasa or echo_v3 or cloud) else portrait_reason if not portrait else reason,
                       "models": {"sadtalker": video_state(video, "SadTalker"),
                                  "echomimic_v1": video_state(echo, "EchoMimic V1"),
                                  "joyvasa": video_state(joyvasa, "JoyVASA"),
                                  "echomimic_v3_flash": video_state(echo_v3, "EchoMimic V3 Flash", "模型已下载，仍需通过本机稳定性验证"),
-                                 "tokenhub_humanactor": video_state(cloud, "YT HumanActor", cloud_reason or reason)},},
+                                 "tokenhub_humanactor": video_state(cloud, "YT HumanActor", cloud_reason)},},
             "detect": {"ready": bool(detect), "reason": "" if detect else "本地检测模型尚未全部部署，不能进行真伪判定",
                        "cloud": {"truthscan": {"ready": truthscan.ready()[0], "reason": truthscan.ready()[1]}}}}
 
@@ -241,6 +246,7 @@ def submit(item: JobInput):
             inputs["audio"] = require_media(item.audio_id, "audio")
             inputs["image"] = require_media(item.image_id, "image")
             inputs["model"] = item.model or "sadtalker"
+            inputs["scene_text"] = item.text.strip()
             if inputs["model"] not in VIDEO_PROFILES:
                 raise HTTPException(400, "不支持此人像视频模型")
     state = capabilities()[item.kind]
@@ -261,6 +267,29 @@ def submit(item: JobInput):
     return jobs[identifier].copy()
 
 
+def prepare_video_portrait(identifier, inputs, directory, video_model):
+    with lock:
+        jobs[identifier].update(progress=5, message="本地 Qwen 正在根据台词匹配背景")
+    scene_key, scene = local_scene.environment_for(inputs.get("scene_text", ""), runtime())
+    scene_file = directory / "scene-prompt.txt"
+    scene_file.write_text(scene, encoding="utf-8")
+    (directory / "scene.json").write_text(
+        json.dumps({"environment": scene_key, "prompt": scene}, ensure_ascii=False, indent=2), encoding="utf-8")
+    portrait = directory / "generated-portrait.png"
+    profile = video_profile(video_model)
+    with lock:
+        jobs[identifier].update(progress=10, message="正在生成新背景并保留原图人物像素")
+    subprocess.run([
+        str(runtime() / "InstantID/.venv/bin/python"), str(ROOT / "prepare_scene.py"),
+        inputs["image"], str(portrait), str(runtime()), str(scene_file), profile["portrait_layout"],
+    ], check=True, timeout=1200)
+    inputs["image"] = str(portrait)
+    inputs["scene"] = scene_key
+    (directory / "request.json").write_text(json.dumps(inputs, ensure_ascii=False), encoding="utf-8")
+    with lock:
+        jobs[identifier].update(progress=24, message="新背景肖像已生成，正在加载视频模型")
+
+
 def run_job(identifier, kind):
     directory = folder(identifier)
     inputs = json.loads((directory / "request.json").read_text(encoding="utf-8"))
@@ -271,6 +300,8 @@ def run_job(identifier, kind):
     with lock:
         jobs[identifier].update(status="running", progress=3, message={"voice":"正在准备语音模型", "video":"正在分析人像与语音", "detect":"正在抽取人脸帧"}[kind])
     try:
+        if kind == "video":
+            prepare_video_portrait(identifier, inputs, directory, video_model)
         if kind == "video" and video_model == "tokenhub_humanactor":
             started = time.monotonic()
             normalized_audio = directory / "tokenhub-driving.wav"
@@ -283,7 +314,7 @@ def run_job(identifier, kind):
 
             def cloud_progress(progress, message):
                 with lock:
-                    jobs[identifier].update(progress=min(95, 3 + progress * 92 // 100), message=message)
+                    jobs[identifier].update(progress=min(95, 24 + progress * 71 // 100), message=message)
 
             tokenhub.generate(inputs["image"], normalized_audio, directory / "output.mp4", cloud_progress)
         elif kind == "detect":
@@ -292,7 +323,7 @@ def run_job(identifier, kind):
             command = [str(python), str(ROOT / "generate.py"), kind, str(directory), str(runtime())]
         if not (kind == "video" and video_model == "tokenhub_humanactor"):
             log_path = directory / "run.log"
-            reported_progress = 3
+            reported_progress = 24 if kind == "video" else 3
             with log_path.open("w", encoding="utf-8") as log:
                 process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)
                 started = time.monotonic()
@@ -355,7 +386,7 @@ def run_job(identifier, kind):
                 artifact["source_text"] = inputs["text"]
             if kind == "video":
                 artifact["model"] = video_model
-                artifact["scene"] = "original"
+                artifact["scene"] = inputs.get("scene", "neutral_studio")
                 artifact["presentation"] = video_profile(video_model)["presentation"]
         elapsed = round(time.monotonic() - started, 1)
         with lock:
@@ -376,6 +407,10 @@ def progress_from_log(kind, output, video_model="sadtalker"):
             matches = re.findall(r"(\d+)%\|[^\n]*?\|(\s*\d+)/(\d+)", output)
             if matches:
                 return min(94, 25 + int(matches[-1][0]) * 69 // 100)
+            if "PORTRAIT_GENERATION_DONE" in output:
+                return 22
+            if "PORTRAIT_GENERATION_START" in output:
+                return 8
             return 5
         if video_model == "echomimic_v3_flash":
             matches = re.findall(r"(\d+)%\|[^\n]*?\|(\s*\d+)/(\d+)", output)

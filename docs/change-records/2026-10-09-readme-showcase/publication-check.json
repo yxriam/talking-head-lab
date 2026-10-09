@@ -1,0 +1,45 @@
+{
+  "commit": "44e92f21f29f7709a15eff2391d942add5c93c8d",
+  "branch": "main",
+  "published_checks": [
+    {
+      "path": "README.md",
+      "status": 200,
+      "sha256": "0d526e70b692050f7293f2818b104355e7dd48becf482a48b386d0d93f11a203",
+      "matches_local": true
+    },
+    {
+      "path": "README.en.md",
+      "status": 200,
+      "sha256": "58c4852449b6df2c2ca09bfbd385b908ab8a1268e57951ac96bc3b86cbdc3d87",
+      "matches_local": true
+    },
+    {
+      "path": "docs/showcase/video-zh.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "path": "docs/showcase/video-en.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "path": "docs/showcase/sadtalker-demo.gif",
+      "status": 200,
+      "content_type": "image/gif"
+    },
+    {
+      "path": "docs/showcase/sadtalker-demo.mp4",
+      "status": 200,
+      "content_type": "application/octet-stream"
+    },
+    {
+      "path": "docs/showcase/generated-voice.wav",
+      "status": 200,
+      "content_type": "audio/wav"
+    }
+  ],
+  "rendering_limitation": "Browser trusted Node runtime reset; web fetch returned cache miss. No final live GitHub screenshot claimed; raw README bytes and selected asset availability verified directly.",
+  "preserved_untracked": "ray_report_review/"
+}

@@ -1,0 +1,49 @@
+{
+  "workspace": "source",
+  "files": [
+    {
+      "path": "local-media/server.py",
+      "sha256": "bd61dea690c8c56108279446c9b0d334770351bc0f3415fd075aa0dbc6303c5a",
+      "existed": true
+    },
+    {
+      "path": "local-media/test_server.py",
+      "sha256": "250ff1b2d48f2809221d239e861a45f8ed6fc17cd0e6bb2238424a73c6421524",
+      "existed": true
+    },
+    {
+      "path": "local-media/sync-runtime.sh",
+      "sha256": "4d27afdde24cd4d91868b2a3dbf7ef9f31a212f22d0f44ee6666a0657c474ed1",
+      "existed": true
+    },
+    {
+      "path": "local-media/README.md",
+      "sha256": "b318c589e2e8e62a59fce5a6f9ac34a9224b69f248e503b63b206db87c6af0b1",
+      "existed": true
+    },
+    {
+      "path": "facebook-scam/video-forensics-web/app/studio/Studio.tsx",
+      "sha256": "635595ed11151d9996ef5c91bdf041fed51698540404538f95db0bbe5a686a8b",
+      "existed": true
+    },
+    {
+      "path": "README.md",
+      "sha256": "46e73bea1fb1205e7b7d7c4979148e24f51dfd1bf936fc50219afa7911d51c02",
+      "existed": true
+    },
+    {
+      "path": "README.en.md",
+      "existed": false
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "6cc00996e1c7cffe2436183e8211e8f309c9cdf4b5352f83cddf278db57e08a6",
+      "existed": true
+    },
+    {
+      "path": "PROJECT.md",
+      "sha256": "09851d48e27c6ef1ec92de246bdc08062e42c2c0d1a620aafce160db55f41361",
+      "existed": true
+    }
+  ]
+}

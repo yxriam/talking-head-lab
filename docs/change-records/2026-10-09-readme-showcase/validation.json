@@ -14,7 +14,7 @@
     },
     {
       "from": "README.md",
-      "target": "docs/showcase/sadtalker-demo.mp4",
+      "target": "docs/showcase/sadtalker-original-demo.mp4",
       "fragment": "",
       "valid": true
     },
@@ -62,19 +62,19 @@
     },
     {
       "from": "README.md",
-      "target": "docs/showcase/video-zh.jpg",
+      "target": "docs/showcase/video-original-zh.jpg",
       "fragment": "",
       "valid": true
     },
     {
       "from": "README.md",
-      "target": "docs/showcase/detect-zh.jpg",
+      "target": "docs/showcase/detect-original-zh.jpg",
       "fragment": "",
       "valid": true
     },
     {
       "from": "README.md",
-      "target": "docs/showcase/detection-report.json",
+      "target": "docs/showcase/detection-original-report.json",
       "fragment": "",
       "valid": true
     },
@@ -140,13 +140,7 @@
     },
     {
       "from": "README.md",
-      "target": "docs/showcase/prepared-portrait.png",
-      "fragment": "",
-      "valid": true
-    },
-    {
-      "from": "README.md",
-      "target": "docs/showcase/sadtalker-demo.gif",
+      "target": "docs/showcase/sadtalker-original-demo.gif",
       "fragment": "",
       "valid": true
     },
@@ -164,7 +158,7 @@
     },
     {
       "from": "README.en.md",
-      "target": "docs/showcase/sadtalker-demo.mp4",
+      "target": "docs/showcase/sadtalker-original-demo.mp4",
       "fragment": "",
       "valid": true
     },
@@ -212,19 +206,19 @@
     },
     {
       "from": "README.en.md",
-      "target": "docs/showcase/video-en.jpg",
+      "target": "docs/showcase/video-original-en.jpg",
       "fragment": "",
       "valid": true
     },
     {
       "from": "README.en.md",
-      "target": "docs/showcase/detect-en.jpg",
+      "target": "docs/showcase/detect-original-en.jpg",
       "fragment": "",
       "valid": true
     },
     {
       "from": "README.en.md",
-      "target": "docs/showcase/detection-report.json",
+      "target": "docs/showcase/detection-original-report.json",
       "fragment": "",
       "valid": true
     },
@@ -290,13 +284,7 @@
     },
     {
       "from": "README.en.md",
-      "target": "docs/showcase/prepared-portrait.png",
-      "fragment": "",
-      "valid": true
-    },
-    {
-      "from": "README.en.md",
-      "target": "docs/showcase/sadtalker-demo.gif",
+      "target": "docs/showcase/sadtalker-original-demo.gif",
       "fragment": "",
       "valid": true
     },
@@ -422,25 +410,19 @@
     },
     {
       "from": "docs/showcase/PROVENANCE.md",
-      "target": "prepared-portrait.png",
+      "target": "sadtalker-original-demo.mp4",
       "fragment": "",
       "valid": true
     },
     {
       "from": "docs/showcase/PROVENANCE.md",
-      "target": "sadtalker-demo.mp4",
+      "target": "sadtalker-original-demo.gif",
       "fragment": "",
       "valid": true
     },
     {
       "from": "docs/showcase/PROVENANCE.md",
-      "target": "sadtalker-demo.gif",
-      "fragment": "",
-      "valid": true
-    },
-    {
-      "from": "docs/showcase/PROVENANCE.md",
-      "target": "detection-report.json",
+      "target": "detection-original-report.json",
       "fragment": "",
       "valid": true
     },
@@ -453,6 +435,24 @@
     {
       "from": "docs/showcase/PROVENANCE.md",
       "target": "../change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../../AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../AI-HANDOFF.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-original-image-video/记录.md",
       "fragment": "",
       "valid": true
     },
@@ -510,6 +510,24 @@
       "frames": 1
     },
     {
+      "path": "docs/showcase/detect-original-en.jpg",
+      "bytes": 118870,
+      "sha256": "0eed31283fb80e0218ffc5219f863b583047e9000f1f48e22221b5f1be379138",
+      "width": 1280,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-original-zh.jpg",
+      "bytes": 118184,
+      "sha256": "b31303a65b95d78e6aa3c218d2cc18a0a502b2750f02b47bc6372ce87819947f",
+      "width": 1280,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
       "path": "docs/showcase/detect-zh.jpg",
       "bytes": 91382,
       "sha256": "25d2046615a03f407453bf7c9705c9ea765c36914b10035dc10c477fee8a3ed4",
@@ -517,6 +535,11 @@
       "height": 1250,
       "format": "JPEG",
       "frames": 1
+    },
+    {
+      "path": "docs/showcase/detection-original-report.json",
+      "bytes": 27950,
+      "sha256": "3f4d0ebaee222994921cec104929c1cec38e942fbf9cb8359fced2601767da43"
     },
     {
       "path": "docs/showcase/detection-report.json",
@@ -530,18 +553,9 @@
       "duration_seconds": 4.68
     },
     {
-      "path": "docs/showcase/prepared-portrait.png",
-      "bytes": 801497,
-      "sha256": "19f31ee835772cfe0caee5e068fc13c5f83e24d20a27c0e70d03d8bc4397dc1e",
-      "width": 768,
-      "height": 768,
-      "format": "PNG",
-      "frames": 1
-    },
-    {
       "path": "docs/showcase/PROVENANCE.md",
-      "bytes": 5897,
-      "sha256": "788447e54de4acd8b5c76a3ce8a492651fa86341e407c4e4cbbf763ea0a966c4"
+      "bytes": 7940,
+      "sha256": "a495a9930d357528ce87eb93288af7471c807a8bc2c9d792b82003c0d83ec044"
     },
     {
       "path": "docs/showcase/reference-voice.wav",
@@ -564,6 +578,20 @@
       "sha256": "8d2635e30bd42566bb00c501962705e2e0e7b68406c30536885f1fe7fd64daf5"
     },
     {
+      "path": "docs/showcase/sadtalker-original-demo.gif",
+      "bytes": 3125432,
+      "sha256": "a87ef62f94cfa13377311de65425f226f0fab96e49372c38f92119077da07d3d",
+      "width": 360,
+      "height": 360,
+      "format": "GIF",
+      "frames": 47
+    },
+    {
+      "path": "docs/showcase/sadtalker-original-demo.mp4",
+      "bytes": 326586,
+      "sha256": "da4b0747d1dabf14e4c086fe49bb7f99dbcc4d424037a4a39f6ed82095143bd9"
+    },
+    {
       "path": "docs/showcase/synthetic-input.png",
       "bytes": 2136999,
       "sha256": "c0f15c82ce1858185324426f50a5d54c306fd66b4cca66532eae59445387c52a",
@@ -578,6 +606,24 @@
       "sha256": "fb97add4c79c0de2458ae78caf12abc691f35f323c22ab0747662179f6c6fad7",
       "width": 1264,
       "height": 1270,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-original-en.jpg",
+      "bytes": 149094,
+      "sha256": "34edff0dbe3f9f6a1c514c20bda1f3b0e6f1a38c9bbaf50e144e29620abbc380",
+      "width": 1280,
+      "height": 1314,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-original-zh.jpg",
+      "bytes": 132593,
+      "sha256": "da0c86ce6e258daeed13b0fbe337ac3b12aa78bc4a949afc4c0f7f07c16832ec",
+      "width": 1280,
+      "height": 1233,
       "format": "JPEG",
       "frames": 1
     },
@@ -620,6 +666,9 @@
     "reference_and_generated_audio_distinct": true,
     "actual_voice_job_done": true,
     "actual_video_job_done": true,
+    "no_prepared_portrait_in_current_readme": true,
+    "shared_protocol_and_handoff": true,
+    "actual_input_image_unmodified": true,
     "report_matches_actual_job": true,
     "actual_report_summary": true,
     "no_cloud_result_in_demo": true,
@@ -630,5 +679,5 @@
   },
   "failures": [],
   "powershell_blocks_per_language": 8,
-  "visual_qa": "Real screenshots reviewed; collection captures exclude private history. Browser runtime reset later; no final GitHub screenshot claimed."
+  "visual_qa": "Real current video/detection UI captured with user-approved existing Playwright/Edge and genuine completed-job replay; no source changes or extra inference for capture. Collection captures exclude private history."
 }

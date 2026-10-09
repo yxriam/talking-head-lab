@@ -13,10 +13,9 @@ These assets were created for the bilingual README. The input person and referen
 | [synthetic-input.png](synthetic-input.png) | 内置imagegen创建的虚构成年人物，仅作项目输入 / Fictional adult generated with the built-in imagegen tool as an input |
 | [reference-voice.wav](reference-voice.wav) | 已安装Microsoft Zira Desktop系统合成声音 / Existing Microsoft Zira Desktop system speech synthesis |
 | [generated-voice.wav](generated-voice.wav) | 项目Chatterbox实际输出，4.68秒；任务报告38.1秒 / Actual Chatterbox output, 4.68 s; job reports 38.1 s |
-| [prepared-portrait.png](prepared-portrait.png) | 同一视频任务实际产生的背景准备后肖像 / Actual prepared portrait from the same video job |
-| [sadtalker-demo.mp4](sadtalker-demo.mp4) | 项目SadTalker原始最终输出，512×512，4.736秒，含AAC音轨；渲染报告64.1秒，不含肖像准备 / Actual final SadTalker output with audio; reported rendering time excludes portrait preparation |
-| [sadtalker-demo.gif](sadtalker-demo.gif) | 由同一MP4导出，360px宽、10fps、循环、无音轨；增加AI生成/合成人物标识 / Derived from that MP4, resized, 10 fps, silent loop, with a synthetic/AI-generation label |
-| [detection-report.json](detection-report.json) | 同一原始视频的真实本地检测报告，21.5秒，未调用TruthScan / Actual local report on that video; no TruthScan call |
+| [sadtalker-original-demo.mp4](sadtalker-original-demo.mp4) | 项目SadTalker原始最终输出，512×512，4.736秒，含AAC音轨；任务报告61.9秒，无额外背景前置 / Actual final SadTalker output with audio; job reports 61.9 s, with no added background stage |
+| [sadtalker-original-demo.gif](sadtalker-original-demo.gif) | 由同一MP4导出，360px宽、10fps、循环、无音轨；增加AI生成/合成人物标识 / Derived from that MP4, resized, 10 fps, silent loop, with a synthetic/AI-generation label |
+| [detection-original-report.json](detection-original-report.json) | 同一原始视频的真实本地检测报告，24.1秒，未调用TruthScan / Actual local report on that video; no TruthScan call |
 
 参考文本 / Reference text:
 
@@ -33,8 +32,8 @@ Each actual job ran once using the existing service and defaults. No best-of-man
 ## 界面截图 / Interface screenshots
 
 - `voice-zh.jpg` / `voice-en.jpg`：本轮Chatterbox完成后的真实工作台 / Actual completed voice job.
-- `video-zh.jpg` / `video-en.jpg`：本轮SadTalker完成后的真实工作台 / Actual completed video job.
-- `detect-zh.jpg` / `detect-en.jpg`：同一视频本地检测结果，1通过、4未通过、1证据不足 / Actual local result: 1 pass, 4 fail, 1 insufficient.
+- `video-original-zh.jpg` / `video-original-en.jpg`：本轮SadTalker完成后的真实工作台 / Actual completed video job.
+- `detect-original-zh.jpg` / `detect-original-en.jpg`：同一视频本地检测结果，1通过、4未通过、1证据不足 / Actual local result: 1 pass, 4 fail, 1 insufficient.
 - `crawl-zh.jpg` / `crawl-en.jpg`：真实界面中已有的“本地集成测试（非Facebook实采）”记录；截图在私人历史区域前截止 / Existing explicitly synthetic integration-test record; private history is outside the capture.
 - `account-zh.jpg` / `account-en.jpg`：上述已有合成记录的文字排版，未在本轮重新执行或验收其Qwen账号生成 / Text layout from that existing synthetic record; its account-generation provenance was not re-executed or accepted in this task.
 
@@ -55,3 +54,16 @@ Use case: photorealistic-natural. Asset type: synthetic input portrait for a pub
 真实任务状态、耗时、构建失败与修复、资源SHA256和发布记录见 [本轮变更记录](../change-records/2026-10-09-readme-showcase/记录.md)。检测95.8%是本例界面汇总值，不是互联网视频准确率。新机器安装没有在本轮重新执行，模型展示也不代表所有模型的回归验收或新服务部署。
 
 The [change record](../change-records/2026-10-09-readme-showcase/记录.md) preserves job status, timings, build fixes, asset hashes, and publication. The displayed 95.8% is a sample result, not a general accuracy claim. This showcase is not a fresh-machine installation test, an acceptance matrix for every model, or a new deployment.
+
+
+## 用户纠正后的当前版本 / Current version after correction
+
+用户明确取消背景替换。当前图库仅显示合成原图→原图直接生成的视频；模型输入路径和SHA256与原图一致，任务没有scene.json、scene-prompt.txt或generated-portrait.png。新SadTalker任务da4977bd616f46bd945a5188449571f0（61.9秒）和检测60a504e5caff45ce8fe3d1c945a1d00d（24.1秒）各实跑一次；输入、音频与模型参数不变。旧44e92f2演示与原本3ef任务留在Git历史/本机原任务记录，不冒充新流程。
+
+The user explicitly removed background replacement. The current gallery shows the synthetic original image followed by actual output generated directly from it. Input path/hash match the original, and no background-preparation artifacts were created. Each corrected video/detection job ran once; the old version remains historical evidence.
+
+新视频/检测双语截图使用用户明确允许的现有Playwright/Edge，在隔离localhost上下文回放上述真实已完成任务。图片、语音及任务结果是真实资源；没有为截图改变业务源码、安装工具或额外触发推理。第一次截图在解码器尚未绘制视频时出现黑画面，等待真实播放帧后重新截图；只调整截图脚本的播放/暂停时机，不改页面内容或模型结果。
+
+The new bilingual video/detection screenshots replay those genuine completed jobs in an isolated local browser context. The user approved screenshot-only use of existing Playwright/Edge. No project-source changes, tool installation, or additional model jobs were made for capture. A decoder timing issue was resolved by waiting for a real playback frame.
+
+视频原图约定及每次操作同步要求见 [共享协议](../../AGENTS.md) 与 [Codex/Claude共同交接](../AI-HANDOFF.md)，具体测试、运行版本差异与回退见 [背景纠正记录](../change-records/2026-10-09-original-image-video/记录.md)。文件交接已同步，Claude未实际调用，不称独立审查完成。

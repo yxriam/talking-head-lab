@@ -11,18 +11,19 @@
 ### 先看一段真实生成结果
 
 <table>
-  <tr><th>① 合成输入原图</th><th>② 原图直接生成视频</th></tr>
+  <tr><th>① 合成输入人像</th><th>② 项目准备后的肖像</th><th>③ SadTalker 实际生成视频</th></tr>
   <tr>
     <td><img src="docs/showcase/synthetic-input.png" width="260" alt="imagegen 创建的虚构成年人物输入" /></td>
-    <td><img src="docs/showcase/sadtalker-original-demo.gif" width="260" alt="SadTalker 实际输出的动态预览，标注 AI 生成与合成人物" /></td>
+    <td><img src="docs/showcase/prepared-portrait.png" width="260" alt="项目完成背景准备后的真实肖像" /></td>
+    <td><img src="docs/showcase/sadtalker-demo.gif" width="260" alt="SadTalker 实际输出的动态预览，标注 AI 生成与合成人物" /></td>
   </tr>
 </table>
 
-人像输入由 imagegen 创建，参考声音由 Windows 系统语音合成；声音使用现有 Chatterbox 生成，视频将原图直接交给 SadTalker；不增加背景更换步骤。GIF 来自同一份 **512×512、4.736 秒**视频。台词为：
+人像输入由 imagegen 创建，参考声音由 Windows 系统语音合成；随后使用项目现有 Chatterbox 和 SadTalker 真实生成。GIF 来自同一份 **512×512、4.736 秒**视频。台词为：
 
 > Welcome to Talking Head Lab. This is an AI generated demonstration.
 
-[播放或下载带声音的 MP4](docs/showcase/sadtalker-original-demo.mp4) · [参考合成声音 WAV](docs/showcase/reference-voice.wav) · [Chatterbox 输出 WAV](docs/showcase/generated-voice.wav) · [素材来源与实跑记录](docs/showcase/PROVENANCE.md)
+[播放或下载带声音的 MP4](docs/showcase/sadtalker-demo.mp4) · [参考合成声音 WAV](docs/showcase/reference-voice.wav) · [Chatterbox 输出 WAV](docs/showcase/generated-voice.wav) · [素材来源与实跑记录](docs/showcase/PROVENANCE.md)
 
 本演示使用虚构人物与合成声音。声音、视频和检测为本轮真实任务；采集与账号分析截图使用已有合成集成测试记录，展示界面与文字排版，本轮没有执行 Facebook 实采或新的账号分析推理。
 
@@ -32,7 +33,7 @@
 |---|---|---|---|
 | **爬取信息与账号分析** | 可访问的 Facebook 主页、帖子或视频链接；手动登录后的会话 | 可见原文、来源链接、可下载媒体、ZIP，以及有文字依据的防范提醒 | 选择已下载的照片、声音或视频，带入生成或检测 |
 | **音色克隆** | 清晰的参考音频或含音轨的视频，加上需要朗读的文字 | Chatterbox 生成的语音，可试听与下载 | 一键带入人像视频，复用资源 ID |
-| **AI 人像视频** | 正脸照片和驱动语音 | 原图驱动的视频 | 预览、下载，再直接检测生成视频 |
+| **AI 人像视频** | 正脸照片和驱动语音 | 背景准备后的肖像与照片驱动视频 | 预览、下载，再直接检测生成视频 |
 | **媒体真伪检测** | 图片、上传的视频，或工作台刚生成的视频 | 多方法结论、评分、采样帧与秒数、通过/未通过/证据不足汇总 | 对照具体时段和方法解释检查证据 |
 
 ### 1. 采集与账号防范分析
@@ -55,9 +56,9 @@
 
 ### 3. 照片与声音 → 人像视频
 
-![人像视频界面、模型选择和本轮 SadTalker 输出](docs/showcase/video-original-zh.jpg)
+![人像视频界面、模型选择和本轮 SadTalker 输出](docs/showcase/video-zh.jpg)
 
-原图和驱动音频直接交给所选视频模型，不额外选择环境、生成背景或拼接肖像。模型自身必需的裁剪、缩放、对齐与原生构图沿用既有能力；账号文本 Qwen 独立保留。
+生成前，现有流程用 Qwen 根据台词选择环境，SDXL 生成背景，U2Net 保留原图人物像素，再交给所选视频模型。输出构图沿用各模型能力。
 
 | 模型选项 | 运行位置 | 当前接口的时长限制 | 输出方式 |
 |---|---|---|---|
@@ -67,15 +68,15 @@
 | EchoMimic V3 Flash | 本地 GPU | 4 秒以内的实验模式 | 原生短视频 |
 | YT HumanActor | 腾讯 TokenHub + COS | 2–60 秒 | 竖版肖像，保留云端输出画幅 |
 
-本页新演示实跑的是 **SadTalker**，任务报告用时 **61.9 秒**，没有背景准备前置。其他选项按配置显示可用状态；本轮未重新生成这些模型的样片。腾讯接入的准确模型 ID 为 `yt-video-humanactor`，配置说明见部署部分。
+本页新演示实跑的是 **SadTalker**，任务报告渲染耗时 **64.1 秒**，不包含前置肖像准备时间。其他选项按配置显示可用状态；本轮未重新生成这些模型的样片。腾讯接入的准确模型 ID 为 `yt-video-humanactor`，配置说明见部署部分。
 
 ### 4. 视频 → 多方法检测证据
 
-![同一份真实生成视频的本地检测结果，云端复核未勾选](docs/showcase/detect-original-zh.jpg)
+![同一份真实生成视频的本地检测结果，云端复核未勾选](docs/showcase/detect-zh.jpg)
 
 检测包含 GenD、NPR、UCF、RECCE、F3-Net 和照片驱动时序静态性；频谱、光流及连续性指标另作辅助取证。视频域中 NPR 展示“证据不足”并退出投票。每种方法提供自己的解释与适用的高/低评分时段。
 
-本演示同一视频得到 **AI 生成倾向**，界面汇总评分 **95.8%**，结果为 **1 项通过、4 项未通过、1 项证据不足**，任务报告用时 **24.1 秒**。[原始 JSON 报告](docs/showcase/detection-original-report.json)保留实际数值。这些评分来自当前模型与本地阈值，适用范围是该样例；未知视频应结合多方法分歧、采样和来源判断。
+本演示同一视频得到 **AI 生成倾向**，界面汇总评分 **95.8%**，结果为 **1 项通过、4 项未通过、1 项证据不足**，任务报告用时 **21.5 秒**。[原始 JSON 报告](docs/showcase/detection-report.json)保留实际数值。这些评分来自当前模型与本地阈值，适用范围是该样例；未知视频应结合多方法分歧、采样和来源判断。
 
 ## 部署
 
@@ -154,6 +155,7 @@ powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task insta
 powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-detectors
 powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-npr
 powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-gend
+wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-instantid.sh
 wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/install-scene-llm.sh
 wsl -d Ubuntu-22.04 -u root -- mkdir -p /opt/media-app/local-media
 wsl -d Ubuntu-22.04 -u root -- cp /mnt/d/project/cv/local-media/patch_echomimic_v3_memory.py /opt/media-app/local-media/
@@ -188,7 +190,7 @@ TruthScan 使用 `/etc/media-app/truthscan.env`。勾选云端复核会上传视
 3. **视频**：选择清晰正脸→选择驱动声音和模型→生成→预览/下载→点击“检测这个视频”。
 4. **检测**：复用刚生成的视频或上传独立图片/视频→选择是否进行外部复核→查看汇总、方法解释和对应帧/秒数。
 
-可以从任何模块开始。语音/视频交接复用资源 ID，不需要反复下载上传；直接上传的驱动音频只用于驱动，不自动转写，也不触发背景流程。当前 API 单文件上限 500 MB，GPU任务顺序执行。上传和生成文件保存在运行服务的 `data/`，由使用者按任务清理。
+可以从任何模块开始。语音/视频交接复用资源 ID，不需要反复下载上传；直接上传的驱动音频没有自动转写，会使用默认中性环境。当前 API 单文件上限 500 MB，GPU任务顺序执行。上传和生成文件保存在运行服务的 `data/`，由使用者按任务清理。
 
 ## 项目结构与代码分布
 
@@ -206,7 +208,7 @@ talking-head-lab/
 │  ├─ account_risk.py / account_story.py      文字证据规则与正文整理
 │  ├─ account_llm.py / local_account_model.py 本地模型桥接与推理
 │  ├─ generate.py / video_profiles.py        生成子进程、构图与时长策略
-│  ├─ local_scene.py / prepare_scene.py      历史背景实验，未进入当前视频链
+│  ├─ local_scene.py / prepare_scene.py      场景选择与肖像准备
 │  ├─ detect.py                             媒体检测和辅助取证
 │  ├─ tokenhub.py / truthscan.py             可选外部接口
 │  ├─ detector-runtime/                     检测安装注册源码

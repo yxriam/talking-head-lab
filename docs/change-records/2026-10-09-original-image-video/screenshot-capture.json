@@ -1,0 +1,22 @@
+{
+  "method": "existing Playwright and Edge, isolated localhost screenshot context",
+  "user_permission": "可以，只截图",
+  "project_source_modified_for_capture": false,
+  "new_model_jobs_submitted": false,
+  "replayed_actual_completed_jobs": [
+    {
+      "kind": "video",
+      "actual_job_id": "da4977bd616f46bd945a5188449571f0"
+    },
+    {
+      "kind": "detect",
+      "actual_job_id": "60a504e5caff45ce8fe3d1c945a1d00d"
+    }
+  ],
+  "files": [
+    "video-original-zh.jpg",
+    "video-original-en.jpg",
+    "detect-original-zh.jpg",
+    "detect-original-en.jpg"
+  ]
+}
