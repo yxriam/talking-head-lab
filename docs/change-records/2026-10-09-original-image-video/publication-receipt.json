@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-09",
+  "timezone": "Pacific/Auckland",
+  "repository": "https://github.com/yxriam/talking-head-lab",
+  "branch": "main",
+  "accepted_fix_commit": "43b7dbb5e723fa377bffb3b323db959068987629",
+  "verified_remote_commit": "43b7dbb5e723fa377bffb3b323db959068987629",
+  "runtime_sha": "78ab7b67a59eb6f3a71c85e3a17a4c3f7537ce9ea6866cf594f1dc029b574c1a",
+  "source_tests": 28,
+  "publication_tests": 22,
+  "runtime_candidate_tests": 9,
+  "frontend_build": "passed",
+  "original_video": "da4977bd616f46bd945a5188449571f0",
+  "original_detection": "60a504e5caff45ce8fe3d1c945a1d00d",
+  "shared_protocol_files": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/AI-HANDOFF.md"
+  ],
+  "claude_called": false,
+  "user_material_excluded": [
+    "ray_report_review/",
+    "new account candidates"
+  ]
+}
