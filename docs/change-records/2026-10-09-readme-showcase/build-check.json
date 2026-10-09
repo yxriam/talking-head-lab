@@ -1,0 +1,31 @@
+{
+  "npm_ci": {
+    "exit": 0,
+    "packages": 455,
+    "node": "24.19.0",
+    "scope": "existing package-lock; no dependency changes"
+  },
+  "first_build": {
+    "exit": 1,
+    "stage": "client environment",
+    "error": "memory allocation of 1218504 bytes failed",
+    "concurrent_model_demo": true
+  },
+  "second_build": {
+    "exit": 0,
+    "command": "npm run build",
+    "environment": {
+      "RAYON_NUM_THREADS": "2"
+    },
+    "all_five_build_stages_complete": true,
+    "model_generation_finished_before_build": true
+  },
+  "vite_source_restored": "facebook-scam/video-forensics-web/build/sites-vite-plugin.ts",
+  "installer_sources_restored": [
+    "local-media/detector-runtime/networks-init.py",
+    "local-media/detector-runtime/detectors-init.py",
+    "local-media/detector-runtime/loss-init.py"
+  ],
+  "python_adapter_ast": "passed",
+  "cold_gpu_installation": "not executed"
+}
