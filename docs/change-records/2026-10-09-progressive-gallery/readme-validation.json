@@ -1,0 +1,1335 @@
+{
+  "links": [
+    {
+      "from": "README.md",
+      "target": "README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/EXAMPLES.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/facebook-trump/images-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/voice-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/video-original-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/detect-original-zh.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/guides/SETUP.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/guides/SETUP.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "网站启动说明.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/guides/DEVELOPMENT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "PROJECT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/portrait-01-thumb.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/portrait-02-thumb.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/portrait-03-thumb.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/video-01.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/video-02.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/video-03.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/portrait-02.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/portrait-03.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/sadtalker-original-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/video-02.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.md",
+      "target": "docs/showcase/gallery/video-03.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/EXAMPLES.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/facebook-trump/images-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/voice-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/video-original-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/detect-original-en.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/guides/SETUP.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/guides/SETUP.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "网站启动说明.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/guides/DEVELOPMENT.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "PROJECT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/portrait-01-thumb.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/portrait-02-thumb.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/portrait-03-thumb.jpg",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/video-01.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/video-02.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/video-03.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/portrait-02.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/portrait-03.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/sadtalker-original-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/video-02.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "README.en.md",
+      "target": "docs/showcase/gallery/video-03.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "AGENTS.md",
+      "target": "docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "AGENTS.md",
+      "target": "docs/templates/task-spec.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "AGENTS.md",
+      "target": "docs/templates/change-record.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "CLAUDE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": ".cursor/rules/project.mdc",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/templates/task-spec.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/templates/change-record.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/account-warning-conflicts.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/change-records/2026-10-08-spec-first/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/engineering-governance.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/github-project-publication.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/change-records/2026-10-08-engineering-governance/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/specs/readme-showcase.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/showcase/PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "PROJECT.md",
+      "target": "docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "sadtalker-original-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "sadtalker-original-demo.gif",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "detection-original-report.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../../AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../AI-HANDOFF.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-original-image-video/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "facebook-trump/EXAMPLE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "facebook-trump/EXAMPLE.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "facebook-trump/collection-summary.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "../change-records/2026-10-09-facebook-trump-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "gallery/EXAMPLES.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "gallery/EXAMPLES.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/PROVENANCE.md",
+      "target": "gallery/manifest.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "target": "../../specs/readme-showcase.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "SETUP.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "SETUP.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../../README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../showcase/facebook-trump/EXAMPLE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../../facebook-scam/video-forensics-web/package.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../../网站启动说明.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../../网站启动说明.md",
+      "fragment": "3-怎么正确停止",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../../local-media/README.md",
+      "fragment": "tokenhub-人像驱动",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.md",
+      "target": "../../local-media/README.md",
+      "fragment": "truthscan-免费云端复核",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "SETUP.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "SETUP.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../../README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../showcase/facebook-trump/EXAMPLE.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../../facebook-scam/video-forensics-web/package.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../../网站启动说明.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../../网站启动说明.md",
+      "fragment": "3-怎么正确停止",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../../local-media/README.md",
+      "fragment": "tokenhub-人像驱动",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/SETUP.en.md",
+      "target": "../../local-media/README.md",
+      "fragment": "truthscan-免费云端复核",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "DEVELOPMENT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "DEVELOPMENT.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "../../README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "../../AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "../../PROJECT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "../../docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.md",
+      "target": "../../docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "DEVELOPMENT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "DEVELOPMENT.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "../../README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "../../AGENTS.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "../../PROJECT.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "../../docs/WORKFLOW.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/guides/DEVELOPMENT.en.md",
+      "target": "../../docs/change-records/2026-10-09-readme-showcase/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "EXAMPLES.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "EXAMPLES.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../../../README.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../sadtalker-original-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "portrait-02.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "video-02.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "portrait-03.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "video-03.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../../guides/SETUP.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "manifest.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.md",
+      "target": "../../change-records/2026-10-09-progressive-gallery/记录.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "EXAMPLES.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "EXAMPLES.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../../../README.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../synthetic-input.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../sadtalker-original-demo.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "portrait-02.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "video-02.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "portrait-03.png",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "video-03.mp4",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../generated-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../reference-voice.wav",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../../guides/SETUP.en.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "manifest.json",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../PROVENANCE.md",
+      "fragment": "",
+      "valid": true
+    },
+    {
+      "from": "docs/showcase/gallery/EXAMPLES.en.md",
+      "target": "../../change-records/2026-10-09-progressive-gallery/记录.md",
+      "fragment": "",
+      "valid": true
+    }
+  ],
+  "media": [
+    {
+      "path": "docs/showcase/account-en.jpg",
+      "bytes": 59598,
+      "sha256": "2d664a8aadc492919fe49406c1d65a2242c0f02d22249d8faaa8e0d82a973fed",
+      "width": 931,
+      "height": 424,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/account-zh.jpg",
+      "bytes": 49354,
+      "sha256": "dc4aa516ee8866344d58588eb2b43b4da458d46d2e88d8978cd1bbe82cc2c38d",
+      "width": 931,
+      "height": 307,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/crawl-en.jpg",
+      "bytes": 69475,
+      "sha256": "d1e92f847cd7e4891b595ac5dfe78a9b98443095018b49d50eb26321049ddad7",
+      "width": 1265,
+      "height": 850,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/crawl-zh.jpg",
+      "bytes": 66171,
+      "sha256": "0d197c20a6423e4e5c738ea3295ada91c50809b72118a121e7b48cb02ea25e2f",
+      "width": 1265,
+      "height": 850,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-en.jpg",
+      "bytes": 89382,
+      "sha256": "08e4ad016a81bd9403ea6e9bec64338a9beecd90ed385ce5618de6af8fe12aae",
+      "width": 1265,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-original-en.jpg",
+      "bytes": 118870,
+      "sha256": "0eed31283fb80e0218ffc5219f863b583047e9000f1f48e22221b5f1be379138",
+      "width": 1280,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-original-zh.jpg",
+      "bytes": 118184,
+      "sha256": "b31303a65b95d78e6aa3c218d2cc18a0a502b2750f02b47bc6372ce87819947f",
+      "width": 1280,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detect-zh.jpg",
+      "bytes": 91382,
+      "sha256": "25d2046615a03f407453bf7c9705c9ea765c36914b10035dc10c477fee8a3ed4",
+      "width": 1265,
+      "height": 1250,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/detection-original-report.json",
+      "bytes": 27950,
+      "sha256": "3f4d0ebaee222994921cec104929c1cec38e942fbf9cb8359fced2601767da43"
+    },
+    {
+      "path": "docs/showcase/detection-report.json",
+      "bytes": 28116,
+      "sha256": "013dcd9676cc2365dc512edc5395f7f90bb12088b7979413cf86c9814b334c43"
+    },
+    {
+      "path": "docs/showcase/facebook-trump/collection-summary.json",
+      "bytes": 8450,
+      "sha256": "ddc1e08f92da7b046b76e30c09039f401d1b089239f69ae79f79c4799e7c8e01"
+    },
+    {
+      "path": "docs/showcase/facebook-trump/EXAMPLE.en.md",
+      "bytes": 4702,
+      "sha256": "30bd871cf63f2fd7e6c00d746d93d17dba82494bd513ade7686423d0aa7adcb7"
+    },
+    {
+      "path": "docs/showcase/facebook-trump/EXAMPLE.md",
+      "bytes": 4135,
+      "sha256": "f09be677825a2a0e7c8edf6c025d36cc720a4b441f353fdc2409160cbb6398ef"
+    },
+    {
+      "path": "docs/showcase/facebook-trump/images-en.jpg",
+      "bytes": 170393,
+      "sha256": "834fa9c89614eee46d3e24a52b26028d7381b18793001ae2f6e0b6c6cb967790",
+      "width": 1440,
+      "height": 1000,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/facebook-trump/images-zh.jpg",
+      "bytes": 163359,
+      "sha256": "99c83e2f1cc850a7d8f99b2a10c545ff5d9984ae827ce4d74418202e57057c0f",
+      "width": 1440,
+      "height": 1000,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/facebook-trump/text-en.jpg",
+      "bytes": 118521,
+      "sha256": "b60c1f9001d2b3e3e06970ac2f3a57303fb1acba29022025ac464d7fa2c63ab7",
+      "width": 1440,
+      "height": 1000,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/facebook-trump/text-zh.jpg",
+      "bytes": 112081,
+      "sha256": "35390d12917e1c4a40d17a66a38d071004d7f10493840f111475c8d04dd3384e",
+      "width": 1440,
+      "height": 1000,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/facebook-trump/video-links-en.jpg",
+      "bytes": 137518,
+      "sha256": "c71308842bfa80a08d89aa7f1019d34f8990215e7dcdf38edf64067a092f2d56",
+      "width": 1440,
+      "height": 1000,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/facebook-trump/video-links-zh.jpg",
+      "bytes": 134550,
+      "sha256": "65074b8cdb3f75a975454b48a54f86e95071ff42fd5d6ed7b3d1c7844e2971f5",
+      "width": 1440,
+      "height": 1000,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/gallery/EXAMPLES.en.md",
+      "bytes": 2440,
+      "sha256": "09b042438aaa4dc0d40828c4f91960bfdcc31c4e93f7a280732d75716c4ced1c"
+    },
+    {
+      "path": "docs/showcase/gallery/EXAMPLES.md",
+      "bytes": 2187,
+      "sha256": "a1e5dd18dce8b050e3c3fe02461b77af5026d28855e32c8245acdb18be200f42"
+    },
+    {
+      "path": "docs/showcase/gallery/manifest.json",
+      "bytes": 2575,
+      "sha256": "cea13737b5365af01d76e6c84bbd2902fcaffe7b7f8c334358930650e7959c9d"
+    },
+    {
+      "path": "docs/showcase/gallery/portrait-01-thumb.jpg",
+      "bytes": 8559,
+      "sha256": "233702a0e4c94170cb0f0965ba5a7c06413b289fe917135bf2020f92463e7ca3",
+      "width": 240,
+      "height": 240,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/gallery/portrait-02-thumb.jpg",
+      "bytes": 9082,
+      "sha256": "146ee06cc9963537b61441a47897e5664c77e713d6e7df42bf0e7d94adbae06c",
+      "width": 240,
+      "height": 240,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/gallery/portrait-02.png",
+      "bytes": 2365172,
+      "sha256": "44bf85c3d717f4fcc66c2f868003b5fab1616eceefe2c22d6458937417ff4e19",
+      "width": 1254,
+      "height": 1254,
+      "format": "PNG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/gallery/portrait-03-thumb.jpg",
+      "bytes": 11765,
+      "sha256": "4fbd20a1a8a4b7d31451bca249bb04e16d898877e9d00066a8f5ada5eb8c9e29",
+      "width": 240,
+      "height": 240,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/gallery/portrait-03.png",
+      "bytes": 2204527,
+      "sha256": "056a60db3824623c0c996e26ee38b28b9542c8f4b6647732cba3c4d4bd17cc40",
+      "width": 1254,
+      "height": 1254,
+      "format": "PNG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/gallery/video-01.gif",
+      "bytes": 796418,
+      "sha256": "7821cdd6c37b97b7377b7999c221f1b38cff40df0ab3902b1ec3da42b4078d82",
+      "width": 240,
+      "height": 240,
+      "format": "GIF",
+      "frames": 37
+    },
+    {
+      "path": "docs/showcase/gallery/video-02.gif",
+      "bytes": 698812,
+      "sha256": "9afe439d2e1a3f591b1e24b1b4b02de25ccdb1c94a080f52728c31c1b225ccd5",
+      "width": 240,
+      "height": 240,
+      "format": "GIF",
+      "frames": 37
+    },
+    {
+      "path": "docs/showcase/gallery/video-02.mp4",
+      "bytes": 399774,
+      "sha256": "c01bb2ac226f1397c290680da54b02bedd1ea7bb438730fb8c556cd85347aa70"
+    },
+    {
+      "path": "docs/showcase/gallery/video-03.gif",
+      "bytes": 850811,
+      "sha256": "56fe9328f77ca067ac21e2248a6493b73c1436c3efbe39008f7b9c6b18081ffe",
+      "width": 240,
+      "height": 240,
+      "format": "GIF",
+      "frames": 37
+    },
+    {
+      "path": "docs/showcase/gallery/video-03.mp4",
+      "bytes": 503530,
+      "sha256": "8a7bb7131b5b4f8e8069836a499b1daf9c7f5d5e2a3c763eade9a78d1dbbef9a"
+    },
+    {
+      "path": "docs/showcase/generated-voice.wav",
+      "bytes": 224684,
+      "sha256": "4fdfa407a3a50defe7dee57d3e5ee85526dd5f25e73d0c9647f4d6bf2194720d",
+      "duration_seconds": 4.68
+    },
+    {
+      "path": "docs/showcase/PROVENANCE.md",
+      "bytes": 11450,
+      "sha256": "f16bb903845b8f57ac7fe9ab4d748d886408095cf50232540f28cd25394190ae"
+    },
+    {
+      "path": "docs/showcase/reference-voice.wav",
+      "bytes": 322116,
+      "sha256": "42de25443a1a6ac0e625e8c188ab4ab0ba3ed9086e91449a54d1beb4a19ad25f",
+      "duration_seconds": 7.303174603174603
+    },
+    {
+      "path": "docs/showcase/sadtalker-demo.gif",
+      "bytes": 3325926,
+      "sha256": "a9b161c222b6b3a3a4b513bea465a9659e58c5b636fe511c2701f7baa7fe396a",
+      "width": 360,
+      "height": 360,
+      "format": "GIF",
+      "frames": 47
+    },
+    {
+      "path": "docs/showcase/sadtalker-demo.mp4",
+      "bytes": 377389,
+      "sha256": "8d2635e30bd42566bb00c501962705e2e0e7b68406c30536885f1fe7fd64daf5"
+    },
+    {
+      "path": "docs/showcase/sadtalker-original-demo.gif",
+      "bytes": 3125432,
+      "sha256": "a87ef62f94cfa13377311de65425f226f0fab96e49372c38f92119077da07d3d",
+      "width": 360,
+      "height": 360,
+      "format": "GIF",
+      "frames": 47
+    },
+    {
+      "path": "docs/showcase/sadtalker-original-demo.mp4",
+      "bytes": 326586,
+      "sha256": "da4b0747d1dabf14e4c086fe49bb7f99dbcc4d424037a4a39f6ed82095143bd9"
+    },
+    {
+      "path": "docs/showcase/synthetic-input.png",
+      "bytes": 2136999,
+      "sha256": "c0f15c82ce1858185324426f50a5d54c306fd66b4cca66532eae59445387c52a",
+      "width": 1254,
+      "height": 1254,
+      "format": "PNG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-en.jpg",
+      "bytes": 102378,
+      "sha256": "fb97add4c79c0de2458ae78caf12abc691f35f323c22ab0747662179f6c6fad7",
+      "width": 1264,
+      "height": 1270,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-original-en.jpg",
+      "bytes": 149094,
+      "sha256": "34edff0dbe3f9f6a1c514c20bda1f3b0e6f1a38c9bbaf50e144e29620abbc380",
+      "width": 1280,
+      "height": 1314,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-original-zh.jpg",
+      "bytes": 132593,
+      "sha256": "da0c86ce6e258daeed13b0fbe337ac3b12aa78bc4a949afc4c0f7f07c16832ec",
+      "width": 1280,
+      "height": 1233,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/video-zh.jpg",
+      "bytes": 92551,
+      "sha256": "7475ccee926d230ec2b189e1afefe16c3ade63064b44eae8613c72608deccd76",
+      "width": 1264,
+      "height": 1227,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/voice-en.jpg",
+      "bytes": 69581,
+      "sha256": "202128ac1b1b27ceedfde9c259d6806fba88cd4c0d1d901ae4e5032c41d2f665",
+      "width": 1264,
+      "height": 1130,
+      "format": "JPEG",
+      "frames": 1
+    },
+    {
+      "path": "docs/showcase/voice-zh.jpg",
+      "bytes": 62079,
+      "sha256": "430956825f5e081f00b376905f50ba8d8036604c924a20d4290c9db478f949d3",
+      "width": 1264,
+      "height": 1110,
+      "format": "JPEG",
+      "frames": 1
+    }
+  ],
+  "checks": {
+    "zh_requested_order": true,
+    "en_requested_order": true,
+    "language_cross_links": true,
+    "same_deployment_usage_development_commands": true,
+    "private_gate_version_boundary": true,
+    "generation_source_marked_synthetic": true,
+    "bilingual_current_screenshot_pairs": true,
+    "reference_and_generated_audio_distinct": true,
+    "actual_voice_job_done": true,
+    "actual_video_job_done": true,
+    "no_prepared_portrait_in_current_readme": true,
+    "shared_protocol_and_handoff": true,
+    "actual_input_image_unmodified": true,
+    "report_matches_actual_job": true,
+    "actual_report_summary": true,
+    "no_cloud_result_in_demo": true,
+    "restored_source_matches_original": true,
+    "targeted_ignore_exceptions_only": true,
+    "dependency_files_unchanged": true,
+    "frontend_build_passed_with_failure_retained": true
+  },
+  "failures": [],
+  "powershell_blocks_per_language": 2,
+  "visual_qa": "Three actual video previews inspected; workbench screenshots remain the earlier accepted captures, not new screenshots of all three jobs."
+}

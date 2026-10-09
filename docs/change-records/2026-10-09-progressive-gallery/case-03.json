@@ -1,0 +1,38 @@
+{
+  "case": 3,
+  "input_image": "portrait-03.png",
+  "input_sha256": "056a60db3824623c0c996e26ee38b28b9542c8f4b6647732cba3c4d4bd17cc40",
+  "image_id": "d8944d6afd934d22b558145fbaa81c16",
+  "audio_id": "2dc507869ece42bf883596b90c1a1973",
+  "audio_sha256": "4fdfa407a3a50defe7dee57d3e5ee85526dd5f25e73d0c9647f4d6bf2194720d",
+  "payload": {
+    "kind": "video",
+    "model": "sadtalker",
+    "image_id": "d8944d6afd934d22b558145fbaa81c16",
+    "audio_id": "2dc507869ece42bf883596b90c1a1973"
+  },
+  "job_id": "7bdf4084dde74a3ab98df320a88f25be",
+  "original_image_byte_match": true,
+  "new_submission_count": 1,
+  "actual_job": {
+    "id": "7bdf4084dde74a3ab98df320a88f25be",
+    "kind": "video",
+    "status": "done",
+    "message": "已完成",
+    "progress": 100,
+    "model": "sadtalker",
+    "result": {
+      "id": "7bdf4084dde74a3ab98df320a88f25be",
+      "name": "output.mp4",
+      "filename": "output.mp4",
+      "kind": "video",
+      "url": "/media/7bdf4084dde74a3ab98df320a88f25be",
+      "model": "sadtalker",
+      "scene": "original",
+      "presentation": "square"
+    },
+    "elapsed_seconds": 57.6
+  },
+  "output_sha256": "8a7bb7131b5b4f8e8069836a499b1daf9c7f5d5e2a3c763eade9a78d1dbbef9a",
+  "no_background_artifacts": true
+}

@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "three_distinct_input_photos": true,
+    "three_distinct_actual_videos": true,
+    "three_distinct_jobs": true,
+    "two_new_jobs_no_detection": true,
+    "case_1_actual_bytes_audio_scene": true,
+    "case_1_animated_preview": true,
+    "case_1_visually_changing_frames": true,
+    "case_2_actual_bytes_audio_scene": true,
+    "case_2_animated_preview": true,
+    "case_2_visually_changing_frames": true,
+    "case_2_real_job_done_no_background": true,
+    "case_3_actual_bytes_audio_scene": true,
+    "case_3_animated_preview": true,
+    "case_3_visually_changing_frames": true,
+    "case_3_real_job_done_no_background": true,
+    "zh_home_under_100_lines": true,
+    "zh_balanced_collapsed_details": true,
+    "zh_three_photo_links_and_three_gifs": true,
+    "zh_no_new_background_step": true,
+    "en_home_under_100_lines": true,
+    "en_balanced_collapsed_details": true,
+    "en_three_photo_links_and_three_gifs": true,
+    "en_no_new_background_step": true
+  },
+  "preview_bytes": 2375447,
+  "all_passed": true
+}

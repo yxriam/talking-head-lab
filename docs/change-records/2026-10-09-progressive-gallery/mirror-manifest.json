@@ -1,0 +1,107 @@
+[
+  {
+    "file": "README.md",
+    "sha256": "fd193645e645f4182e98e0b8b79dcb5a62ec84fbc1a304b66e323b13e828bbca",
+    "source_bytes_match": true
+  },
+  {
+    "file": "README.en.md",
+    "sha256": "0c7c46e80567e855cb35074ae683005de04f1677d909a07a2e27a8dfde994de0",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs/showcase/PROVENANCE.md",
+    "sha256": "f16bb903845b8f57ac7fe9ab4d748d886408095cf50232540f28cd25394190ae",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs/change-records/2026-10-09-readme-showcase/check-showcase.py",
+    "sha256": "dc62038fb442be32b2b2e9a797d516d68ee22f17c142d0092bd274b9a73b6d11",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\guides\\DEVELOPMENT.en.md",
+    "sha256": "54112d1b4775deedd6d3fb12a6824919fa33de2bf65f6454b44a7a47b3376c5d",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\guides\\DEVELOPMENT.md",
+    "sha256": "efaa6011c9f88dc55853eb266b76a2aaa743649fbac02185ae8ab7e4e2135fc9",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\guides\\SETUP.en.md",
+    "sha256": "f3c356cee9902862083142d66a7e49ffe94d66e339f6540e8f5fe2aec2427f1e",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\guides\\SETUP.md",
+    "sha256": "e23242b856112f3821bcfdc192ad5603f2426a7bd309521a4e16d05d8637fbde",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\EXAMPLES.en.md",
+    "sha256": "09b042438aaa4dc0d40828c4f91960bfdcc31c4e93f7a280732d75716c4ced1c",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\EXAMPLES.md",
+    "sha256": "a1e5dd18dce8b050e3c3fe02461b77af5026d28855e32c8245acdb18be200f42",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\manifest.json",
+    "sha256": "cea13737b5365af01d76e6c84bbd2902fcaffe7b7f8c334358930650e7959c9d",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\portrait-01-thumb.jpg",
+    "sha256": "233702a0e4c94170cb0f0965ba5a7c06413b289fe917135bf2020f92463e7ca3",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\portrait-02-thumb.jpg",
+    "sha256": "146ee06cc9963537b61441a47897e5664c77e713d6e7df42bf0e7d94adbae06c",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\portrait-02.png",
+    "sha256": "44bf85c3d717f4fcc66c2f868003b5fab1616eceefe2c22d6458937417ff4e19",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\portrait-03-thumb.jpg",
+    "sha256": "4fbd20a1a8a4b7d31451bca249bb04e16d898877e9d00066a8f5ada5eb8c9e29",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\portrait-03.png",
+    "sha256": "056a60db3824623c0c996e26ee38b28b9542c8f4b6647732cba3c4d4bd17cc40",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\video-01.gif",
+    "sha256": "7821cdd6c37b97b7377b7999c221f1b38cff40df0ab3902b1ec3da42b4078d82",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\video-02.gif",
+    "sha256": "9afe439d2e1a3f591b1e24b1b4b02de25ccdb1c94a080f52728c31c1b225ccd5",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\video-02.mp4",
+    "sha256": "c01bb2ac226f1397c290680da54b02bedd1ea7bb438730fb8c556cd85347aa70",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\video-03.gif",
+    "sha256": "56fe9328f77ca067ac21e2248a6493b73c1436c3efbe39008f7b9c6b18081ffe",
+    "source_bytes_match": true
+  },
+  {
+    "file": "docs\\showcase\\gallery\\video-03.mp4",
+    "sha256": "8a7bb7131b5b4f8e8069836a499b1daf9c7f5d5e2a3c763eade9a78d1dbbef9a",
+    "source_bytes_match": true
+  }
+]

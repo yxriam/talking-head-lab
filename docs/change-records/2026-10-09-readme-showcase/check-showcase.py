@@ -33,11 +33,21 @@ def main(output=None):
     docs = ['README.md', 'README.en.md', 'AGENTS.md', 'PROJECT.md',
             'docs/showcase/PROVENANCE.md', 'docs/specs/readme-showcase.md',
             'docs/change-records/2026-10-09-readme-showcase/记录.md']
+    progressive = '## 快速开始' in (ROOT / 'README.md').read_text(encoding='utf-8')
+    if progressive:
+        docs += ['docs/guides/SETUP.md','docs/guides/SETUP.en.md',
+                 'docs/guides/DEVELOPMENT.md','docs/guides/DEVELOPMENT.en.md',
+                 'docs/showcase/gallery/EXAMPLES.md','docs/showcase/gallery/EXAMPLES.en.md']
     for name in docs:
         path = ROOT / name
         content = path.read_text(encoding='utf-8')
+        if b'\r\r\n' in path.read_bytes():
+            result['failures'].append('doubled Windows line endings break Markdown: ' + name)
+        if progressive and name.startswith('docs/guides/') and content.count('```') % 2:
+            result['failures'].append('unbalanced guide code fence: ' + name)
         targets = re.findall(r'!?\[[^\]]*\]\(([^)]+)\)', content)
         targets += re.findall(r'<img\s+[^>]*src="([^"]+)"', content)
+        targets += re.findall(r'<a\s+[^>]*href="([^"]+)"', content)
         for target in targets:
             if re.match(r'[a-zA-Z]+:', target):
                 continue
@@ -53,8 +63,8 @@ def main(output=None):
     zh = (ROOT / 'README.md').read_text(encoding='utf-8')
     en = (ROOT / 'README.en.md').read_text(encoding='utf-8')
     for name, content, sequence in [
-        ('zh', zh, ['## 功能与效果展示', '## 部署', '## 使用', '## 项目结构与代码分布', '## 二次开发']),
-        ('en', en, ['## Features and results', '## Deployment', '## Usage', '## Project structure and code map', '## Further development']),
+        ('zh', zh, ['## 有哪些功能','## 先看效果，再试样例','## 快速开始','## 想修改项目'] if progressive else ['## 功能与效果展示', '## 部署', '## 使用', '## 项目结构与代码分布', '## 二次开发']),
+        ('en', en, ['## What you can do','## See the results, then try the inputs','## Quick start','## Make changes'] if progressive else ['## Features and results', '## Deployment', '## Usage', '## Project structure and code map', '## Further development']),
     ]:
         indexes = [content.find(value) for value in sequence]
         valid = all(i >= 0 for i in indexes) and indexes == sorted(indexes)
@@ -66,14 +76,14 @@ def main(output=None):
     commands_en = re.findall(r'```powershell\n(.*?)\n```', en, re.S)
     result['checks']['same_deployment_usage_development_commands'] = commands_zh == commands_en
     result['powershell_blocks_per_language'] = len(commands_zh)
-    for token in ['4.736', '4.68', '38.1', '61.9', '24.1', '95.8%', 'yt-video-humanactor', 'RAYON_NUM_THREADS']:
+    for token in ([] if progressive else ['4.736', '4.68', '38.1', '61.9', '24.1', '95.8%', 'yt-video-humanactor', 'RAYON_NUM_THREADS']):
         if token not in zh or token not in en:
             result['failures'].append('bilingual fact mismatch: ' + token)
-    result['checks']['private_gate_version_boundary'] = '当前GitHub版本没有完成自动门控' in zh and 'This GitHub version has not completed automatic gating' in en
-    result['checks']['existing_fixture_not_new_qwen_run'] = '新的账号分析推理' in zh and 'new account-analysis inference' in en
+    result['checks']['private_gate_version_boundary'] = ('自动门控仍待验收' in zh and 'automatic gating still awaits acceptance' in en) if progressive else ('当前GitHub版本没有完成自动门控' in zh and 'This GitHub version has not completed automatic gating' in en)
+    result['checks']['generation_source_marked_synthetic'] = ('合成原图与声音' in zh and 'synthetic people and synthetic speech' in en) if progressive else ('新的账号分析推理' in zh and 'new account-analysis inference' in en)
 
     assets = ROOT / 'docs/showcase'
-    for path in sorted(assets.iterdir()):
+    for path in sorted(assets.rglob('*')):
         if not path.is_file():
             continue
         row = {'path': path.relative_to(ROOT).as_posix(), 'bytes': path.stat().st_size, 'sha256': sha(path)}
@@ -92,7 +102,7 @@ def main(output=None):
     current_zh = set(re.findall(r'docs/showcase/([^\s)]+-zh[.]jpg)', zh))
     current_en = set(re.findall(r'docs/showcase/([^\s)]+-en[.]jpg)', en))
     result['checks']['bilingual_current_screenshot_pairs'] = (
-        len(current_zh) >= 5 and len(current_zh) == len(current_en)
+        len(current_zh) >= (4 if progressive else 5) and len(current_zh) == len(current_en)
         and {name.replace('-zh.jpg', '-en.jpg') for name in current_zh} == current_en
         and all((assets / name).exists() for name in current_zh | current_en))
     result['checks']['reference_and_generated_audio_distinct'] = sha(assets / 'reference-voice.wav') != sha(assets / 'generated-voice.wav')
@@ -149,7 +159,7 @@ def main(output=None):
     for name, passed in result['checks'].items():
         if not passed:
             result['failures'].append('failed check: ' + name)
-    result['visual_qa'] = 'Real current video/detection UI captured with user-approved existing Playwright/Edge and genuine completed-job replay; no source changes or extra inference for capture. Collection captures exclude private history.'
+    result['visual_qa'] = ('Three actual video previews inspected; workbench screenshots remain the earlier accepted captures, not new screenshots of all three jobs.' if progressive else 'Real current video/detection UI captured with user-approved existing Playwright/Edge and genuine completed-job replay; no source changes or extra inference for capture. Collection captures exclude private history.')
     (Path(output) if output else EVIDENCE / 'validation.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps({'checks': result['checks'], 'links': len(result['links']), 'assets': len(result['media']), 'failures': result['failures']}, ensure_ascii=False))
     raise SystemExit(bool(result['failures']))

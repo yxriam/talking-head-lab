@@ -1,0 +1,12 @@
+[
+  {
+    "id": "portrait-02",
+    "prompt": "Photorealistic input photo for a public open-source talking-head demo. Create one completely fictional adult man around 40 with warm brown skin, close-cropped dark hair, clean-shaven face, wearing a plain charcoal crew-neck sweater. Front-facing centered head and shoulders, eyes directly toward camera, closed mouth, relaxed neutral expression, ears and shoulders visible with space above the head. Soft natural even daylight. A simple warm beige room wall behind him. Square image, realistic skin texture. No reference to a real person or celebrity, no text, logos, watermark, glasses, hat, or face occlusions. This is an input portrait only; a separate real SadTalker run will produce the video. Do not make a montage.",
+    "method": "built-in image_gen, no real-person reference"
+  },
+  {
+    "id": "portrait-03",
+    "prompt": "Photorealistic input photo for a public open-source talking-head demo. Create one completely fictional East Asian woman around 60, with short neat silver-gray hair and natural age lines, wearing a simple pale blue collared shirt. Centered front-facing head-and-shoulders photo, direct gaze, closed mouth, calm neutral expression, both shoulders visible and generous head margin. Soft even natural indoor light. A softly out-of-focus bookshelf and light wall in the original photographic background. Square image, realistic skin detail. No real-person reference or celebrity likeness, no text, logos, watermark, glasses, hat, or face obstruction. This is an input portrait only; a separate real SadTalker run will produce the video. Do not make a montage.",
+    "method": "built-in image_gen, no real-person reference"
+  }
+]

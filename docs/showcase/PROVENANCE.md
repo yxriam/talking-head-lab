@@ -79,3 +79,7 @@ The user selected DonaldTrump's real public Facebook page. One existing-collecto
 Current README screenshots use the real published workbench and existing collector API reading a public excerpt of this completed run; capture used GET only. These replace the first offline replay captures. Existing Playwright/Edge was used under the user's screenshot-only permission, with no business-source edits, tool installation, repeated collection or inference. Original image files, commenter data, browser sessions, signed CDN URLs and tracking parameters remain local. Public JSON includes only 4 profile excerpts and media source/status/SHA256 metadata.
 
 [中文示例](facebook-trump/EXAMPLE.md) · [English example](facebook-trump/EXAMPLE.en.md) · [公开概览](facebook-trump/collection-summary.json) · [本轮变更记录](../change-records/2026-10-09-facebook-trump-showcase/记录.md)。特朗普图片/声音未用于生成、克隆或检测，页面方未认可或参与项目。
+
+## 多组样例与首页分层 / Multiple examples and progressive home page
+
+新增两张虚构原图及两次真实SadTalker输出；保留旧原图样例，共3组。首页缩略图与GIF为展示转换，完整原图/音频/带声视频可下载；没有更换背景。详情：[中文](gallery/EXAMPLES.md) · [English](gallery/EXAMPLES.en.md) · [真实任务与SHA](gallery/manifest.json)。New fictional input portraits and actual SadTalker outputs form three examples; thumbnails/GIFs are display derivatives, with original inputs and voiced videos available. No added background replacement.
