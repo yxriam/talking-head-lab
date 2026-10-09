@@ -1,0 +1,36 @@
+{
+  "feature_commit": "f97cb00df7cb1d9cdc8ab5db41e98c561d6c3f3f",
+  "checks": [
+    {
+      "file": "README.md",
+      "remote_matches_local": true,
+      "source_mirror_matches": true,
+      "sha256": "fd193645e645f4182e98e0b8b79dcb5a62ec84fbc1a304b66e323b13e828bbca"
+    },
+    {
+      "file": "README.en.md",
+      "remote_matches_local": true,
+      "source_mirror_matches": true,
+      "sha256": "0c7c46e80567e855cb35074ae683005de04f1677d909a07a2e27a8dfde994de0"
+    },
+    {
+      "file": "docs/showcase/gallery/manifest.json",
+      "remote_matches_local": true,
+      "source_mirror_matches": true,
+      "sha256": "cea13737b5365af01d76e6c84bbd2902fcaffe7b7f8c334358930650e7959c9d"
+    },
+    {
+      "file": "docs/guides/SETUP.md",
+      "remote_matches_local": true,
+      "source_mirror_matches": true,
+      "sha256": "e23242b856112f3821bcfdc192ad5603f2426a7bd309521a4e16d05d8637fbde"
+    },
+    {
+      "file": "docs/guides/SETUP.en.md",
+      "remote_matches_local": true,
+      "source_mirror_matches": true,
+      "sha256": "f3c356cee9902862083142d66a7e49ffe94d66e339f6540e8f5fe2aec2427f1e"
+    }
+  ],
+  "passed": true
+}

@@ -109,3 +109,5 @@ Facebook示例已发布：c95040897de7e80ea1f36421facd7091c6ec2f39，origin/main
 ## 分层README与多组展示（2026-10-09）
 
 双语首页各81行，细节移入双语部署/开发指南；3个合成人像原图与3个实际SadTalker带声视频，新增两次原图任务64.3/57.6秒，未更换背景、未新跑检测。158条文档引用与23项样例检查通过；业务架构/账号候选未改。规格docs/specs/readme-progressive-gallery.md，真实状态与发布号见docs/change-records/2026-10-09-progressive-gallery/记录.md。
+
+分层README/三组视频已发布：f97cb00df7cb1d9cdc8ab5db41e98c561d6c3f3f，origin/main已核对；后台运行版本未改，原图直接生成。
