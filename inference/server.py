@@ -307,6 +307,11 @@ def run_job(identifier, kind):
                     with lock:
                         jobs[identifier].update(progress=progress, message=progress_message(kind, progress, video_model))
                 if process.returncode:
+                    # Input checks in the worker raise ValueError; show that reason, not the command line.
+                    log.flush()
+                    reasons = re.findall(r"^ValueError: (.+)$", log_path.read_text(encoding="utf-8", errors="ignore")[-4000:], re.M)
+                    if reasons:
+                        raise ValueError(reasons[-1].strip())
                     raise subprocess.CalledProcessError(process.returncode, command)
         if kind == "detect":
             artifact = json.loads((directory / "report.json").read_text(encoding="utf-8"))
@@ -405,9 +410,7 @@ def progress_message(kind, progress, video_model="sadtalker"):
         if video_model == "joyvasa":
             if progress >= 25:
                 return "JoyVASA 正在生成人脸、表情与头部动作"
-            if progress >= 22:
-                return "身份肖像已生成，正在加载 JoyVASA"
-            return "正在生成新背景并保留原图人物像素"
+            return "JoyVASA 正在加载模型"
         if video_model == "echomimic_v3_flash":
             return "EchoMimic V3 正在扩散渲染" if progress >= 22 else "EchoMimic V3 正在分段加载模型"
         if video_model == "echomimic_v1":

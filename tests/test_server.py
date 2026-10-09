@@ -181,5 +181,32 @@ class ApiTests(unittest.TestCase):
                         self.assertFalse((work / unused).exists(), unused)
 
 
+    def test_worker_input_error_is_reported_without_the_command_line(self):
+        identifier = 'a' * 32
+        work = server.DATA / identifier
+        work.mkdir()
+        (work / 'request.json').write_text(json.dumps({
+            'image': 'portrait.png', 'audio': 'voice.wav', 'model': 'echomimic_v3_flash'}), encoding='utf-8')
+
+        class FailedProcess:
+            returncode = 1
+            def poll(self):
+                return 1
+
+        def reject(command, stdout=None, **kwargs):
+            stdout.write('Traceback (most recent call last):\n  File "generate.py", line 171, in video\n'
+                         'ValueError: 所选模型的驱动语音需在 4 秒以内\n')
+            stdout.flush()
+            return FailedProcess()
+
+        with patch.dict(server.jobs, {identifier: {'id': identifier, 'status': 'queued'}}, clear=True), \
+             patch.object(server.subprocess, 'Popen', side_effect=reject):
+            server.run_job(identifier, 'video')
+            job = dict(server.jobs[identifier])
+        self.assertEqual(job['status'], 'failed')
+        self.assertIn('所选模型的驱动语音需在 4 秒以内', job['message'])
+        self.assertNotIn('generate.py', job['message'])
+
+
 if __name__ == '__main__':
     unittest.main()
