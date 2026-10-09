@@ -34,7 +34,9 @@ function Start-WslKeeper {
     # A systemd service alone does not keep WSL alive, so hold a hidden WSL client process.
     $keeper = Start-Process -FilePath 'wsl.exe' `
         -ArgumentList @('-d', $distro, '-u', 'root', '--exec', '/usr/bin/sleep', 'infinity') `
-        -WindowStyle Hidden -PassThru
+        -WindowStyle Hidden -PassThru `
+        -RedirectStandardOutput (Join-Path $logs 'wsl-keeper.log') `
+        -RedirectStandardError (Join-Path $logs 'wsl-keeper-error.log')
     Set-Content -Path $pidFile -Value $keeper.Id -Encoding ascii
 }
 
