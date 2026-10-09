@@ -24,6 +24,7 @@ Write-Host '2/3 Web dependencies...'
 if (-not (Test-Path -LiteralPath (Join-Path $web 'node_modules\vinext\dist\cli.js'))) {
     Push-Location $web
     try {
+        if (-not (Get-Command npm.cmd -ErrorAction SilentlyContinue)) { throw 'npm was not found. Install Node.js 22.13+ and reopen PowerShell.' }
         & npm.cmd ci
         if ($LASTEXITCODE -ne 0) { throw 'npm ci failed. Node.js 22.13+ is required.' }
     } finally { Pop-Location }

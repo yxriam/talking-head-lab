@@ -1,4 +1,8 @@
-# AI 人像视频网站：从零安装、日常启动与排错
+# 从零安装、日常启动与排错（详细版）
+
+[返回部署指南](SETUP.md)
+
+> 命令里的 `<项目目录>` 指你克隆本仓库的位置。日常只需要 `scripts\setup.ps1`、`scripts\start.ps1`、`scripts\stop.ps1` 三个脚本；本文是逐步说明和排障手册。
 
 这份说明按“第一次安装”和“以后每天使用”分开写。当前这台电脑已经完成第一次安装，平时直接看第二部分即可。
 
@@ -20,7 +24,7 @@
 | 网页界面 | Windows 上的 Node.js / vinext |
 | 爬取信息 | Windows 上的 Python + Playwright，独立采集队列 |
 
-Windows 中的源代码只有一份，位于 `D:\project\NZ\cv`。需要更新 Ubuntu 后端时，脚本只复制有变化的运行文件，不会在 Ubuntu 中再次执行 `git clone` 或 `git pull`。
+Windows 中的源代码只有一份，就是你克隆的这个项目目录。需要更新 Ubuntu 后端时，脚本只复制有变化的运行文件，不会在 Ubuntu 中再次执行 `git clone` 或 `git pull`。
 
 ## 2. 当前电脑每天怎么启动
 
@@ -31,8 +35,8 @@ Windows 中的源代码只有一份，位于 `D:\project\NZ\cv`。需要更新 U
 3. 逐行复制下面两条命令，每行输入后按一次回车：
 
 ```powershell
-Set-Location D:\project\NZ\cv
-powershell -ExecutionPolicy Bypass -File .\local-media\start-local.ps1
+Set-Location <项目目录>
+powershell -ExecutionPolicy Bypass -File .\scripts\start.ps1
 ```
 
 启动脚本会按顺序完成这些事情：
@@ -62,7 +66,7 @@ http://localhost:3100/studio
 如果只想启动服务，不想自动打开浏览器：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\local-media\start-local.ps1 -NoBrowser
+powershell -ExecutionPolicy Bypass -File .\scripts\start.ps1 -NoBrowser
 ```
 
 ### 启动后做一次快速检查
@@ -111,7 +115,7 @@ if ($listenerProcessId) { Stop-Process -Id $listenerProcessId }
 - Windows 11，或支持 WSL2 的 Windows 10。
 - NVIDIA 显卡和较新的 Windows NVIDIA 驱动。
 - 建议至少 12 GB 显存、32 GB 内存、100 GB 可用磁盘空间。
-- 项目放在 `D:\project\NZ\cv`。如果换了路径，需要同步修改脚本中的 `/mnt/d/project/NZ/cv`。
+- 项目可以放在任意目录；脚本按自身位置推导路径，不需要改脚本。
 - 能访问 GitHub、PyPI 和模型权重下载地址的网络。
 
 显存主要决定可运行的模型和分辨率；内存用于视频帧、模型载入和中间结果；磁盘用于多个模型仓库、Python 环境、权重和生成文件。
@@ -127,8 +131,8 @@ wsl --install -d Ubuntu-22.04
 如果 Microsoft Store 下载失败，可以运行项目内的安装脚本：
 
 ```powershell
-Set-Location D:\project\NZ\cv
-powershell -ExecutionPolicy Bypass -File .\local-media\install-ubuntu.ps1 -WebDownload
+Set-Location <项目目录>
+powershell -ExecutionPolicy Bypass -File .\inference\install\install-ubuntu.ps1 -WebDownload
 ```
 
 安装要求重启时先重启 Windows。重启后从开始菜单打开 Ubuntu，创建 Linux 用户名和密码。Linux 密码输入时屏幕不会显示圆点或星号，这是正常现象。
@@ -162,14 +166,14 @@ wsl -d Ubuntu-22.04 -- nvidia-smi
 以管理员身份打开 PowerShell，运行：
 
 ```powershell
-Set-Location D:\project\NZ\cv
-powershell -ExecutionPolicy Bypass -File .\local-media\prepare-linux.ps1
+Set-Location <项目目录>
+powershell -ExecutionPolicy Bypass -File .\inference\install\prepare-linux.ps1
 ```
 
 这个步骤安装 Python 3.10、虚拟环境、编译工具和 FFmpeg。完成后查看日志：
 
 ```powershell
-Get-Content .\local-media\linux-prepare.txt -Tail 30
+Get-Content .\logs\linux-prepare.txt -Tail 30
 ```
 
 日志中应出现 `PREPARE_COMPLETE` 和 `ExitCode: 0`。
@@ -179,12 +183,12 @@ Get-Content .\local-media\linux-prepare.txt -Tail 30
 下面步骤耗时最长，也最占磁盘。逐条运行，上一条完成后再运行下一条：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task setup-models
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-generators
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-echomimic
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-detectors
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-npr
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task install-gend
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task setup-models
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task install-generators
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task install-echomimic
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task install-detectors
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task install-npr
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task install-gend
 ```
 
 每一步都会生成同名日志，例如 `setup-models.log` 和 `setup-models-error.log`。首次安装时下载可能持续几十分钟到数小时。不要因为一段时间没有新输出就反复重新运行；先查看任务管理器中的网络、磁盘和 GPU 使用情况以及日志末尾。
@@ -202,7 +206,7 @@ powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task insta
 运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task activate-api
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task activate-api
 ```
 
 这个步骤会：
@@ -234,7 +238,7 @@ npm --version
 `node --version` 应为 `v22.13.0` 或更高版本。进入前端目录并安装依赖：
 
 ```powershell
-Set-Location D:\project\NZ\cv\facebook-scam\video-forensics-web
+Set-Location <项目目录>\web
 npm install
 npm run build
 ```
@@ -242,7 +246,7 @@ npm run build
 构建成功后返回项目根目录：
 
 ```powershell
-Set-Location D:\project\NZ\cv
+Set-Location <项目目录>
 ```
 
 ### 4.8 可选：配置腾讯 TokenHub HumanActor
@@ -274,19 +278,19 @@ TENCENT_COS_BUCKET=你的存储桶名称
 先创建安全配置文件：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/configure-tokenhub-service.sh
+wsl -d Ubuntu-22.04 -u root -- bash /opt/media-app/local-media/configure-tokenhub-service.sh
 ```
 
 如果 CAM 密钥下载成 CSV，可以用导入脚本避免在终端显示密钥。将下面的 CSV 路径换成实际文件名：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- python3 /mnt/d/project/cv/local-media/import_cos_credentials.py /mnt/c/Users/你的Windows用户名/Downloads/密钥文件.csv /etc/media-app/tokenhub.env
+wsl -d Ubuntu-22.04 -u root -- python3 /opt/media-app/local-media/import_cos_credentials.py /mnt/c/Users/你的Windows用户名/Downloads/密钥文件.csv /etc/media-app/tokenhub.env
 ```
 
 把 TokenHub API Key 单独放在只有一行内容的文本文件中，再运行：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- python3 /mnt/d/project/cv/local-media/import_env_secret.py TOKENHUB_API_KEY /mnt/c/Users/你的Windows用户名/Downloads/tokenhub-key.txt /etc/media-app/tokenhub.env
+wsl -d Ubuntu-22.04 -u root -- python3 /opt/media-app/local-media/import_env_secret.py TOKENHUB_API_KEY /mnt/c/Users/你的Windows用户名/Downloads/tokenhub-key.txt /etc/media-app/tokenhub.env
 ```
 
 存储桶名称和地域可以用下面的命令编辑：
@@ -308,8 +312,8 @@ HumanActor 会把输入媒体临时上传到 COS，取得腾讯 API 可访问的
 用管理员 PowerShell 运行：
 
 ```powershell
-Set-Location D:\project\NZ\cv
-powershell -ExecutionPolicy Bypass -File .\local-media\repair-local-network.ps1
+Set-Location <项目目录>
+powershell -ExecutionPolicy Bypass -File .\inference\install\repair-local-network.ps1
 ```
 
 脚本只建立 `127.0.0.1:8002` 到当前 WSL 地址的转发，并为 8002 端口创建受限的 WSL Hyper-V 防火墙规则。网站不会直接监听局域网地址。
@@ -322,12 +326,12 @@ powershell -ExecutionPolicy Bypass -File .\local-media\repair-local-network.ps1
 
 关闭并重新启动网页进程即可。最简单的做法是完整停止，再运行一键启动脚本。开发服务器通常也会自动刷新页面。
 
-### 修改 `local-media` 后端
+### 修改 `inference/` 后端
 
 先同步有变化的文件，再重启服务：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/sync-runtime.sh
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-inference.ps1 -NoRestart
 wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
 ```
 
@@ -337,7 +341,7 @@ wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
 如果修改了 `requirements.txt`，重新运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task activate-api
+powershell -ExecutionPolicy Bypass -File .\inference\install\run-linux.ps1 -Task activate-api
 ```
 
 ## 6. 日志和任务文件在哪里
@@ -345,15 +349,15 @@ powershell -ExecutionPolicy Bypass -File .\local-media\run-linux.ps1 -Task activ
 ### 网页日志
 
 ```text
-D:\project\NZ\cv\local-media\web.log
-D:\project\NZ\cv\local-media\web-error.log
+<项目目录>\logs\web.log
+<项目目录>\logs\web-error.log
 ```
 
 查看最后 100 行：
 
 ```powershell
-Get-Content D:\project\NZ\cv\local-media\web.log -Tail 100
-Get-Content D:\project\NZ\cv\local-media\web-error.log -Tail 100
+Get-Content <项目目录>\logs\web.log -Tail 100
+Get-Content <项目目录>\logs\web-error.log -Tail 100
 ```
 
 ### 后端服务日志
@@ -395,7 +399,7 @@ curl.exe http://127.0.0.1:8002/health
 如果服务是 `active`，但 curl 无法连接，以管理员身份运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\project\NZ\cv\local-media\repair-local-network.ps1
+powershell -ExecutionPolicy Bypass -File <项目目录>\inference\install\repair-local-network.ps1
 ```
 
 ### 启动一会儿后又无法连接
@@ -411,7 +415,7 @@ powershell -ExecutionPolicy Bypass -File D:\project\NZ\cv\local-media\repair-loc
 当前代码已经改为 TokenHub 官方兼容参数名，并为 COS 音频对象设置正确的 Content-Type。先同步后端并重启：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/sync-runtime.sh
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-inference.ps1 -NoRestart
 wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
 ```
 
@@ -422,7 +426,7 @@ wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
 这表示后端启动脚本没有 Linux 可执行权限。当前同步脚本会自动修复。运行：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/sync-runtime.sh
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-inference.ps1 -NoRestart
 wsl -d Ubuntu-22.04 -u root -- systemctl reset-failed local-media.service
 wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
 ```
@@ -486,8 +490,8 @@ wsl -d Ubuntu-22.04 -- nvidia-smi
 启动全部：
 
 ```powershell
-Set-Location D:\project\NZ\cv
-powershell -ExecutionPolicy Bypass -File .\local-media\start-local.ps1
+Set-Location <项目目录>
+powershell -ExecutionPolicy Bypass -File .\scripts\start.ps1
 ```
 
 检查全部：
@@ -506,7 +510,7 @@ wsl -d Ubuntu-22.04 -u root -- journalctl -u local-media.service -n 100 --no-pag
 后端代码更新后同步：
 
 ```powershell
-wsl -d Ubuntu-22.04 -u root -- bash /mnt/d/project/cv/local-media/sync-runtime.sh
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-inference.ps1 -NoRestart
 wsl -d Ubuntu-22.04 -u root -- systemctl restart local-media.service
 ```
 

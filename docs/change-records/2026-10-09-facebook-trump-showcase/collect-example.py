@@ -11,12 +11,12 @@ from threading import Event
 
 ROOT = Path(__file__).resolve().parents[3]
 RECORD = Path(__file__).resolve().parent
-SOURCE = ROOT / "facebook-scam/crawler/facebook.py"
+SOURCE = ROOT / "collector/facebook.py"
 spec = importlib.util.spec_from_file_location("facebook_collector", SOURCE)
 collector = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(collector)
 identifier = uuid.uuid4().hex
-work = ROOT / "local-media/crawl-data" / identifier
+work = ROOT / "collector/crawl-data" / identifier
 work.mkdir(parents=True)
 options = {"url": "https://www.facebook.com/DonaldTrump/", "max_scrolls": 4,
            "max_images": 4, "max_videos": 1, "download_media": True}
@@ -39,7 +39,7 @@ open_context = collector.open_context
 collector.open_context = lambda playwright, profile: open_context(playwright, profile, headless=True)
 started = time.monotonic()
 try:
-    result = collector.collect(options, ROOT / "local-media/facebook-browser", work, Event(), update)
+    result = collector.collect(options, ROOT / "collector/facebook-browser", work, Event(), update)
     (work / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     (work / "text.txt").write_text("\n\n".join(item["text"] for item in result["text"]), encoding="utf-8")
     # Use the existing job-file schema for local UI preview/export; never call analysis.

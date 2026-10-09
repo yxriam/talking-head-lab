@@ -1,8 +1,8 @@
 # Live Facebook collection example: Donald J. Trump
 
-[中文](EXAMPLE.md) · [English](EXAMPLE.en.md) · [Back to project showcase](../../../README.en.md#features-and-results)
+[中文](EXAMPLE.md) · [English](EXAMPLE.en.md) · [Back to README](../../../README.en.md#showcase)
 
-Target: [https://www.facebook.com/DonaldTrump/](https://www.facebook.com/DonaldTrump/). The user requested this real account as the collection example. The run called the existing `facebook-scam/crawler/facebook.py` with the saved local session. It introduced no second crawler and called neither a classification model nor a personal-risk model.
+Target: [https://www.facebook.com/DonaldTrump/](https://www.facebook.com/DonaldTrump/). The user requested this real account as the collection example. The run called the existing `collector/facebook.py` with the saved local session. It introduced no second crawler and called neither a classification model nor a personal-risk model.
 
 ## What the run obtained
 
@@ -17,7 +17,7 @@ Target: [https://www.facebook.com/DonaldTrump/](https://www.facebook.com/DonaldT
 | Time | 13.0 seconds for the task, 12.2 seconds inside the collector; specific to this run |
 | Publication dates | Not extracted; original date=null values remain missing. Collection time is not a posting date |
 
-The [public JSON summary](collection-summary.json) retains sources, timestamps, selected text, media status and SHA256 values for downloaded files. Raw data remains in the ignored local `local-media/crawl-data/<job ID>/` directory. Full posts/comments, commenter names, tracking parameters, signed CDN URLs, browser sessions and standalone original images were not published.
+The [public JSON summary](collection-summary.json) retains sources, timestamps, selected text, media status and SHA256 values for downloaded files. Raw data remains in the ignored local `collector/crawl-data/<job ID>/` directory. Full posts/comments, commenter names, tracking parameters, signed CDN URLs, browser sessions and standalone original images were not published.
 
 ## How the interface uses the result
 
@@ -35,15 +35,15 @@ This page exposed no video file that the collector could save during the run, so
 
 ## Reproduce the collection-only workflow locally
 
-Follow the [deployment and usage instructions](../../../README.en.md#deployment) to configure Windows collection dependencies and start the collector. On first use, choose “Open Facebook login” in the workbench and log in manually. Then run from the project root:
+Follow the [setup guide](../../guides/SETUP.en.md) to configure Windows collection dependencies and start the collector. On first use, choose “Open Facebook login” in the workbench and log in manually. Then run from the project root:
 
 ```powershell
-local-media\.venv\Scripts\python.exe docs\change-records\2026-10-09-facebook-trump-showcase\collect-example.py
+collector\.venv\Scripts\python.exe docs\change-records\2026-10-09-facebook-trump-showcase\collect-example.py
 ```
 
 The runner fixes this URL, 4 scrolls, and caps of 4 images/1 video. It directly calls the existing collector, writes local job/receipt files, stops at login or verification, and preserves the committed acceptance evidence. Open the new history record in the running collector workbench after completion. It does not invoke the account-analysis module.
 
-The visible introduction and purpose field support the observation that this is an official political public page, so this example emits no personal-risk warnings. Automatic personal-account gating in the published version still requires separate acceptance. This example explicitly omits the old API's automatic account analysis by calling the collector directly; it is not evidence that gating has been deployed.
+The visible introduction and purpose field support the observation that this is an official political public page, so this example emits no personal-risk warnings. This example called the collector directly and did not go through account analysis. The current workbench classifies first, and a public page like this one only shows the classification note.
 
 ## Evidence and presentation scope
 
