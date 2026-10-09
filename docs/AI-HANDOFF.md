@@ -16,13 +16,11 @@
 | 部署 | **未部署**。运行中的网站仍来自旧目录 `D:\project\NZ\cv` |
 | 推送 | **未推送**。会话环境无法访问 GitHub 写入 |
 
-## 下一步（按顺序）
+## 下一步
 
-1. 在本目录运行 `scripts\setup.ps1 -MigrateFrom D:\project\NZ\cv`，再运行 `scripts\test.ps1`。
-2. `scripts\stop.ps1` 停掉旧目录启动的界面与采集，`scripts\deploy-inference.ps1` 同步推理服务，`scripts\start.ps1` 启动。
-3. 在 <http://localhost:3100/studio> 逐项实测：采集、账号分析、音色克隆、各视频模型、检测。
-4. 通过后推送分支并合并到 `main`，核对 CI 两个 job。
-5. 旧目录 `D:\project\NZ\cv` 不再作为源码使用，只保留历史素材和数据。
+**由 Codex 执行 [切换、实测与发布规格](specs/module-layout-cutover.md)**：T0 备份 → T1 环境与程序测试 → T2 部署 → T3 启动 → T4 四个功能逐项实测 → T5 推送并确认 CI → T6 更新本文件。验收标准是该规格中的 AC01–AC15，AC01–AC12 未全部通过不得合并到 `main`。
+
+旧目录 `D:\project\NZ\cv` 不再作为源码使用，只保留历史素材和数据；不要修改或删除其中的文件。
 
 ## 仍未解决
 
