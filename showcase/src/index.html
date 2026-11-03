@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Talking Head Lab：从公开素材采集、风险分析、AI 人像生成到多维媒体取证的一体化教学实验。"
+    />
+    <meta name="theme-color" content="#153f37" />
+    <title>Talking Head Lab · AI 媒体实验室</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Talking Head Lab 首页">
+        <span class="brand-mark" aria-hidden="true">TH</span>
+        <span>
+          <strong>Talking Head Lab</strong>
+          <small>AI 媒体实验室</small>
+        </span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+        <span class="sr-only">打开导航</span>
+      </button>
+      <nav id="site-nav" aria-label="主要导航">
+        <a href="#workflow">实验流程</a>
+        <a href="#generation">生成样例</a>
+        <a href="#detection">取证检测</a>
+        <a href="#architecture">系统架构</a>
+        <a class="nav-cta" href="https://github.com/yxriam/talking-head-lab">查看源码</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="live-dot"></span> 展示站全天在线</div>
+          <h1>看见一段视频之前，<br /><em>先看见它的证据链。</em></h1>
+          <p class="hero-lead">
+            从社交素材暴露、AI 人像合成到多维真伪检测，
+            一个本地优先的教学实验室把攻击链与防御链放在同一张桌面上。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#workflow">查看完整流程</a>
+            <a class="button secondary" href="#generation">观看生成样例</a>
+          </div>
+          <p class="availability">
+            <strong>当前可用：</strong>项目说明、公开合成样例与实验结果。实时 GPU 实验室按需开启。
+          </p>
+        </div>
+        <div class="hero-visual reveal" aria-label="项目的四步实验流程">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-panel">
+            <div class="panel-head">
+              <span>实验链路</span>
+              <span class="panel-status">LOCAL FIRST</span>
+            </div>
+            <ol class="mini-flow">
+              <li><span>01</span><div><strong>采集</strong><small>保留来源与时间</small></div></li>
+              <li><span>02</span><div><strong>分析</strong><small>逐句追溯证据</small></div></li>
+              <li><span>03</span><div><strong>生成</strong><small>原图与声音直达模型</small></div></li>
+              <li><span>04</span><div><strong>检测</strong><small>多维取证，不强行二选一</small></div></li>
+            </ol>
+          </div>
+          <div class="floating-note note-one"><b>5</b><span>生成模型</span></div>
+          <div class="floating-note note-two"><b>3+</b><span>取证维度</span></div>
+        </div>
+      </section>
+
+      <section class="fact-strip" aria-label="项目数据">
+        <div><strong>4</strong><span>一体化实验步骤</span></div>
+        <div><strong>5</strong><span>可选人像模型</span></div>
+        <div><strong>5</strong><span>学习型检测器</span></div>
+        <div><strong>0</strong><span>展示页本地依赖</span></div>
+      </section>
+
+      <section class="section workflow" id="workflow">
+        <div class="section-heading reveal">
+          <p class="kicker">01 · 完整链路</p>
+          <h2>素材如何变成风险，<br />又如何变成可核验的结论</h2>
+          <p>每一步都保留输入、来源、输出和限制，让演示可以被复现，也可以被质疑。</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="flow-card reveal">
+            <span class="step-number">01</span>
+            <div class="icon-box" aria-hidden="true">⌁</div>
+            <h3>公开素材采集</h3>
+            <p>取得登录后可见的文字与媒体，区分已下载、仅链接和失败项目，不把缺失伪装成成功。</p>
+            <ul><li>来源链接</li><li>发布时间</li><li>原始文件</li></ul>
+          </article>
+          <article class="flow-card reveal">
+            <span class="step-number">02</span>
+            <div class="icon-box" aria-hidden="true">◎</div>
+            <h3>账号风险分析</h3>
+            <p>先分类账号用途，再对私人账号分析。每条提醒指向原始证据，不输出人物画像或受骗概率。</p>
+            <ul><li>用途门控</li><li>证据编号</li><li>防范动作</li></ul>
+          </article>
+          <article class="flow-card reveal">
+            <span class="step-number">03</span>
+            <div class="icon-box" aria-hidden="true">◉</div>
+            <h3>授权人像生成</h3>
+            <p>用户原图与驱动音频直接进入所选模型。模型可以横向比较，生成过程不额外更换背景。</p>
+            <ul><li>声音克隆</li><li>五种模型</li><li>原图直达</li></ul>
+          </article>
+          <article class="flow-card reveal">
+            <span class="step-number">04</span>
+            <div class="icon-box" aria-hidden="true">⌇</div>
+            <h3>多维真伪检测</h3>
+            <p>学习型视觉、频谱分布和时序连续性相互补充。证据不足时输出“不确定”。</p>
+            <ul><li>模型分数</li><li>可疑片段</li><li>方法限制</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section evidence-showcase">
+        <div class="section-heading compact reveal">
+          <p class="kicker">02 · 证据可见</p>
+          <h2>界面不只给结论，也给依据</h2>
+        </div>
+        <div class="screen-grid">
+          <figure class="screen-card reveal">
+            <img src="./assets/crawl-zh.jpg" alt="采集结果界面，展示文字和媒体来源" loading="lazy" />
+            <figcaption><b>采集</b><span>结果、缺失项和来源分别记录</span></figcaption>
+          </figure>
+          <figure class="screen-card reveal">
+            <img src="./assets/account-zh.jpg" alt="账号风险分析界面，展示证据编号" loading="lazy" />
+            <figcaption><b>分析</b><span>提醒能够回到原始材料</span></figcaption>
+          </figure>
+          <figure class="screen-card reveal">
+            <img src="./assets/detect-original-zh.jpg" alt="AI 视频检测界面，展示多个检测结果" loading="lazy" />
+            <figcaption><b>检测</b><span>多个方法独立报告与解释</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section generation" id="generation">
+        <div class="section-heading reveal">
+          <p class="kicker">03 · 生成样例</p>
+          <h2>同一个任务，不同人像与运动表现</h2>
+          <p>以下人物均为合成素材，视频由本项目的本地模型实跑生成，并保留输入来源记录。</p>
+        </div>
+        <div class="video-grid">
+          <article class="video-card reveal">
+            <div class="video-frame">
+              <video controls muted loop playsinline preload="metadata" poster="./assets/portrait-01-thumb.jpg">
+                <source src="./assets/video-01.mp4" type="video/mp4" />
+              </video>
+              <span class="sample-label">SAMPLE 01</span>
+            </div>
+            <div class="video-meta"><h3>正面人像</h3><p>观察口型同步、眼神与头部运动。</p></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video-frame">
+              <video controls muted loop playsinline preload="metadata" poster="./assets/portrait-02-thumb.jpg">
+                <source src="./assets/video-02.mp4" type="video/mp4" />
+              </video>
+              <span class="sample-label">SAMPLE 02</span>
+            </div>
+            <div class="video-meta"><h3>不同脸型</h3><p>比较模型对面部结构的保持能力。</p></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video-frame">
+              <video controls muted loop playsinline preload="metadata" poster="./assets/portrait-03-thumb.jpg">
+                <source src="./assets/video-03.mp4" type="video/mp4" />
+              </video>
+              <span class="sample-label">SAMPLE 03</span>
+            </div>
+            <div class="video-meta"><h3>年龄特征</h3><p>观察纹理、边缘与时间一致性。</p></div>
+          </article>
+        </div>
+        <p class="ethical-note reveal">
+          <span aria-hidden="true">i</span>
+          展示素材均为合成人像；真实人物的照片与声音只在获得授权后用于教学实验。
+        </p>
+      </section>
+
+      <section class="section detection" id="detection">
+        <div class="section-heading reveal">
+          <p class="kicker">04 · 多维取证</p>
+          <h2>一个分数不够，<br />让三类证据相互校验</h2>
+        </div>
+        <div class="detection-layout">
+          <div class="method-list">
+            <article class="method-card reveal">
+              <span class="method-index">A</span>
+              <div><h3>学习型视觉取证</h3><p>UCF、RECCE、F3-Net、GenD 与 NPR 从面部伪影和生成痕迹给出独立判断。</p></div>
+              <span class="method-tag">语义与纹理</span>
+            </article>
+            <article class="method-card reveal">
+              <span class="method-index">B</span>
+              <div><h3>频谱分布取证</h3><p>检查高频能量、径向频谱与压缩后仍可能保留的统计异常。</p></div>
+              <span class="method-tag">概率与频域</span>
+            </article>
+            <article class="method-card reveal">
+              <span class="method-index">C</span>
+              <div><h3>视频时序连续性</h3><p>比较帧间残差、光流和运动突变，寻找单帧肉眼难以发现的不连续。</p></div>
+              <span class="method-tag">时间维度</span>
+            </article>
+          </div>
+          <aside class="verdict-card reveal">
+            <div class="verdict-head"><span>报告原则</span><span class="shield" aria-hidden="true">◇</span></div>
+            <h3>证据不足，<br />就明确说不确定。</h3>
+            <p>压缩、缩放、滤镜和剪辑都会改变检测指标。系统展示阈值、可疑时间段与方法限制，不把单一模型分数包装成事实。</p>
+            <div class="confidence-scale" aria-label="从真实倾向到AI倾向的示意刻度">
+              <div class="scale-bar"><span></span></div>
+              <div><span>真实倾向</span><span>不确定</span><span>AI 倾向</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section architecture" id="architecture">
+        <div class="section-heading compact reveal">
+          <p class="kicker">05 · 可用性设计</p>
+          <h2>展示始终在线，算力按需启动</h2>
+        </div>
+        <div class="architecture-map reveal">
+          <div class="arch-node cloud">
+            <span class="arch-icon" aria-hidden="true">☁</span>
+            <div><strong>Cloudflare 展示站</strong><small>页面 · 样例 · 实验结论</small></div>
+            <b class="status-pill online">全天在线</b>
+          </div>
+          <span class="connector" aria-hidden="true"></span>
+          <div class="arch-node github">
+            <span class="arch-icon" aria-hidden="true">⌘</span>
+            <div><strong>GitHub 源码</strong><small>版本 · CI · 回退记录</small></div>
+            <b class="status-pill online">可追溯</b>
+          </div>
+          <span class="connector dashed" aria-hidden="true"></span>
+          <div class="arch-node gpu">
+            <span class="arch-icon" aria-hidden="true">▦</span>
+            <div><strong>本地 GPU 实验室</strong><small>生成 · 检测 · 采集</small></div>
+            <b class="status-pill ondemand">按需开启</b>
+          </div>
+        </div>
+        <div class="boundary-note reveal">
+          <strong>为什么这样拆分？</strong>
+          <p>Ray 老师无需等待你的电脑开机，就能查看项目与实验结果；只有现场生成和检测时才需要连接 GPU，兼顾可用性、隐私和成本。</p>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-copy reveal">
+          <p class="kicker light">RESPONSIBLE MEDIA AI</p>
+          <h2>真实感不是真实性。<br />结论应该回到证据。</h2>
+          <p>本项目用于反诈教学与安全研究。生成内容应明确标注为 AI 合成。</p>
+        </div>
+        <a class="button light-button" href="https://github.com/yxriam/talking-head-lab">
+          在 GitHub 查看项目 <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand"><span class="brand-mark small" aria-hidden="true">TH</span><strong>Talking Head Lab</strong></div>
+      <p>AI 媒体合成与取证教学实验 · Local-first</p>
+      <p>公开展示仅使用合成或已授权素材</p>
+    </footer>
+  </body>
+</html>
